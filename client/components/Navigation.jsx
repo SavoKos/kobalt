@@ -1,11 +1,16 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import Icon from './UI/Icon';
-import { faPhone, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import {
+  AiOutlineShoppingCart,
+  AiOutlineMenu,
+  AiOutlineClose,
+} from 'react-icons/ai';
 
 function Navigation({ active = 'pocetna' }) {
+  const [menuActive, setMenuActive] = useState(false);
+
   const style = (page) => ({
     fontWeight: active === page ? '700' : '500',
   });
@@ -13,7 +18,11 @@ function Navigation({ active = 'pocetna' }) {
   return (
     <S.Container>
       <Image src='/logo.png' width={200} height={80} />
-      <S.NavLinks>
+      <S.NavLinks menuActive={menuActive}>
+        <AiOutlineClose
+          className='close'
+          onClick={() => setMenuActive(false)}
+        />
         <Link href='/' style={style('pocetna')}>
           Početna
         </Link>
@@ -27,11 +36,13 @@ function Navigation({ active = 'pocetna' }) {
           Kontakt
         </Link>
       </S.NavLinks>
-      <S.RightSide>
-        <Icon icon={faShoppingCart} className='cart' />
-        <Icon icon={faPhone} className='phone' />
-        <p>065 583 865</p>
-      </S.RightSide>
+      <S.Icons>
+        <AiOutlineShoppingCart className='cart' />
+        <AiOutlineMenu
+          className='menu'
+          onClick={() => setMenuActive((prevActive) => !prevActive)}
+        />
+      </S.Icons>
     </S.Container>
   );
 }
@@ -57,32 +68,65 @@ S.Container = styled.div`
 
 S.NavLinks = styled.div`
   display: flex;
-  align-items: center;
   gap: 2rem;
+  align-items: center;
+  position: fixed;
+  flex-direction: column;
+  right: 0;
+  transform: translateX(${(props) => (props.menuActive ? '0' : '120%')});
+  top: 0;
+  height: 100vh;
+  justify-content: space-evenly;
+  background-color: ${({ theme }) => theme.colors.darkYellow + 'eb'};
+  width: 100%;
+  z-index: 5;
+  transition: all ease 0.5s;
+
   a {
     color: #fff;
     font-size: 1em;
     text-transform: uppercase;
   }
+
+  @media screen and (min-width: 768px) {
+    position: static;
+    flex-direction: row;
+    transform: translateX(0%) !important;
+    width: unset;
+    height: unset;
+    background-color: transparent;
+  }
+
+  .close {
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    font-size: 36px;
+    cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
 `;
-S.RightSide = styled.div`
+
+S.Icons = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+  min-width: 100px;
+  justify-content: flex-end;
 
   svg {
-    font-size: 20px;
     cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    position: relative;
   }
 
-  .cart {
-    background-color: #fff;
-    color: ${({ theme }) => theme.colors.darkYellow};
-    padding: 1rem;
-    border-radius: 100%;
-  }
-
-  .phone {
-    margin-right: -1.5rem;
+  .menu {
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 `;
