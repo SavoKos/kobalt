@@ -10,7 +10,9 @@ import styled from 'styled-components';
 function FoodItem({ stars = 4 }) {
   const starItems = Array(5)
     .fill(0)
-    .map((_, i) => (i < stars ? <AiFillStar /> : <AiOutlineStar />));
+    .map((_, i) =>
+      i < stars ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
+    );
   return (
     <S.Container>
       <Image src='/foodItem.png' width={300} height={300} />

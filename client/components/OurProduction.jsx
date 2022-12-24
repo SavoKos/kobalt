@@ -19,6 +19,7 @@ function OurProduction() {
             <S.Category
               selected={selected === category}
               onClick={() => setSelected(category)}
+              key={category}
             >
               {category}
             </S.Category>

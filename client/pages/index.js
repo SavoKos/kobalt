@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import Navigation from '../components/Navigation';
+import Newsletter from '../components/Newsletter';
 import OurProduction from '../components/OurProduction';
 import PopularCategory from '../components/PopularCategory';
 
