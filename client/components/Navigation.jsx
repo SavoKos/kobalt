@@ -52,14 +52,15 @@ export default Navigation;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.darkOrange + 'eb'};
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #fff;
   padding: 0.5rem 10%;
-  position: absolute;
+  position: fixed;
   width: 100%;
+  z-index: 2;
 
   img {
     cursor: pointer;
@@ -77,7 +78,7 @@ S.NavLinks = styled.div`
   top: 0;
   height: 100vh;
   justify-content: space-evenly;
-  background-color: ${({ theme }) => theme.colors.darkRed + 'eb'};
+  background-color: ${({ theme }) => theme.colors.darkOrange + 'eb'};
   width: 100%;
   z-index: 5;
   transition: all ease 0.5s;

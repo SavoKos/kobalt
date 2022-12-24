@@ -2,8 +2,8 @@ import styled, { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
-    lightRed: '#ffdc4a',
-    darkRed: '#f46b45',
+    lightOrange: '#eea849',
+    darkOrange: '#f46b45',
     gray: '#36373b',
   },
 };

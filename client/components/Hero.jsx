@@ -9,7 +9,8 @@ function Hero() {
       <S.Text>
         <h1>
           <span>Kobalt </span>
-          <br /> Online restoran
+          <br />
+          Online restoran
         </h1>
         <p>
           Kobalt nudi uslugu dostave na tvoj kućni prag! <br /> Naruči online i
@@ -32,7 +33,8 @@ S.Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100vh; /////////////////DELETE
+  height: 100vh;
+  border-bottom-left-radius: 5rem;
   padding: 20rem 10%;
   background: #f46b45; /* fallback for old browsers */
   background: -webkit-linear-gradient(
