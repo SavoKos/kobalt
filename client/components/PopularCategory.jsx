@@ -13,10 +13,10 @@ function PopularCategory() {
   };
 
   const carouselItems = [
-    <CarouselItem category='Burgeri' />,
-    <CarouselItem category='Povrce' />,
-    <CarouselItem category='Pica' />,
-    <CarouselItem category='Sladoled' />,
+    <CarouselItem category='Burgeri' key='0' />,
+    <CarouselItem category='Povrce' key='1' />,
+    <CarouselItem category='Pica' key='2' />,
+    <CarouselItem category='Sladoled' key='3' />,
   ];
 
   return (
@@ -43,7 +43,7 @@ export default PopularCategory;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
-  margin: 10rem 10%;
+  margin: 5rem 5%;
   position: relative;
 
   .alice-carousel {
@@ -62,7 +62,7 @@ S.Container = styled.div`
   .alice-carousel__prev-btn {
     position: absolute;
     right: 0;
-    top: 10px;
+    top: -2px;
     width: fit-content;
     border: 1px solid transparent;
     transition: all ease 0.3s;
@@ -83,9 +83,10 @@ S.Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    margin: 10rem 10%;
+
     .alice-carousel__next-btn,
     .alice-carousel__prev-btn {
-      top: -2px;
       padding: 1rem;
     }
 
@@ -97,6 +98,7 @@ S.Container = styled.div`
 
 S.Header = styled.div`
   margin-bottom: 8rem;
+
   h4 {
     font-weight: 700;
     width: 50%;

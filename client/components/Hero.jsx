@@ -35,7 +35,7 @@ S.Container = styled.div`
   justify-content: space-between;
   height: 100vh;
   border-bottom-left-radius: 5rem;
-  padding: 20rem 10%;
+  padding: 5rem 5%;
   background: #f46b45; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to left,
@@ -49,17 +49,20 @@ S.Container = styled.div`
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   color: #fff;
+  justify-content: center;
   img {
     display: none;
-    max-width: 750px;
-    max-height: 570px;
-    min-width: 350px;
-    min-height: 265px;
-    position: relative !important;
-    object-fit: cover;
   }
-  @media (min-width: 768px) {
+
+  @media screen and (min-width: 768px) {
+    padding: 10rem 10%;
     img {
+      max-width: 750px;
+      max-height: 570px;
+      min-width: 350px;
+      min-height: 265px;
+      position: relative !important;
+      object-fit: cover;
       display: block;
     }
   }

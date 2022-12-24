@@ -57,10 +57,14 @@ S.Container = styled.div`
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  padding: 0.5rem 10%;
+  padding: 0.5rem 5%;
   position: fixed;
   width: 100%;
   z-index: 2;
+
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 10%;
+  }
 
   img {
     cursor: pointer;
