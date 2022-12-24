@@ -23,7 +23,6 @@ function FoodItem({ stars = 4 }) {
         <S.Stars>{starItems.map((item) => item)}</S.Stars>
         <p className='price'>$10.99</p>
       </S.Text>
-
       <S.Cart>
         <AiOutlineShoppingCart className='cart' />
       </S.Cart>
