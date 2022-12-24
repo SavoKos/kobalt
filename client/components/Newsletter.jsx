@@ -5,23 +5,25 @@ import styled from 'styled-components';
 function Newsletter() {
   return (
     <S.Container>
-      <Image src='/newsletter.png' fill className='bg' />
-      <Image
-        src='/girleatingpizza.png'
-        width={200}
-        height={243}
-        className='portrait'
-      />
-      <S.Center>
-        <h3>
-          <span>Subscribe</span> <br />
-          to news
-        </h3>
-        <S.Form>
-          <input type='text' placeholder='Enter your email' />
-          <button>Subscribe</button>
-        </S.Form>
-      </S.Center>
+      <div>
+        <Image src='/newsletter.png' fill className='bg' />
+        <Image
+          src='/girleatingpizza.png'
+          width={200}
+          height={243}
+          className='portrait'
+        />
+        <S.Center>
+          <h3>
+            <span>Subscribe</span> <br />
+            to news
+          </h3>
+          <S.Form>
+            <input type='text' placeholder='Enter your email' />
+            <button>Subscribe</button>
+          </S.Form>
+        </S.Center>
+      </div>
     </S.Container>
   );
 }
@@ -31,13 +33,12 @@ export default Newsletter;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
-  position: relative;
-  margin: 5rem 5%;
+  position: absolute;
+  top: -103px;
   border-radius: 5rem;
-
-  @media screen and (min-width: 768px) {
-    margin: 10rem 10%;
-  }
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 
   .bg {
     width: 100% !important;
@@ -52,6 +53,10 @@ S.Container = styled.div`
     bottom: 5px;
     left: 50px;
     transform: scaleX(-1);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 80%;
   }
 `;
 
@@ -82,34 +87,50 @@ S.Form = styled.div`
   display: flex;
   width: 100%;
   position: relative;
-  margin-left: 3rem;
   flex: 100%;
-
-  @media screen and (min-width: 768px) {
-    flex: 50%;
-  }
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 
   input {
     border-radius: 10rem;
     border: 0;
     outline: 0;
     background-color: #fffffff7;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     width: 100%;
-    color: #fff;
+    color: #000;
   }
 
   button {
-    position: absolute;
+    position: relative;
     right: 0;
     border: 0;
     outline: 0;
     border-radius: 2rem;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     background-color: ${({ theme }) => theme.colors.lightOrange};
     color: #fff;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex: 50%;
+    margin-left: 3rem;
+
+    button {
+      position: absolute;
+      margin: auto;
+      display: block;
+      margin-top: 0;
+    }
+
+    button,
+    input {
+      padding: 1rem 2rem;
+    }
   }
 `;

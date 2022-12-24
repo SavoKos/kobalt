@@ -42,11 +42,12 @@ export default OurProduction;
 const S = {};
 S.Container = styled.div`
   background-color: #eceff4;
-  border-radius: 5rem;
+  border-radius: 2rem;
   padding: 5rem 5%;
 
   @media screen and (min-width: 768px) {
     padding: 10rem 10%;
+    border-radius: 5rem;
   }
 `;
 

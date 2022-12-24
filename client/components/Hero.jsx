@@ -34,7 +34,7 @@ S.Container = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  border-bottom-left-radius: 5rem;
+  border-bottom-left-radius: 2rem;
   padding: 5rem 5%;
   background: #f46b45; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -56,6 +56,7 @@ S.Container = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 10rem 10%;
+    border-bottom-left-radius: 5rem;
     img {
       max-width: 750px;
       max-height: 570px;
