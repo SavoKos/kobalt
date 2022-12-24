@@ -16,7 +16,7 @@ function FoodItem({ stars = 4 }) {
   return (
     <S.Container>
       <Image src='/foodItem.png' width={300} height={300} />
-      <Image src='/burgeri.png' width={200} height={200} className='foodImg' />
+      <Image src='/Burgeri.png' width={200} height={200} className='foodImg' />
       <S.Text>
         <p className='title'>Hamburger</p>
         <p className='tag'>DOSTUPNO</p>
