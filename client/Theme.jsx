@@ -2,8 +2,8 @@ import styled, { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
-    lightYellow: '#fcd844',
-    darkYellow: '#f4a33a',
+    lightRed: '#ffdc4a',
+    darkRed: '#f46b45',
     gray: '#36373b',
   },
 };
@@ -12,13 +12,16 @@ const Theme = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
-export const Tag = styled.h6`
-  color: ${({ theme }) => theme.colors.orange};
-  font-size: 18px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 24px;
-  }
+export const BtnMeni = styled.button`
+  background-color: ${({ theme }) => theme.colors.gray};
+  color: #fff;
+  border: 0;
+  outline: 0;
+  border-radius: 2rem;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 500;
 `;
 
 export default Theme;

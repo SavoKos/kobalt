@@ -6,6 +6,11 @@
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -19,7 +24,7 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-  background: rgb(255, 102, 102); /* color of the tracking area */
+  background: #ff6666; /* color of the tracking area */
   border-radius: 1rem; /* roundness of the scroll thumb */
 }
 
@@ -29,7 +34,7 @@ a {
 }
 
 h1 {
-  font-size: 64px;
+  font-size: 40px;
   font-weight: 600;
 }
 
@@ -59,6 +64,43 @@ h6 {
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
+}
+
+@media screen (min-width: 768px) {
+  h1 {
+    font-size: 64px;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 56px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 48px;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  h6 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+  }
 }

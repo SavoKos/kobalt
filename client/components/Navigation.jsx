@@ -52,12 +52,12 @@ export default Navigation;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.darkYellow};
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 10%;
   position: absolute;
   width: 100%;
 
@@ -77,7 +77,7 @@ S.NavLinks = styled.div`
   top: 0;
   height: 100vh;
   justify-content: space-evenly;
-  background-color: ${({ theme }) => theme.colors.darkYellow + 'eb'};
+  background-color: ${({ theme }) => theme.colors.darkRed + 'eb'};
   width: 100%;
   z-index: 5;
   transition: all ease 0.5s;
