@@ -1,0 +1,294 @@
+{
+  "burgers": [
+    {
+      "name": "Whooper Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992733/kobalt/Burgers/Whooper_Burger_e8jhby.png",
+      "price": 5.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Veggie Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992695/kobalt/Burgers/Veggie_Burger_vhgj97.png",
+      "price": 10.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Tandoori Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992703/kobalt/Burgers/Tandoori_Burger_fh6fcm.png",
+      "price": 6.99,
+      "stars": 5,
+      "available": false
+    },
+    {
+      "name": "Salmon Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992713/kobalt/Burgers/Salmon_Burger_ymjbmi.png",
+      "price": 7.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Premium Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992716/kobalt/Burgers/Premium_Burger_hdoghc.png",
+      "price": 10.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Gourmet Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992699/kobalt/Burgers/Gourmet_Burger_rheps7.png",
+      "price": 7.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Chicken Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992697/kobalt/Burgers/Chicken_Burger_wbwxlq.png",
+      "price": 3.99,
+      "stars": 5,
+      "available": false
+    },
+    {
+      "name": "Cheeseburger Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992696/kobalt/Burgers/Cheeseburger_zpsey0.png",
+      "price": 9.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Buffalo Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992697/kobalt/Burgers/Buffalo_Burger_s51iny.png",
+      "price": 5.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Bacon Burger",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992722/kobalt/Burgers/Bacon_Burger_rifghe.png",
+      "price": 9.99,
+      "stars": 5,
+      "available": true
+    }
+  ],
+  "icecreams": [
+    {
+      "name": "Magnum Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994134/kobalt/Ice%20Creams/Magnum_Ice_Cream_toppei.png",
+      "price": 1.99,
+      "stars": 4,
+      "available": false
+    },
+    {
+      "name": "Fruit Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994137/kobalt/Ice%20Creams/Fruit_Ice_Cream_evyqmg.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Dairy Mix Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994158/kobalt/Ice%20Creams/Dairy_Mix_Ice_Cream_e98tn2.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Chocolate Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994117/kobalt/Ice%20Creams/Chocolate_Ice_Cream_x2a6dy.png",
+      "price": 1.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Parlor Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994129/kobalt/Ice%20Creams/Parlor_Ice_Cream_xyoj7w.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": false
+    },
+    {
+      "name": "Gelato Mix Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994105/kobalt/Ice%20Creams/Gelato_Mix_Ice_Cream_arfjuz.png",
+      "price": 1.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Neapolitan Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994094/kobalt/Ice%20Creams/Neapolitan_Ice_Cream_ceyv6m.png",
+      "price": 3.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Strawberry Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994160/kobalt/Ice%20Creams/Strawberry_Ice_Cream_x2wub0.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Frutti Di Bosco",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994104/kobalt/Ice%20Creams/Frutti_Di_Bosco_lytsmg.png",
+      "price": 4.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Vanilla Ice Cream",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994094/kobalt/Ice%20Creams/Vanilla_Ice_Cream_v2uojk.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": true
+    }
+  ],
+  "fruits": [
+    {
+      "name": "Banana",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994873/kobalt/Fruits/Banana_aqsr6h.png",
+      "price": 1.99,
+      "stars": 4,
+      "available": false
+    },
+    {
+      "name": "Apple",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994875/kobalt/Fruits/Apple_h70yaw.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Orange",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994892/kobalt/Fruits/Orange_fuoqv4.png",
+      "price": 5.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Kiwi",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994877/kobalt/Fruits/Kiwi_gobwox.png",
+      "price": 8.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Strawberry",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994891/kobalt/Fruits/Strawberry_vwx9id.png",
+      "price": 2.99,
+      "stars": 5,
+      "available": false
+    },
+    {
+      "name": "Grape",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994878/kobalt/Fruits/Grape_xpcohx.png",
+      "price": 3.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Blueberry",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994892/kobalt/Fruits/Blueberry_hzroqd.png",
+      "price": 3.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Watermelon",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994905/kobalt/Fruits/Watermelon_r9abdo.png",
+      "price": 4.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Melon",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994884/kobalt/Fruits/Melon_mz40d1.png",
+      "price": 4.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Pineapple",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994889/kobalt/Fruits/Pineapple_fczkig.png",
+      "price": 10.99,
+      "stars": 5,
+      "available": true
+    }
+  ],
+  "pizza": [
+    {
+      "name": "California Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995485/kobalt/Pizza/California_Pizza_s9wzuc.png",
+      "price": 22.99,
+      "stars": 4,
+      "available": false
+    },
+    {
+      "name": "Calzone Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995512/kobalt/Pizza/Calzone_Pizza_t9n0da.png",
+      "price": 24.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Chicago Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995679/kobalt/Pizza/Chicago_Pizza_veuvul.png",
+      "price": 31.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Hawaii Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995510/kobalt/Pizza/Hawaii_Pizza_iodmg3.png",
+      "price": 19.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Margherita Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995501/kobalt/Pizza/Margherita_Pizza_axqoen.png",
+      "price": 22.99,
+      "stars": 5,
+      "available": false
+    },
+    {
+      "name": "NewYork Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995543/kobalt/Pizza/NewYork_Pizza_l0nkx8.png",
+      "price": 25.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Pizza Slice",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995681/kobalt/Pizza/Pizza_Slice_u2on2w.png",
+      "price": 2.99,
+      "stars": 4,
+      "available": true
+    },
+    {
+      "name": "Sausage Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995503/kobalt/Pizza/Sausage_Pizza_idc9ek.png",
+      "price": 27.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Sicilian Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995480/kobalt/Pizza/Sicilian_Pizza_wvzxmd.png",
+      "price": 26.99,
+      "stars": 5,
+      "available": true
+    },
+    {
+      "name": "Sushi Pizza",
+      "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995499/kobalt/Pizza/Sushi_Pizza_nuobxj.png",
+      "price": 20.99,
+      "stars": 5,
+      "available": true
+    }
+  ],
+  "desserts": [],
+  "vegetables": [],
+  "beverages": [],
+  "salads": []
+}
