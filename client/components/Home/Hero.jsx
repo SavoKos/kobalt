@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-import { BtnMeni } from '../Theme';
+import { BtnMeni } from '../../Theme';
 
 function Hero() {
   return (

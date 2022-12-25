@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs';
@@ -12,10 +13,10 @@ function Footer() {
       <S.Top>
         <Image src='/logo.png' width={200} height={80} />
         <S.NavLinks>
-          <p>Početna</p>
-          <p>O nama</p>
-          <p>Meni</p>
-          <p>Kontakt</p>
+          <Link href='/'>Početna</Link>
+          <Link href='/onama'>O nama</Link>
+          <Link href='/meni'>Meni</Link>
+          <Link href='/kontakt'>Kontakt</Link>
         </S.NavLinks>
         <S.WorkingHours>
           <AiOutlineClockCircle className='clock' />
@@ -79,8 +80,9 @@ S.NavLinks = styled.div`
   justify-content: center;
   margin: 2rem 0;
 
-  p {
+  a {
     cursor: pointer;
+    color: #aeadb2;
     text-transform: uppercase;
   }
 
@@ -112,6 +114,12 @@ S.SocialMedia = styled.div`
 
   svg {
     cursor: pointer;
+    transition: all ease 0.3s;
+
+    :hover {
+      cursor: pointer;
+      color: ${({ theme }) => theme.colors.lightOrange};
+    }
   }
 `;
 

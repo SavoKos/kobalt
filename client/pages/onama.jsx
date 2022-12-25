@@ -1,12 +1,7 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
 
 function onama() {
-  return (
-    <div>
-      <Navigation active='onama' />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default onama;

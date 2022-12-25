@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BtnMeni } from '../Theme';
+import { BtnMeni } from '../../Theme';
 import FoodItem from './FoodItem';
 
 function OurProduction() {
