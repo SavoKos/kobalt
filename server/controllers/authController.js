@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+const AppError = require('../utils/AppError');
 const { promisify } = require('util');
 
 const maxAge = process.env.ACTIVE_DAYS * 24 * 60 * 60;

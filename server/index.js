@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const AppError = require('./utils/appError');
+const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const authRoutes = require('./routes/authRoutes');
 
