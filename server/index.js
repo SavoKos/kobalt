@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const authRoutes = require('./routes/authRoutes');
+const foodRoutes = require('./routes/foodRoutes');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/users', authRoutes);
+app.use('/api/v1/food', foodRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Route ${req.originalUrl} is not defined!`, 404));
