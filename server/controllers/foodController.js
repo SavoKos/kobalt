@@ -1,15 +1,14 @@
 const Food = require('../models/foodModel');
 const catchAsync = require('../utils/catchAsync');
 
-exports.createFood = catchAsync(async (req, res, next) => {
-  const { name, category } = req.body;
+exports.getCategories = catchAsync(async (req, res, next) => {
+  const food = await Food.find({}).select('category -_id');
+  const categories = [...new Set(food.map((food) => food.category))];
 
-  const food = await Food.findOne({ category });
-
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Incorrect email or password', 401));
-  }
-
-  // 3) If everything ok, send token to client
-  createSendToken(user, 200, req, res);
+  if (food)
+    res.status(200).json({
+      status: 'success',
+      results: food.length,
+      data: categories,
+    });
 });

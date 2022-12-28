@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { getCategories } = require('../controllers/foodController');
 
 const {
   getAll,
@@ -8,9 +9,11 @@ const {
   createOne,
 } = require('../controllers/handlerFactory');
 const Food = require('../models/foodModel');
+const routesFactory = require('./routesFactory');
 
 const router = Router();
 
+router.get('/category', getCategories);
 router.route('/').get(getAll(Food)).post(createOne(Food));
 
 router

@@ -23,17 +23,17 @@ function Navigation({ active = 'pocetna' }) {
           className='close'
           onClick={() => setMenuActive(false)}
         />
-        <Link href='/' style={style('pocetna')}>
-          Početna
+        <Link href='/' style={style('home')}>
+          Home
         </Link>
-        <Link href='/onama' style={style('onama')}>
-          O nama
+        <Link href='/onama' style={style('about')}>
+          About
         </Link>
-        <Link href='/meni' style={style('meni')}>
-          Meni
+        <Link href='/meni' style={style('menu')}>
+          Menu
         </Link>
-        <Link href='/kontakt' style={style('kontakt')}>
-          Kontakt
+        <Link href='/kontakt' style={style('contact')}>
+          Contact
         </Link>
       </S.NavLinks>
       <S.Icons>

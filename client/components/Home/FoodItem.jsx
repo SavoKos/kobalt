@@ -19,7 +19,7 @@ function FoodItem({ stars = 4 }) {
       <Image src='/Burgeri.png' width={200} height={200} className='foodImg' />
       <S.Text>
         <p className='title'>Hamburger</p>
-        <p className='tag'>DOSTUPNO</p>
+        <p className='tag'>AVAILABLE</p>
         <S.Stars>{starItems.map((item) => item)}</S.Stars>
         <p className='price'>$10.99</p>
       </S.Text>

@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
+import axios from 'axios';
 
 function PopularCategory() {
+  axios.get('/food');
+
   const responsive = {
     0: { items: 1 },
     700: { items: 2 },

@@ -8,15 +8,15 @@ function Hero() {
     <S.Container>
       <S.Text>
         <h1>
-          <span>Kobalt </span>
+          <span>Kobalt</span>
           <br />
-          Online restoran
+          Online restaurant
         </h1>
         <p>
-          Kobalt nudi uslugu dostave na tvoj kućni prag! <br /> Naruči online i
-          uživaj u hrani u svom domu.
+          Kobalt will get you anything you want to your doorstep. <br /> You
+          order online, you'll have it!
         </p>
-        <BtnMeni>Pogledaj meni</BtnMeni>
+        <BtnMeni>Go To Menu</BtnMeni>
       </S.Text>
       <S.Image>
         <Image src='/hero.png' fill />

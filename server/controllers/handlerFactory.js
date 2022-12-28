@@ -60,7 +60,7 @@ exports.getOne = (Model) =>
 
 exports.getAll = (Model, options) =>
   catchAsync(async (req, res, next) => {
-    const query = Model.find({ language: req.query.language });
+    const query = Model.find(req.query);
 
     const doc = await query;
 

@@ -13,10 +13,10 @@ function Footer() {
       <S.Top>
         <Image src='/logo.png' width={200} height={80} />
         <S.NavLinks>
-          <Link href='/'>Početna</Link>
-          <Link href='/onama'>O nama</Link>
-          <Link href='/meni'>Meni</Link>
-          <Link href='/kontakt'>Kontakt</Link>
+          <Link href='/'>Home</Link>
+          <Link href='/about'>About</Link>
+          <Link href='/menu'>Menu</Link>
+          <Link href='/contact'>Contact</Link>
         </S.NavLinks>
         <S.WorkingHours>
           <AiOutlineClockCircle className='clock' />
