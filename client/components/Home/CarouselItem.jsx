@@ -2,41 +2,33 @@ import Image from 'next/image';
 import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import styled from 'styled-components';
+import capitalize from '../../utils/capitalize';
 
-function CarouselItem({ category = 'Sladoled' }) {
+function CarouselItem({ category: { category, image } = 'icecream' }) {
   let color = '#d49660';
   switch (category) {
-    case 'Povrce':
+    case 'fruit':
       color = '#ff2c1c';
       break;
-    case 'Burgeri':
+    case 'burger':
       color = '#abd802';
       break;
 
-    case 'Pica':
+    case 'pizza':
       color = '#31b7ff';
   }
   return (
     <S.Container>
-      {category === 'Pica' ||
-      category === 'Povrce' ||
-      category === 'Burgeri' ? (
-        <Image
-          src={`/${category}.png`}
-          width={250}
-          height={250}
-          className={category.toLowerCase()}
-        />
-      ) : (
-        <Image
-          src={`/${category}.png`}
-          width={200}
-          height={306}
-          className={category.toLowerCase()}
-        />
-      )}
+      <Image
+        src={image}
+        fill
+        className={category}
+        sizes='(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw'
+      />
       <S.Bottom>
-        <p>{category}</p>
+        <p>{capitalize(category)}</p>
         <S.Icon color={color}>
           <AiOutlineArrowRight className='arrow' />
         </S.Icon>
@@ -52,8 +44,8 @@ const S = {};
 S.Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 250px;
   justify-content: flex-end;
+  min-height: 250px;
   -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.42);
   -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.42);
   box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.42);
@@ -62,13 +54,13 @@ S.Container = styled.div`
 
   img {
     align-self: center;
-    top: 0;
-    position: absolute;
-    top: -70px;
-  }
-
-  .sladoled {
-    align-self: flex-end;
+    top: -125px !important;
+    max-height: 250px;
+    max-width: 250px;
+    width: fit-content !important;
+    height: fit-content;
+    margin: auto;
+    position: absolute !important;
   }
 `;
 S.Bottom = styled.div`

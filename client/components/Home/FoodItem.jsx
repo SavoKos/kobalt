@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { startTransition } from 'react';
+import React, { startTransition, useEffect, useState } from 'react';
 import {
   AiFillStar,
   AiOutlineShoppingCart,
@@ -7,21 +7,27 @@ import {
 } from 'react-icons/ai';
 import styled from 'styled-components';
 
-function FoodItem({ stars = 4 }) {
+function FoodItem({ food }) {
   const starItems = Array(5)
     .fill(0)
     .map((_, i) =>
-      i < stars ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
+      i < +food.rating ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
     );
   return (
     <S.Container>
-      <Image src='/foodItem.png' width={300} height={300} />
-      <Image src='/Burgeri.png' width={200} height={200} className='foodImg' />
+      <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
+      <Image
+        src={food.image}
+        width={200}
+        height={200}
+        className='foodImg'
+        alt={food.name}
+      />
       <S.Text>
-        <p className='title'>Hamburger</p>
-        <p className='tag'>AVAILABLE</p>
+        <p className='title'>{food.name}</p>
+        <p className='tag'>{food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}</p>
         <S.Stars>{starItems.map((item) => item)}</S.Stars>
-        <p className='price'>$10.99</p>
+        <p className='price'>${food.price}</p>
       </S.Text>
       <S.Cart>
         <AiOutlineShoppingCart className='cart' />
@@ -43,6 +49,9 @@ S.Container = styled.div`
     top: -60px;
     left: 50%;
     transform: translateX(-50%);
+    max-width: fit-content;
+    height: 100%;
+    max-height: 200px;
   }
 `;
 

@@ -11,7 +11,7 @@ function Footer() {
     <S.Container>
       <Newsletter />
       <S.Top>
-        <Image src='/logo.png' width={200} height={80} />
+        <Image src='/logo.png' width={200} height={80} alt='logo' />
         <S.NavLinks>
           <Link href='/'>Home</Link>
           <Link href='/about'>About</Link>

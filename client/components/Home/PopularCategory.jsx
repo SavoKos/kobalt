@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import styled from 'styled-components';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
-import axios from 'axios';
+import axios from '../../utils/axiosBackend';
+import useDB from '../../context/dbContext';
 
 function PopularCategory() {
-  axios.get('/food');
+  const { food, categories } = useDB();
 
   const responsive = {
     0: { items: 1 },
@@ -15,12 +16,9 @@ function PopularCategory() {
     1240: { items: 4 },
   };
 
-  const carouselItems = [
-    <CarouselItem category='Burgeri' key='0' />,
-    <CarouselItem category='Povrce' key='1' />,
-    <CarouselItem category='Pica' key='2' />,
-    <CarouselItem category='Sladoled' key='3' />,
-  ];
+  const carouselItems = categories.map((category, i) => (
+    <CarouselItem category={category} key={i} food={food} />
+  ));
 
   return (
     <S.Container>

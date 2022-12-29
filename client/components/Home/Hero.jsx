@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { BtnMeni } from '../../Theme';
@@ -14,12 +15,14 @@ function Hero() {
         </h1>
         <p>
           Kobalt will get you anything you want to your doorstep. <br /> You
-          order online, you'll have it!
+          order online, you&apos;ll have it!
         </p>
-        <BtnMeni>Go To Menu</BtnMeni>
+        <BtnMeni>
+          <Link href='/menu'>Go To Menu</Link>
+        </BtnMeni>
       </S.Text>
       <S.Image>
-        <Image src='/hero.png' fill />
+        <Image src='/hero.png' fill alt='hero' priority={true} />
       </S.Image>
     </S.Container>
   );

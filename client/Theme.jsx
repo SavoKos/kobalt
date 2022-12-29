@@ -21,8 +21,12 @@ export const BtnMeni = styled.button`
   padding: 1rem 3rem;
   text-transform: uppercase;
   cursor: pointer;
-  font-weight: 500;
   transition: all ease 0.3s;
+  font-weight: 500;
+
+  a {
+    color: #fff;
+  }
 
   &:hover {
     -webkit-box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.6);

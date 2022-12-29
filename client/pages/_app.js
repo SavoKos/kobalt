@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { DBProvider } from '../context/dbContext';
 import '../styles/globals.css';
 import Theme from '../Theme';
 
@@ -9,7 +10,9 @@ export default function App({ Component, pageProps }) {
         <title>Kobalt | Online Restoran</title>
       </Head>
       <Theme>
-        <Component {...pageProps} />
+        <DBProvider>
+          <Component {...pageProps} />
+        </DBProvider>
       </Theme>
     </>
   );

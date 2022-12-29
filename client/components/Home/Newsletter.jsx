@@ -6,12 +6,13 @@ function Newsletter() {
   return (
     <S.Container>
       <div>
-        <Image src='/newsletter.png' fill className='bg' />
+        <Image src='/newsletter.png' fill className='bg' alt='logo' />
         <Image
           src='/girleatingpizza.png'
           width={200}
           height={243}
           className='portrait'
+          alt='girleatingpizza'
         />
         <S.Center>
           <h3>

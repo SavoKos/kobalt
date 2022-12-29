@@ -17,7 +17,7 @@ function Navigation({ active = 'pocetna' }) {
 
   return (
     <S.Container>
-      <Image src='/logo.png' width={200} height={80} />
+      <Image src='/logo.png' width={200} height={80} alt='logo' />
       <S.NavLinks menuActive={menuActive}>
         <AiOutlineClose
           className='close'
@@ -26,13 +26,13 @@ function Navigation({ active = 'pocetna' }) {
         <Link href='/' style={style('home')}>
           Home
         </Link>
-        <Link href='/onama' style={style('about')}>
+        <Link href='/about' style={style('about')}>
           About
         </Link>
-        <Link href='/meni' style={style('menu')}>
+        <Link href='/menu' style={style('menu')}>
           Menu
         </Link>
-        <Link href='/kontakt' style={style('contact')}>
+        <Link href='/contact' style={style('contact')}>
           Contact
         </Link>
       </S.NavLinks>

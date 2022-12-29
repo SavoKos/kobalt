@@ -1,36 +1,53 @@
-import React, { useState } from 'react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useDB from '../../context/dbContext';
 import { BtnMeni } from '../../Theme';
 import FoodItem from './FoodItem';
 
 function OurProduction() {
-  const [selected, setSelected] = useState('burgeri');
-  const categories = ['sladoled', 'burgeri', 'povrce', 'pica'];
+  const { categories, food } = useDB();
+  const [selected, setSelected] = useState('');
+  const [foodItems, setFoodItems] = useState([]);
+
+  useEffect(() => {
+    setSelected(categories[0]?.category);
+  }, [categories]);
+
+  useEffect(() => {
+    const foodFind = food
+      ?.filter((food) => food.category === selected)
+      .slice(0, 4);
+    setFoodItems(foodFind);
+  }, [categories, food, selected]);
+
+  console.log(foodItems);
   return (
     <S.Container>
       <S.Header>
         <h4>
           Our <span>Production</span>
         </h4>
-        <BtnMeni>Meni</BtnMeni>
+        <BtnMeni>
+          <Link href='/menu'>Menu</Link>
+        </BtnMeni>
 
         <S.Categories>
           {categories.map((category) => (
             <S.Category
-              selected={selected === category}
-              onClick={() => setSelected(category)}
-              key={category}
+              selected={selected === category.category}
+              onClick={() => setSelected(category.category)}
+              key={category.category}
             >
-              {category}
+              {category.category}
             </S.Category>
           ))}
         </S.Categories>
       </S.Header>
       <S.FoodItems>
-        <FoodItem />
-        <FoodItem />
-        <FoodItem />
-        <FoodItem />
+        {foodItems?.map((food) => (
+          <FoodItem food={food} />
+        ))}
       </S.FoodItems>
     </S.Container>
   );
