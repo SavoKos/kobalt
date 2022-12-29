@@ -18,8 +18,8 @@ function PopularCategory() {
   };
 
   const carouselItems = categories.map((category, i) => (
-    <Link href={category.category}>
-      <CarouselItem category={category} key={i} food={food} />
+    <Link href={category.category} key={i}>
+      <CarouselItem category={category} food={food} />
     </Link>
   ));
 
