@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
+import Categories from '../components/Menu/Categories';
 import Header from '../components/Menu/Header';
 
 function meni() {
@@ -14,7 +15,7 @@ function meni() {
       <S.MainContent>
         <Image src='/logoGray.png' width={200} height={80} className='logo' />
         <Header />
-        <p>Menu</p>
+        <Categories />
         <p>Main</p>
       </S.MainContent>
     </S.Container>
