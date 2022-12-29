@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useDB from '../../context/dbContext';
+import useDB from '../../context/db';
 import { BtnMeni } from '../../Theme';
 import FoodItem from './FoodItem';
 
@@ -21,7 +21,6 @@ function OurProduction() {
     setFoodItems(foodFind);
   }, [categories, food, selected]);
 
-  console.log(foodItems);
   return (
     <S.Container>
       <S.Header>

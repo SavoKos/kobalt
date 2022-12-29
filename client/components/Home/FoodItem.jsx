@@ -6,8 +6,11 @@ import {
   AiOutlineStar,
 } from 'react-icons/ai';
 import styled from 'styled-components';
+import useCart from '../../context/cart';
 
 function FoodItem({ food }) {
+  const { cart, setCart } = useCart();
+
   const starItems = Array(5)
     .fill(0)
     .map((_, i) =>
@@ -29,7 +32,7 @@ function FoodItem({ food }) {
         <S.Stars>{starItems.map((item) => item)}</S.Stars>
         <p className='price'>${food.price}</p>
       </S.Text>
-      <S.Cart>
+      <S.Cart onClick={() => setCart((prevCart) => [...prevCart, food])}>
         <AiOutlineShoppingCart className='cart' />
       </S.Cart>
     </S.Container>

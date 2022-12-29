@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { DBProvider } from '../context/dbContext';
+import { CartProvider } from '../context/cart';
+import { DBProvider } from '../context/db';
 import '../styles/globals.css';
 import Theme from '../Theme';
 
@@ -11,7 +12,9 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Theme>
         <DBProvider>
-          <Component {...pageProps} />
+          <CartProvider>
+            <Component {...pageProps} />
+          </CartProvider>
         </DBProvider>
       </Theme>
     </>

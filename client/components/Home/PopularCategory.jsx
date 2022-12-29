@@ -5,7 +5,8 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
 import axios from '../../utils/axiosBackend';
-import useDB from '../../context/dbContext';
+import useDB from '../../context/db';
+import Link from 'next/link';
 
 function PopularCategory() {
   const { food, categories } = useDB();
@@ -17,7 +18,9 @@ function PopularCategory() {
   };
 
   const carouselItems = categories.map((category, i) => (
-    <CarouselItem category={category} key={i} food={food} />
+    <Link href={category.category}>
+      <CarouselItem category={category} key={i} food={food} />
+    </Link>
   ));
 
   return (
@@ -49,6 +52,10 @@ S.Container = styled.div`
 
   .alice-carousel {
     position: unset;
+
+    a {
+      color: #000;
+    }
   }
 
   .alice-carousel__stage-item {

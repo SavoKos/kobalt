@@ -7,9 +7,11 @@ import {
   AiOutlineMenu,
   AiOutlineClose,
 } from 'react-icons/ai';
+import useCart from '../../context/cart';
 
 function Navigation({ active = 'pocetna' }) {
   const [menuActive, setMenuActive] = useState(false);
+  const { cart } = useCart();
 
   const style = (page) => ({
     fontWeight: active === page ? '700' : '500',
@@ -37,7 +39,10 @@ function Navigation({ active = 'pocetna' }) {
         </Link>
       </S.NavLinks>
       <S.Icons>
-        <AiOutlineShoppingCart className='cart' />
+        <Link href='/cart'>
+          <p className='count'>{cart?.length}</p>
+          <AiOutlineShoppingCart className='cart' />
+        </Link>
         <AiOutlineMenu
           className='menu'
           onClick={() => setMenuActive((prevActive) => !prevActive)}
@@ -121,11 +126,31 @@ S.Icons = styled.div`
   gap: 2rem;
   min-width: 100px;
   justify-content: flex-end;
+  position: relative;
+
+  .count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: ${({ theme }) => theme.colors.lightOrange};
+    right: -0.7rem;
+    top: -0.7rem;
+    min-width: 25px;
+    min-height: 25px;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 0.15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
 
   svg {
     cursor: pointer;
     color: #fff;
-    font-size: 24px;
+    font-size: 30px;
     position: relative;
   }
 
