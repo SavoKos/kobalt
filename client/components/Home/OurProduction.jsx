@@ -45,7 +45,7 @@ function OurProduction() {
       </S.Header>
       <S.FoodItems>
         {foodItems?.map((food) => (
-          <FoodItem food={food} />
+          <FoodItem food={food} key={food._id} />
         ))}
       </S.FoodItems>
     </S.Container>
