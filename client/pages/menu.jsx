@@ -1,22 +1,24 @@
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Categories from '../components/Menu/Categories';
 import Header from '../components/Menu/Header';
 
 function meni() {
+  const [menuActive, setMenuActive] = useState(false);
   return (
     <S.Container>
       <S.TopNote>
-        <p></p>
         <p className='discount'>15% OFF WITH CODE: SAVO</p>
-        <p className='workingHours'>WORKING HOURS 8:00 - 23:00</p>
       </S.TopNote>
       <S.MainContent>
-        <Image src='/logoGray.png' width={200} height={80} className='logo' />
-        <Header />
-        <Categories />
-        <p>Main</p>
+        <Link href='/'>
+          <Image src='/logoGray.png' fill className='logo' />
+        </Link>
+        <Header setMenuActive={setMenuActive} />
+        <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
+        <p>Main CONTET</p>
       </S.MainContent>
     </S.Container>
   );
@@ -52,6 +54,18 @@ S.MainContent = styled.div`
   grid-template-rows: 1fr 4fr;
 
   .logo {
-    margin: 1rem 0 1rem 2rem;
+    cursor: pointer;
+    max-width: 200px;
+    max-height: 80px;
+    width: 140px !important;
+    height: fit-content !important;
+    margin: 1rem 0 1rem 1rem;
+
+    @media screen and (min-width: 768px) {
+      width: auto !important;
+      height: auto !important;
+      margin: 1rem 0 1rem 2rem;
+    }
+    position: relative !important;
   }
 `;

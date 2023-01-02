@@ -1,10 +1,13 @@
 import React from 'react';
-import { AiOutlineLogin, AiOutlineShoppingCart } from 'react-icons/ai';
+import {
+  AiOutlineLogin,
+  AiOutlineMenu,
+  AiOutlineShoppingCart,
+} from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
-import { BiUserCircle } from 'react-icons/bi';
 import styled from 'styled-components';
 
-function Header() {
+function Header({ setMenuActive }) {
   return (
     <S.Container>
       <S.Search>
@@ -15,10 +18,19 @@ function Header() {
       </S.Search>
       <S.Right>
         <S.Icon>
+          <BsSearch className='search' />
+        </S.Icon>
+        <S.Icon>
           <AiOutlineShoppingCart className='cart' />
         </S.Icon>
         <S.Icon>
           <AiOutlineLogin />
+        </S.Icon>
+        <S.Icon>
+          <AiOutlineMenu
+            className='menu'
+            onClick={() => setMenuActive((prevActive) => !prevActive)}
+          />
         </S.Icon>
       </S.Right>
     </S.Container>
@@ -32,7 +44,6 @@ S.Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem 1rem 0;
 `;
 
 S.Search = styled.div`
@@ -46,17 +57,26 @@ S.Search = styled.div`
     padding: 1rem 2rem;
     width: 100%;
     border-radius: 10rem;
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
   }
 `;
 
 S.SearchIcon = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightOrange};
-  position: absolute;
-  right: 5px;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: ${({ theme }) => theme.colors.lightOrange};
+    display: flex;
+  }
+
   border-radius: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   padding: 0.8rem;
@@ -70,21 +90,23 @@ S.Icon = styled.div`
   align-items: center;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.gray};
-  font-size: 26px;
+  font-size: 20px;
   margin: 0 0.5rem;
+  @media screen and (min-width: 768px) {
+    font-size: 26px;
+  }
 `;
 
 S.Right = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 2rem;
 
-  .back {
-    background-color: ${({ theme }) => theme.colors.lightOrange};
-    padding: 1rem 2.5rem;
-    border-radius: 10rem;
-    cursor: pointer;
+  .search,
+  .menu {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
   }
 `;
 

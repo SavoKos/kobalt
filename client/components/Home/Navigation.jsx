@@ -19,7 +19,7 @@ function Navigation({ active = 'pocetna' }) {
 
   return (
     <S.Container>
-      <Image src='/logo.png' width={200} height={80} alt='logo' />
+      <Image src='/logo.png' alt='logo' fill />
       <S.NavLinks menuActive={menuActive}>
         <AiOutlineClose
           className='close'
@@ -40,8 +40,8 @@ function Navigation({ active = 'pocetna' }) {
       </S.NavLinks>
       <S.Icons>
         <Link href='/cart'>
-          <p className='count'>{cart?.length}</p>
           <AiOutlineShoppingCart className='cart' />
+          <p className='count'>{cart?.length}</p>
         </Link>
         <AiOutlineMenu
           className='menu'
@@ -73,6 +73,16 @@ S.Container = styled.div`
 
   img {
     cursor: pointer;
+    max-width: 200px;
+    max-height: 80px;
+    width: 140px !important;
+    height: fit-content !important;
+
+    @media screen and (min-width: 768px) {
+      width: auto !important;
+      height: auto !important;
+    }
+    position: relative !important;
   }
 `;
 
@@ -126,7 +136,10 @@ S.Icons = styled.div`
   gap: 2rem;
   min-width: 100px;
   justify-content: flex-end;
-  position: relative;
+
+  a {
+    position: relative;
+  }
 
   .count {
     position: absolute;
