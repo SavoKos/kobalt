@@ -3,6 +3,8 @@ import Hero from '../components/Home/Hero';
 import Navigation from '../components/Home/Navigation';
 import OurProduction from '../components/Home/OurProduction';
 import PopularCategory from '../components/Home/PopularCategory';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export default function Home() {
   return (
@@ -12,6 +14,7 @@ export default function Home() {
       <PopularCategory />
       <OurProduction />
       <Footer />
+      <ToastContainer position='bottom-left' />
     </div>
   );
 }

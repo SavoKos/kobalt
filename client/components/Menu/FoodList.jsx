@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import useDB from '../../context/db';
+import FoodItem from '../Home/FoodItem';
 import Filters from './Filters';
 
-function FoodList() {
+function FoodList({ food }) {
   return (
     <S.Container>
       <Filters />
-      <S.Main></S.Main>
+      <S.FoodItems>
+        {food?.map((food) => (
+          <FoodItem food={food} key={food._id} />
+        ))}
+      </S.FoodItems>
     </S.Container>
   );
 }
@@ -25,4 +29,17 @@ S.Container = styled.div`
   }
 `;
 
-S.Main = styled.div``;
+S.FoodItems = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 8rem 0;
+  row-gap: 8rem;
+  justify-content: center;
+  column-gap: 1rem;
+
+  @media screen and (min-width: 1024px) {
+    column-gap: 2rem;
+  }
+`;

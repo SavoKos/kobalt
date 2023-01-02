@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { startTransition, useEffect, useState } from 'react';
+import React from 'react';
 import {
   AiFillStar,
   AiOutlineShoppingCart,
@@ -7,9 +7,15 @@ import {
 } from 'react-icons/ai';
 import styled from 'styled-components';
 import useCart from '../../context/cart';
+import { toast } from 'react-toastify';
 
 function FoodItem({ food }) {
   const { cart, setCart } = useCart();
+
+  const addToCart = () => {
+    setCart((prevCart) => [...prevCart, food]);
+    toast.success(`${food.name} added to cart!`);
+  };
 
   const starItems = Array(5)
     .fill(0)
@@ -32,7 +38,7 @@ function FoodItem({ food }) {
         <S.Stars>{starItems.map((item) => item)}</S.Stars>
         <p className='price'>${food.price}</p>
       </S.Text>
-      <S.Cart onClick={() => setCart((prevCart) => [...prevCart, food])}>
+      <S.Cart onClick={addToCart}>
         <AiOutlineShoppingCart className='cart' />
       </S.Cart>
     </S.Container>

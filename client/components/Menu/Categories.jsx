@@ -3,14 +3,17 @@ import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import useDB from '../../context/db';
 
-function Categories({ menuActive, setMenuActive }) {
+function Categories({
+  menuActive,
+  setMenuActive,
+  selectedCategory,
+  setSelectedCategory,
+}) {
   const { categories } = useDB();
-  const [selected, setSelected] = useState('');
 
   useEffect(() => {
-    setSelected(categories[0]?.category);
+    setSelectedCategory(categories[0]?.category);
   }, [categories]);
-  console.log(selected);
   return (
     <S.Container>
       <h5>MENU</h5>
@@ -21,8 +24,8 @@ function Categories({ menuActive, setMenuActive }) {
         />
         {categories.map((category) => (
           <S.Category
-            selected={category.category === selected}
-            onClick={() => setSelected(category.category)}
+            selected={category.category === selectedCategory}
+            onClick={() => setSelectedCategory(category.category)}
             key={category._id}
           >
             {category.category}

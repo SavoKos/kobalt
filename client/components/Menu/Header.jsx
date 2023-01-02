@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import {
   AiOutlineLogin,
@@ -6,8 +7,13 @@ import {
 } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
+import useCart from '../../context/cart';
 
 function Header({ setMenuActive }) {
+  const { cart } = useCart();
+
+  console.log(cart);
+
   return (
     <S.Container>
       <S.Search>
@@ -21,7 +27,10 @@ function Header({ setMenuActive }) {
           <BsSearch className='search' />
         </S.Icon>
         <S.Icon>
-          <AiOutlineShoppingCart className='cart' />
+          <Link href='/cart'>
+            <AiOutlineShoppingCart className='cart' />
+            <p className='count'>{cart?.length}</p>
+          </Link>
         </S.Icon>
         <S.Icon>
           <AiOutlineLogin />
@@ -44,6 +53,9 @@ S.Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 `;
 
 S.Search = styled.div`
@@ -92,6 +104,30 @@ S.Icon = styled.div`
   color: ${({ theme }) => theme.colors.gray};
   margin: 0 0.5rem;
   font-size: 26px;
+
+  a {
+    color: ${({ theme }) => theme.colors.gray};
+    position: relative;
+  }
+
+  .count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: ${({ theme }) => theme.colors.lightOrange};
+    right: -0.7rem;
+    top: -0.7rem;
+    min-width: 25px;
+    min-height: 25px;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 0.15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
 `;
 
 S.Right = styled.div`

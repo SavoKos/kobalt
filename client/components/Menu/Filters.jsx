@@ -41,7 +41,7 @@ export default Filters;
 const S = {};
 S.Container = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.colors.darkOrange};
+  background: ${({ theme }) => theme.colors.gray};
   color: #fff;
   border-radius: 1rem;
   height: fit-content;

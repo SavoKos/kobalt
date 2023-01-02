@@ -5,11 +5,20 @@ import styled from 'styled-components';
 import Categories from '../components/Menu/Categories';
 import Header from '../components/Menu/Header';
 import FoodList from '../components/Menu/FoodList';
+import axios from '../utils/axiosBackend';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
-function meni() {
+function menu() {
   const [menuActive, setMenuActive] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('burger');
+  const [food, setFood] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios
+      .get(`/food/${selectedCategory}`)
+      .then((res) => setFood(res.data.data));
+  }, [selectedCategory]);
 
   return (
     <S.Container>
@@ -21,14 +30,20 @@ function meni() {
           <Image src='/logoGray.png' fill className='logo' />
         </Link>
         <Header setMenuActive={setMenuActive} />
-        <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
-        <FoodList menuActive={menuActive} />
+        <Categories
+          menuActive={menuActive}
+          setMenuActive={setMenuActive}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <FoodList menuActive={menuActive} food={food} />
       </S.MainContent>
+      <ToastContainer position='bottom-left' />
     </S.Container>
   );
 }
 
-export default meni;
+export default menu;
 
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
@@ -55,8 +70,9 @@ S.TopNote = styled.div`
 S.MainContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr max-content;
   padding: 0 5%;
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     padding: 0;
