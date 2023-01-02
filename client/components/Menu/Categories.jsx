@@ -67,13 +67,14 @@ S.Category = styled.p`
   padding: 1rem 3rem;
   border-radius: 0 5rem 5rem 0;
   cursor: pointer;
-  width: 90%;
+  width: 100%;
   color: ${({ selected, theme }) => (selected ? theme.colors.gray : '#fff')};
   font-weight: 500;
 
   @media screen and (min-width: 768px) {
+    width: 90%;
     background-color: ${({ selected, theme }) =>
-      selected ? theme.colors.lightOrange : 'transparent'};
+      selected ? theme.colors.darkOrange : 'transparent'};
   }
 `;
 
@@ -87,7 +88,7 @@ S.Categories = styled.div`
   top: 0;
   height: 100vh;
   justify-content: space-evenly;
-  background-color: ${({ theme }) => theme.colors.lightOrange + 'eb'};
+  background-color: ${({ theme }) => theme.colors.darkOrange + 'eb'};
   width: 100%;
   z-index: 5;
   transition: all ease 0.5s;

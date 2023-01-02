@@ -15,3 +15,16 @@ exports.getCategories = catchAsync(async (req, res, next) => {
       data: obj,
     });
 });
+
+exports.getByCategory = catchAsync(async (req, res, next) => {
+  const food = await Food.find({ category: req.params.category });
+
+  if (!food) {
+    return next(new AppError('No food found with that category', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: food,
+  });
+});

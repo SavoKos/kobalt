@@ -71,7 +71,7 @@ S.SearchIcon = styled.div`
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: ${({ theme }) => theme.colors.lightOrange};
+    background-color: ${({ theme }) => theme.colors.darkOrange};
     display: flex;
   }
 
@@ -90,11 +90,8 @@ S.Icon = styled.div`
   align-items: center;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.gray};
-  font-size: 20px;
   margin: 0 0.5rem;
-  @media screen and (min-width: 768px) {
-    font-size: 26px;
-  }
+  font-size: 26px;
 `;
 
 S.Right = styled.div`
@@ -125,7 +122,7 @@ S.Auth = styled.div`
   }
 
   p {
-    background-color: ${({ theme }) => theme.colors.lightOrange};
+    background-color: ${({ theme }) => theme.colors.darkOrange};
     border-radius: 10rem;
     padding: 0.5rem 2rem;
     cursor: pointer;

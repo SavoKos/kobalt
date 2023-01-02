@@ -1,12 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Categories from '../components/Menu/Categories';
 import Header from '../components/Menu/Header';
+import FoodList from '../components/Menu/FoodList';
 
 function meni() {
   const [menuActive, setMenuActive] = useState(false);
+
+  useEffect(() => {}, []);
+
   return (
     <S.Container>
       <S.TopNote>
@@ -18,7 +22,7 @@ function meni() {
         </Link>
         <Header setMenuActive={setMenuActive} />
         <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
-        <p>Main CONTET</p>
+        <FoodList menuActive={menuActive} />
       </S.MainContent>
     </S.Container>
   );
@@ -52,6 +56,11 @@ S.MainContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr 4fr;
+  padding: 0 5%;
+
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
 
   .logo {
     cursor: pointer;
@@ -59,12 +68,12 @@ S.MainContent = styled.div`
     max-height: 80px;
     width: 140px !important;
     height: fit-content !important;
-    margin: 1rem 0 1rem 1rem;
+    margin: 1rem 0 1rem 0rem;
 
     @media screen and (min-width: 768px) {
       width: auto !important;
       height: auto !important;
-      margin: 1rem 0 1rem 2rem;
+      margin: 1rem 2rem 1rem 2rem;
     }
     position: relative !important;
   }
