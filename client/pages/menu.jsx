@@ -9,7 +9,7 @@ import axios from '../utils/axiosBackend';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-function menu() {
+function Menu() {
   const [menuActive, setMenuActive] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('burger');
   const [food, setFood] = useState([]);
@@ -27,7 +27,7 @@ function menu() {
       </S.TopNote>
       <S.MainContent>
         <Link href='/'>
-          <Image src='/logoGray.png' fill className='logo' />
+          <Image src='/logoGray.png' fill className='logo' alt='logo' />
         </Link>
         <Header setMenuActive={setMenuActive} />
         <Categories
@@ -43,7 +43,7 @@ function menu() {
   );
 }
 
-export default menu;
+export default Menu;
 
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};

@@ -13,7 +13,7 @@ function Categories({
 
   useEffect(() => {
     setSelectedCategory(categories[0]?.category);
-  }, [categories]);
+  }, [categories, setSelectedCategory]);
   return (
     <S.Container>
       <h5>MENU</h5>

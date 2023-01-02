@@ -26,6 +26,7 @@ function CarouselItem({ category: { category, image } = 'icecream' }) {
         sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw'
+        alt={category}
       />
       <S.Bottom>
         <p>{capitalize(category)}</p>
