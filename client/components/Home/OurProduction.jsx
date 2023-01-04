@@ -12,12 +12,15 @@ function OurProduction() {
 
   useEffect(() => {
     setSelected(categories[0]?.category);
+    console.log('SETSELECTED', categories[0]?.category);
   }, [categories]);
 
   useEffect(() => {
+    console.log('SETFOOD', 'SELECTED=', selected);
     const foodFind = food
       ?.filter((food) => food.category === selected)
       .slice(0, 4);
+    console.log(categories);
     setFoodItems(foodFind);
   }, [categories, food, selected]);
 

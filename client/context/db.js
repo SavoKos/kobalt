@@ -13,7 +13,10 @@ export const DBProvider = ({ children }) => {
   console.log(categories);
 
   useEffect(() => {
-    axios.get('/food').then((res) => setFood(res.data.data));
+    axios.get('/food').then((res) => {
+      console.log('GET FOOD CONTEXT');
+      setFood(res.data.data);
+    });
     axios.get('/food/category').then((res) => {
       console.log(res.data.data);
       setCategories(res.data.data);

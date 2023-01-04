@@ -15,10 +15,15 @@ function Menu() {
   const [menuActive, setMenuActive] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('burger');
   const [food, setFood] = useState(null);
-  const { stars, price, onlyAvailable } = useFilter();
+  const { stars, price, onlyAvailable, resetFilters } = useFilter();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    resetFilters();
+  }, []);
+
+  useEffect(() => {
+    console.log('FETCH MENU');
     setLoading(true);
     setFood(null);
     axios
@@ -62,7 +67,9 @@ export default Menu;
 
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
-S.Container = styled.div``;
+S.Container = styled.div`
+  min-height: 100vh;
+`;
 
 S.TopNote = styled.div`
   display: flex;

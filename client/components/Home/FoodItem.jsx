@@ -60,6 +60,7 @@ S.Container = styled.div`
     transform: translateX(-50%);
     max-width: fit-content;
     height: 100%;
+    width: 100%;
     max-height: 200px;
   }
 `;

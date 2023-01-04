@@ -81,7 +81,7 @@ S.SearchIcon = styled.div`
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: ${({ theme }) => theme.colors.darkOrange};
+    background-color: ${({ theme }) => theme.colors.lightOrange};
     display: flex;
   }
 

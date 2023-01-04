@@ -58,19 +58,22 @@ S.Container = styled.div`
     margin: 0 1rem;
 
     .rc-slider-handle {
-      border: 1px solid ${({ theme }) => theme.colors.lightOrange};
+      border: 1px solid ${({ theme }) => theme.colors.darkOrange};
 
       &:active {
-        box-shadow: 0 0 5px ${({ theme }) => theme.colors.lightOrange};
+        box-shadow: 0 0 5px ${({ theme }) => theme.colors.darkOrange};
       }
     }
 
     .rc-slider-track {
-      background-color: ${({ theme }) => theme.colors.lightOrange};
+      background-color: ${({ theme }) => theme.colors.darkOrange};
     }
 
     span {
       color: #fff;
+      @media screen and (min-width: 768px) {
+        color: ${({ theme }) => theme.colors.gray};
+      }
     }
   }
 `;

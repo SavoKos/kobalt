@@ -25,9 +25,9 @@ export default FoodList;
 const S = {};
 S.Container = styled.div`
   grid-column: 1/3;
+  min-height: 100vh;
 
   @media screen and (min-width: 768px) {
-    padding-right: 2rem;
     grid-column: 2/3;
   }
 `;
@@ -42,9 +42,14 @@ S.FoodItems = styled.div`
   justify-content: center;
   column-gap: 1rem;
 
+  @media screen and (min-width: 768px) {
+    margin: 10rem 0;
+  }
+
   @media screen and (min-width: 1024px) {
     margin: 15rem 0 10rem 0;
-    column-gap: 2rem;
+    column-gap: 3rem;
+    padding: 0 2rem;
   }
 
   h5 {

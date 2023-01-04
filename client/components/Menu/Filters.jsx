@@ -94,11 +94,11 @@ S.Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    background: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme }) => theme.colors.gray};
+    background-color: ${({ theme }) => theme.colors.lightGray};
     border-radius: 1rem;
     flex-flow: row;
     gap: 0;
-    border-radius: 5rem;
 
     label {
       font-size: 18px;
