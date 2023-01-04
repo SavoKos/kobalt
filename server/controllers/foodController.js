@@ -1,3 +1,4 @@
+{/* prettier-ignore */}
 const Food = require('../models/foodModel');
 const catchAsync = require('../utils/catchAsync');
 
@@ -17,7 +18,22 @@ exports.getCategories = catchAsync(async (req, res, next) => {
 });
 
 exports.getByCategory = catchAsync(async (req, res, next) => {
-  const food = await Food.find({ category: req.params.category });
+  const { minPrice, maxPrice, minStars, maxStars, onlyAvailable } = req.body;
+
+  const food = await Food.aggregate([
+    {
+      $match: {
+        $and: [
+          { price: { $gte: minPrice || 1, $lte: maxPrice || 100 } },
+          { rating: { $gte: minStars || 1, $lte: maxStars || 5 } },
+          { category: req.params.category },
+          onlyAvailable ? { available: true } : {},
+        ],
+      },
+    },
+  ]);
+
+  console.log(food);
 
   if (!food) {
     return next(new AppError('No food found with that category', 404));
@@ -25,6 +41,7 @@ exports.getByCategory = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
+    count: food.length,
     data: food,
   });
 });

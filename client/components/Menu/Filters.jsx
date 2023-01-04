@@ -1,8 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import useFilter from '../../context/filter';
 import Slider from './Slider';
+import { BiReset } from 'react-icons/bi';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
-function Filters() {
+function Filters({ setMenuActive }) {
+  const [checked, setChecked] = useState(false);
+  const [price, setPriceSlider] = useState([1, 100]);
+  const [stars, setStarsSlider] = useState([1, 5]);
+  const { setPrice, setStars, setOnlyAvailable, resetFilters } = useFilter();
+
+  const addFilters = () => {
+    setPrice(price);
+    setStars(stars);
+    setOnlyAvailable(checked);
+    setMenuActive && setMenuActive(false);
+  };
+
+  const resetFiltersUI = () => {
+    setPriceSlider([1, 100]);
+    setStarsSlider([1, 5]);
+    setChecked(false);
+    resetFilters();
+    setMenuActive && setMenuActive(false);
+  };
+
+  function toggle(value) {
+    return !value;
+  }
+
   return (
     <S.Container>
       <Slider
@@ -13,8 +40,9 @@ function Filters() {
         }}
         min={1}
         max={100}
-        defaultValue={[1, 100]}
         labelPrefix='$'
+        applyFilter={setPriceSlider}
+        value={price}
       />
       <Slider
         label='Stars'
@@ -24,13 +52,23 @@ function Filters() {
         }}
         min={1}
         max={5}
-        defaultValue={[1, 5]}
+        applyFilter={setStarsSlider}
+        value={stars}
       />
       <S.Available>
-        <input type='checkbox' name='available' id='available' />
+        <input
+          type='checkbox'
+          name='available'
+          id='available'
+          checked={checked}
+          onChange={() => setChecked(toggle)}
+        />
         <label htmlFor='available'>Only Available</label>
       </S.Available>
-      <p className='apply'>Apply</p>
+      <S.Icons>
+        <BiReset className='reset' onClick={resetFiltersUI} />
+        <AiFillCheckCircle className='apply' onClick={addFilters} />
+      </S.Icons>
     </S.Container>
   );
 }
@@ -41,15 +79,14 @@ export default Filters;
 const S = {};
 S.Container = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.colors.gray};
   color: #fff;
-  border-radius: 1rem;
   height: fit-content;
   padding: 1.5rem;
   justify-content: space-between;
   align-items: center;
   flex-flow: column;
   gap: 2rem;
+  margin-bottom: -5rem;
 
   label {
     margin-left: 0.5rem;
@@ -57,6 +94,8 @@ S.Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    background: ${({ theme }) => theme.colors.gray};
+    border-radius: 1rem;
     flex-flow: row;
     gap: 0;
     border-radius: 5rem;
@@ -65,14 +104,28 @@ S.Container = styled.div`
       font-size: 18px;
     }
   }
+`;
 
-  .apply {
-    color: green;
-    background-color: aliceblue;
-    border-radius: 10rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
+S.Available = styled.div`
+  flex: 0;
+  @media screen and (min-width: 900px) {
+    flex: unset;
   }
 `;
 
-S.Available = styled.div``;
+S.Icons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  svg {
+    font-size: 30px;
+    color: #ff3333;
+    cursor: pointer;
+
+    &.apply {
+      color: #07bc0c;
+    }
+  }
+  padding: 1rem;
+`;

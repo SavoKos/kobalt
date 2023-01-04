@@ -1,29 +1,24 @@
 import RcSlider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import styled from 'styled-components';
-import { useState } from 'react';
 
-function Slider({ marks, min, max, defaultValue, label, labelPrefix }) {
-  const [sliderValue, setSliderValue] = useState(defaultValue);
-  console.log(sliderValue);
-
-  const rangeChangeHandler = (value) => setSliderValue(value);
+function Slider({ marks, min, max, label, labelPrefix, applyFilter, value }) {
+  const rangeChangeHandler = (value) => applyFilter(value);
 
   return (
     <S.Container>
       <p>
-        {label}({labelPrefix}
-        {sliderValue[0]} - {labelPrefix}
-        {sliderValue[1]})
+        {label} ({labelPrefix}
+        {value[0]} - {labelPrefix}
+        {value[1]})
       </p>
       <RcSlider
         range
         marks={marks}
         min={min}
         max={max}
-        defaultValue={defaultValue}
         step={1}
-        value={sliderValue}
+        value={value}
         onChange={rangeChangeHandler}
       />
     </S.Container>
@@ -61,6 +56,18 @@ S.Container = styled.div`
 
   .rc-slider {
     margin: 0 1rem;
+
+    .rc-slider-handle {
+      border: 1px solid ${({ theme }) => theme.colors.lightOrange};
+
+      &:active {
+        box-shadow: 0 0 5px ${({ theme }) => theme.colors.lightOrange};
+      }
+    }
+
+    .rc-slider-track {
+      background-color: ${({ theme }) => theme.colors.lightOrange};
+    }
 
     span {
       color: #fff;

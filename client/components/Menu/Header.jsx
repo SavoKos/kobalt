@@ -12,8 +12,6 @@ import useCart from '../../context/cart';
 function Header({ setMenuActive }) {
   const { cart } = useCart();
 
-  console.log(cart);
-
   return (
     <S.Container>
       <S.Search>

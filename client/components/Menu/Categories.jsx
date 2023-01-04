@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import useDB from '../../context/db';
+import Filters from './Filters';
 
 function Categories({
   menuActive,
@@ -9,7 +10,13 @@ function Categories({
   selectedCategory,
   setSelectedCategory,
 }) {
-  const { categories } = useDB();
+  const { categories, setFood } = useDB();
+
+  const selectCategory = (category) => {
+    setFood(null);
+    setSelectedCategory(category);
+    setMenuActive(false);
+  };
 
   useEffect(() => {
     setSelectedCategory(categories[0]?.category);
@@ -22,10 +29,13 @@ function Categories({
           className='close'
           onClick={() => setMenuActive(false)}
         />
+        <S.Filters>
+          <Filters setMenuActive={setMenuActive} />
+        </S.Filters>
         {categories.map((category) => (
           <S.Category
             selected={category.category === selectedCategory}
-            onClick={() => setSelectedCategory(category.category)}
+            onClick={() => selectCategory(category.category)}
             key={category._id}
           >
             {category.category}
@@ -50,10 +60,11 @@ S.Container = styled.div`
   gap: 1rem;
   overflow: hidden;
   position: absolute;
+  padding: 3rem 0;
 
   h5 {
     display: none;
-    padding: 3rem 3rem 1rem 3rem;
+    padding: 0rem 3rem 1rem 3rem;
   }
 
   @media screen and (min-width: 768px) {
@@ -124,5 +135,11 @@ S.Categories = styled.div`
     @media screen and (min-width: 768px) {
       display: none;
     }
+  }
+`;
+
+S.Filters = styled.div`
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;

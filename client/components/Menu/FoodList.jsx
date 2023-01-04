@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import FoodItem from '../Home/FoodItem';
+import Spinner from '../Spinner';
 import Filters from './Filters';
 
-function FoodList({ food }) {
+function FoodList({ food, loading, setLoading }) {
   return (
     <S.Container>
-      <Filters />
+      <S.Filters>
+        <Filters />
+      </S.Filters>
       <S.FoodItems>
-        {food?.map((food) => (
-          <FoodItem food={food} key={food._id} />
-        ))}
+        {loading && <Spinner />}
+        {food?.length > 0 &&
+          food?.map((food) => <FoodItem food={food} key={food._id} />)}
       </S.FoodItems>
     </S.Container>
   );
@@ -34,12 +37,24 @@ S.FoodItems = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 8rem 0;
+  margin: 5rem 0;
   row-gap: 8rem;
   justify-content: center;
   column-gap: 1rem;
 
   @media screen and (min-width: 1024px) {
+    margin: 15rem 0 10rem 0;
     column-gap: 2rem;
+  }
+
+  h5 {
+    text-align: center;
+  }
+`;
+
+S.Filters = styled.div`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
   }
 `;

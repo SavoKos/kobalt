@@ -8,7 +8,7 @@ const useDB = () => {
 };
 
 export const DBProvider = ({ children }) => {
-  const [food, setFood] = useState([]);
+  const [food, setFood] = useState(null);
   const [categories, setCategories] = useState([]);
   console.log(categories);
 
@@ -23,6 +23,7 @@ export const DBProvider = ({ children }) => {
   const value = {
     food,
     categories,
+    setFood,
   };
 
   return <DBContext.Provider value={value}>{children}</DBContext.Provider>;

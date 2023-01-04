@@ -12,6 +12,6 @@ const router = Router();
 router.get('/category', getCategories);
 router.route('/').get(getAll(Food)).post(createOne(Food));
 
-router.get('/:category', getByCategory);
+router.post('/:category', getByCategory);
 
 module.exports = router;

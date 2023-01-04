@@ -8,17 +8,32 @@ import FoodList from '../components/Menu/FoodList';
 import axios from '../utils/axiosBackend';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import useFilter from '../context/filter';
+import Spinner from '../components/Spinner';
 
 function Menu() {
   const [menuActive, setMenuActive] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('burger');
-  const [food, setFood] = useState([]);
+  const [food, setFood] = useState(null);
+  const { stars, price, onlyAvailable } = useFilter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+    setFood(null);
     axios
-      .get(`/food/${selectedCategory}`)
-      .then((res) => setFood(res.data.data));
-  }, [selectedCategory]);
+      .post(`/food/${selectedCategory}`, {
+        minStars: stars[0],
+        maxStars: stars[1],
+        minPrice: price[0],
+        maxPrice: price[1],
+        onlyAvailable,
+      })
+      .then((res) => {
+        setFood(res.data.data);
+        setLoading(false);
+      });
+  }, [selectedCategory, stars, price, onlyAvailable]);
 
   return (
     <S.Container>
@@ -36,7 +51,7 @@ function Menu() {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        <FoodList menuActive={menuActive} food={food} />
+        <FoodList food={food} loading={loading} setLoading={setLoading} />
       </S.MainContent>
       <ToastContainer position='bottom-left' />
     </S.Container>
