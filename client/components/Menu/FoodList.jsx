@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import FoodItem from '../Home/FoodItem';
 import Spinner from '../Spinner';
 import Filters from './Filters';
 
-function FoodList({ food, loading, setLoading }) {
+function FoodList({ food, loading }) {
   return (
     <S.Container>
       <S.Filters>
@@ -26,6 +26,7 @@ const S = {};
 S.Container = styled.div`
   grid-column: 1/3;
   min-height: 100vh;
+  position: relative;
 
   @media screen and (min-width: 768px) {
     grid-column: 2/3;

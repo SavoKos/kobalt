@@ -20,11 +20,11 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-track {
-  background-color: #f46b45; /* color of the scroll thumb */
+  background-color: #fff; /* color of the scroll thumb */
 }
 
 html::-webkit-scrollbar-thumb {
-  background: #eea849; /* color of the tracking area */
+  background: #f46b45; /* color of the tracking area */
   border-radius: 1rem; /* roundness of the scroll thumb */
 }
 

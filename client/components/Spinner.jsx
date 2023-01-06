@@ -19,6 +19,10 @@ S.Spinner = styled.span`
   border-right: 3px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @keyframes rotation {
     0% {

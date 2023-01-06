@@ -2,18 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Categories from '../components/Menu/Categories';
-import Header from '../components/Menu/Header';
-import FoodList from '../components/Menu/FoodList';
-import axios from '../utils/axiosBackend';
+import Categories from '../../components/Menu/Categories';
+import Header from '../../components/Menu/Header';
+import FoodList from '../../components/Menu/FoodList';
+import axios from '../../utils/axiosBackend';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import useFilter from '../context/filter';
-import Spinner from '../components/Spinner';
+import useFilter from '../../context/filter';
 
 function Menu() {
   const [menuActive, setMenuActive] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('burger');
   const [food, setFood] = useState(null);
   const { stars, price, onlyAvailable, resetFilters } = useFilter();
   const [loading, setLoading] = useState(true);
@@ -27,7 +25,7 @@ function Menu() {
     setLoading(true);
     setFood(null);
     axios
-      .post(`/food/${selectedCategory}`, {
+      .post(`/food/all`, {
         minStars: stars[0],
         maxStars: stars[1],
         minPrice: price[0],
@@ -38,7 +36,7 @@ function Menu() {
         setFood(res.data.data);
         setLoading(false);
       });
-  }, [selectedCategory, stars, price, onlyAvailable]);
+  }, [stars, price, onlyAvailable]);
 
   return (
     <S.Container>
@@ -50,13 +48,8 @@ function Menu() {
           <Image src='/logoGray.png' fill className='logo' alt='logo' />
         </Link>
         <Header setMenuActive={setMenuActive} />
-        <Categories
-          menuActive={menuActive}
-          setMenuActive={setMenuActive}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <FoodList food={food} loading={loading} setLoading={setLoading} />
+        <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
+        <FoodList food={food} loading={loading} />
       </S.MainContent>
       <ToastContainer position='bottom-left' />
     </S.Container>

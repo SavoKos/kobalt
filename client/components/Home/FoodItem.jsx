@@ -8,6 +8,7 @@ import {
 import styled from 'styled-components';
 import useCart from '../../context/cart';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 function FoodItem({ food }) {
   const { cart, setCart } = useCart();
@@ -24,20 +25,24 @@ function FoodItem({ food }) {
     );
   return (
     <S.Container>
-      <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
-      <Image
-        src={food.image}
-        width={200}
-        height={200}
-        className='foodImg'
-        alt={food.name}
-      />
-      <S.Text>
-        <p className='title'>{food.name}</p>
-        <p className='tag'>{food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}</p>
-        <S.Stars>{starItems.map((item) => item)}</S.Stars>
-        <p className='price'>${food.price}</p>
-      </S.Text>
+      <Link href={`${food.category}/${food.name}`}>
+        <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
+        <Image
+          src={food.image}
+          width={200}
+          height={200}
+          className='foodImg'
+          alt={food.name}
+        />
+        <S.Text>
+          <p className='title'>{food.name}</p>
+          <p className='tag'>
+            {food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}
+          </p>
+          <S.Stars>{starItems.map((item) => item)}</S.Stars>
+          <p className='price'>${food.price}</p>
+        </S.Text>
+      </Link>
       <S.Cart onClick={addToCart}>
         <AiOutlineShoppingCart className='cart' />
       </S.Cart>
@@ -52,6 +57,10 @@ const S = {};
 S.Container = styled.div`
   position: relative;
   filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+
+  a {
+    color: #000;
+  }
 
   .foodImg {
     position: absolute;

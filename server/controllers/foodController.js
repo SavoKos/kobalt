@@ -26,14 +26,14 @@ exports.getByCategory = catchAsync(async (req, res, next) => {
         $and: [
           { price: { $gte: minPrice || 1, $lte: maxPrice || 100 } },
           { rating: { $gte: minStars || 1, $lte: maxStars || 5 } },
-          { category: req.params.category },
+          req.params.category !== 'all'
+            ? { category: req.params.category }
+            : {},
           onlyAvailable ? { available: true } : {},
         ],
       },
     },
   ]);
-
-  console.log(food);
 
   if (!food) {
     return next(new AppError('No food found with that category', 404));

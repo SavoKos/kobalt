@@ -1,26 +1,16 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import useDB from '../../context/db';
 import Filters from './Filters';
 
-function Categories({
-  menuActive,
-  setMenuActive,
-  selectedCategory,
-  setSelectedCategory,
-}) {
-  const { categories, setFood } = useDB();
+function Categories({ menuActive, setMenuActive }) {
+  const { categories } = useDB();
+  const router = useRouter();
+  console.log(router);
 
-  const selectCategory = (category) => {
-    setFood(null);
-    setSelectedCategory(category);
-    setMenuActive(false);
-  };
-
-  useEffect(() => {
-    setSelectedCategory(categories[0]?.category);
-  }, [categories, setSelectedCategory]);
   return (
     <S.Container>
       <h5>MENU</h5>
@@ -32,14 +22,18 @@ function Categories({
         <S.Filters>
           <Filters setMenuActive={setMenuActive} />
         </S.Filters>
+        <Link href={`/menu`}>
+          <S.Category selected={router.pathname === '/menu'}>All</S.Category>
+        </Link>
         {categories.map((category) => (
-          <S.Category
-            selected={category.category === selectedCategory}
-            onClick={() => selectCategory(category.category)}
-            key={category._id}
-          >
-            {category.category}
-          </S.Category>
+          <Link href={`/menu/${category.category}`}>
+            <S.Category
+              selected={category.category === router.query.category}
+              key={category._id}
+            >
+              {category.category}
+            </S.Category>
+          </Link>
         ))}
       </S.Categories>
     </S.Container>

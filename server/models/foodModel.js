@@ -32,5 +32,10 @@ const FoodSchema = new mongoose.Schema({
   available: { type: Boolean, default: true },
 });
 
+FoodSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
 const Food = mongoose.model('Food', FoodSchema);
 module.exports = Food;
