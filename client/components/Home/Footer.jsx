@@ -14,9 +14,7 @@ function Footer() {
         <Image src='/logo.png' width={200} height={80} alt='logo' />
         <S.NavLinks>
           <Link href='/'>Home</Link>
-          <Link href='/about'>About</Link>
-          <Link href='/menu'>Menu</Link>
-          <Link href='/contact'>Contact</Link>
+          <Link href='/catalog'>Catalog</Link>
         </S.NavLinks>
         <S.WorkingHours>
           <AiOutlineClockCircle className='clock' />

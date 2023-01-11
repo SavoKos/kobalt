@@ -79,14 +79,19 @@ export default Filters;
 const S = {};
 S.Container = styled.div`
   display: flex;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.gray};
   height: fit-content;
   padding: 1.5rem;
   justify-content: space-between;
   align-items: center;
   flex-flow: column;
   gap: 2rem;
-  margin-bottom: -5rem;
+  background-color: ${({ theme }) => theme.colors.lightGray};
+  border-radius: 1rem;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: -5rem;
+  }
 
   label {
     margin-left: 0.5rem;

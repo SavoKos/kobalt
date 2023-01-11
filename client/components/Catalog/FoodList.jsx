@@ -58,9 +58,4 @@ S.FoodItems = styled.div`
   }
 `;
 
-S.Filters = styled.div`
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: block;
-  }
-`;
+S.Filters = styled.div``;

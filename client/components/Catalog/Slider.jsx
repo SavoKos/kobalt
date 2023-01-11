@@ -70,10 +70,7 @@ S.Container = styled.div`
     }
 
     span {
-      color: #fff;
-      @media screen and (min-width: 768px) {
-        color: ${({ theme }) => theme.colors.gray};
-      }
+      color: ${({ theme }) => theme.colors.gray};
     }
   }
 `;

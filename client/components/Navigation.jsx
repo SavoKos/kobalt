@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import {
@@ -7,44 +8,54 @@ import {
 } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
-import useCart from '../../context/cart';
+import useCart from '../context/cart';
 
-function Header({ setMenuActive }) {
+function Navigation({ link }) {
   const { cart } = useCart();
 
   return (
-    <S.Container>
-      <S.Search>
-        <input type='text' placeholder='Search' />
-        <S.SearchIcon>
-          <BsSearch className='icon' />
-        </S.SearchIcon>
-      </S.Search>
-      <S.Right>
-        <S.Icon>
-          <BsSearch className='search' />
-        </S.Icon>
-        <S.Icon>
-          <Link href='/cart'>
-            <AiOutlineShoppingCart className='cart' />
-            <p className='count'>{cart?.length}</p>
-          </Link>
-        </S.Icon>
-        <S.Icon>
-          <AiOutlineLogin />
-        </S.Icon>
-        <S.Icon>
-          <AiOutlineMenu
-            className='menu'
-            onClick={() => setMenuActive((prevActive) => !prevActive)}
-          />
-        </S.Icon>
-      </S.Right>
-    </S.Container>
+    <>
+      <Link href='/'>
+        <Image src='/logoGray.png' fill className='logo' alt='logo' />
+      </Link>
+      <S.Container>
+        <S.Right>
+          <S.Search>
+            <input type='text' placeholder='Search' />
+            <S.SearchIcon>
+              <BsSearch className='icon' />
+            </S.SearchIcon>
+          </S.Search>
+          <S.Links>
+            <Link href={link === '/' ? '/' : '/catalog'}>
+              <p className='website'>{link === '/' ? 'Website' : 'Catalog'}</p>
+            </Link>
+            <S.Icon className='search'>
+              <BsSearch />
+            </S.Icon>
+            <S.Icon>
+              <Link href='/cart'>
+                <AiOutlineShoppingCart className='cart' />
+                <p className='count'>{cart?.length}</p>
+              </Link>
+            </S.Icon>
+            <S.Icon>
+              <AiOutlineLogin />
+            </S.Icon>
+            <S.Icon>
+              <AiOutlineMenu
+                className='menu'
+                onClick={() => setMenuActive((prevActive) => !prevActive)}
+              />
+            </S.Icon>
+          </S.Links>
+        </S.Right>
+      </S.Container>
+    </>
   );
 }
 
-export default Header;
+export default Navigation;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
@@ -54,6 +65,8 @@ S.Container = styled.div`
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+  grid-column: 2/5;
+  width: 100%;
 `;
 
 S.Search = styled.div`
@@ -113,7 +126,7 @@ S.Icon = styled.div`
     top: 0;
     right: 0;
     z-index: 2;
-    background-color: ${({ theme }) => theme.colors.lightOrange};
+    background-color: ${({ theme }) => theme.colors.darkOrange};
     right: -0.7rem;
     top: -0.7rem;
     min-width: 25px;
@@ -128,10 +141,20 @@ S.Icon = styled.div`
   }
 `;
 
-S.Right = styled.div`
+S.Links = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  .website {
+    padding: 0.8rem 1.5rem;
+    border-radius: 10rem;
+    color: #fff;
+    background: #f46b45; /* fallback for old browsers */
+
+    margin-left: 1rem;
+    cursor: pointer;
+  }
 
   .search,
   .menu {
@@ -161,4 +184,10 @@ S.Auth = styled.div`
     padding: 0.5rem 2rem;
     cursor: pointer;
   }
+`;
+
+S.Logo = styled.div``;
+S.Right = styled.div`
+  display: flex;
+  width: 100%;
 `;

@@ -1,31 +1,33 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Categories from '../../components/Menu/Categories';
-import Header from '../../components/Menu/Header';
-import FoodList from '../../components/Menu/FoodList';
+import Categories from '../../components/Catalog/Categories';
+import Navigation from '../../components/Navigation';
+import FoodList from '../../components/Catalog/FoodList';
 import axios from '../../utils/axiosBackend';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import useFilter from '../../context/filter';
+import { useRouter } from 'next/router';
 
 function Menu() {
   const [menuActive, setMenuActive] = useState(false);
   const [food, setFood] = useState(null);
   const { stars, price, onlyAvailable, resetFilters } = useFilter();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { category } = router.query;
 
   useEffect(() => {
     resetFilters();
   }, []);
 
   useEffect(() => {
+    if (!category) return;
     console.log('FETCH MENU');
     setLoading(true);
     setFood(null);
     axios
-      .post(`/food/all`, {
+      .post(`/food/${category}`, {
         minStars: stars[0],
         maxStars: stars[1],
         minPrice: price[0],
@@ -36,7 +38,7 @@ function Menu() {
         setFood(res.data.data);
         setLoading(false);
       });
-  }, [stars, price, onlyAvailable]);
+  }, [category, stars, price, onlyAvailable]);
 
   return (
     <S.Container>
@@ -44,10 +46,7 @@ function Menu() {
         <p className='discount'>15% OFF WITH CODE: SAVO</p>
       </S.TopNote>
       <S.MainContent>
-        <Link href='/'>
-          <Image src='/logoGray.png' fill className='logo' alt='logo' />
-        </Link>
-        <Header setMenuActive={setMenuActive} />
+        <Navigation link='/' />
         <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
         <FoodList food={food} loading={loading} />
       </S.MainContent>

@@ -13,24 +13,18 @@ function Categories({ menuActive, setMenuActive }) {
 
   return (
     <S.Container>
-      <h5>MENU</h5>
+      <h5>Catalog</h5>
       <S.Categories menuActive={menuActive}>
         <AiOutlineClose
           className='close'
           onClick={() => setMenuActive(false)}
         />
-        <S.Filters>
-          <Filters setMenuActive={setMenuActive} />
-        </S.Filters>
-        <Link href={`/menu`}>
-          <S.Category selected={router.pathname === '/menu'}>All</S.Category>
+        <Link href={`/catalog`}>
+          <S.Category selected={router.pathname === '/catalog'}>All</S.Category>
         </Link>
         {categories.map((category) => (
-          <Link href={`/menu/${category.category}`}>
-            <S.Category
-              selected={category.category === router.query.category}
-              key={category._id}
-            >
+          <Link href={`/catalog/${category.category}`} key={category._id}>
+            <S.Category selected={category.category === router.query.category}>
               {category.category}
             </S.Category>
           </Link>
@@ -130,11 +124,5 @@ S.Categories = styled.div`
     @media screen and (min-width: 768px) {
       display: none;
     }
-  }
-`;
-
-S.Filters = styled.div`
-  @media screen and (min-width: 768px) {
-    display: none;
   }
 `;

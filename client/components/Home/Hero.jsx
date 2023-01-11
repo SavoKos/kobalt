@@ -18,7 +18,7 @@ function Hero() {
           order online, you&apos;ll have it!
         </p>
         <BtnMeni>
-          <Link href='/menu'>Go To Menu</Link>
+          <Link href='/catalog'>Go To Catalog</Link>
         </BtnMeni>
       </S.Text>
       <S.Image>
@@ -36,7 +36,7 @@ S.Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: 90vh;
   border-bottom-left-radius: 2rem;
   padding: 5rem 5%;
   background: #f46b45; /* fallback for old browsers */

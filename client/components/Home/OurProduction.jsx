@@ -31,7 +31,7 @@ function OurProduction() {
           Our <span>Production</span>
         </h4>
         <BtnMeni>
-          <Link href='/menu'>Menu</Link>
+          <Link href='/catalog'>Catalog</Link>
         </BtnMeni>
 
         <S.Categories>
