@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Navigation from '../components/Home/Navigation';
+import Navigation from '../components/Navigation';
 import Hero from '../components/SingleFood/Hero';
 import Spinner from '../components/Spinner';
 import axios from '../utils/axiosBackend';

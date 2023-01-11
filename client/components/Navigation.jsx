@@ -14,11 +14,11 @@ function Navigation({ link }) {
   const { cart } = useCart();
 
   return (
-    <>
+    <S.Container>
       <Link href='/'>
         <Image src='/logoGray.png' fill className='logo' alt='logo' />
       </Link>
-      <S.Container>
+      <S.MainContent>
         <S.Right>
           <S.Search>
             <input type='text' placeholder='Search' />
@@ -50,8 +50,8 @@ function Navigation({ link }) {
             </S.Icon>
           </S.Links>
         </S.Right>
-      </S.Container>
-    </>
+      </S.MainContent>
+    </S.Container>
   );
 }
 
@@ -59,6 +59,33 @@ export default Navigation;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
+  display: flex;
+  grid-column: 1/3;
+  width: 100%;
+  justify-content: space-between;
+
+  input {
+    flex: 1;
+  }
+
+  .logo {
+    cursor: pointer;
+    max-width: 200px;
+    max-height: 80px;
+    width: 140px !important;
+    height: fit-content !important;
+    margin: 1rem 0 1rem 0rem;
+
+    @media screen and (min-width: 768px) {
+      width: auto !important;
+      height: auto !important;
+      margin: 1rem 2rem 1rem 2rem;
+    }
+    position: relative !important;
+  }
+`;
+
+S.MainContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

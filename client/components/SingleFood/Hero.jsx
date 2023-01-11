@@ -48,7 +48,7 @@ export default Hero;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
-  height: 100vh;
+  height: 90vh;
   background-color: ${({ theme }) => theme.colors.lightGray};
   border-radius: 0 0 5rem 5rem;
   position: relative;
