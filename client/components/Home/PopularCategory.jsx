@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
-import axios from '../../utils/axiosBackend';
 import useDB from '../../context/db';
 import Link from 'next/link';
 

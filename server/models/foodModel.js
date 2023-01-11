@@ -8,6 +8,9 @@ const FoodSchema = new mongoose.Schema({
     required: [true, 'Please enter the name!'],
     unique: [true, 'Food with this name already exists!'],
   },
+  slug: {
+    type: String,
+  },
   category: {
     type: String,
     ref: 'Category',

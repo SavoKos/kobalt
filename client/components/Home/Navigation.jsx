@@ -28,14 +28,8 @@ function Navigation({ active = 'pocetna' }) {
         <Link href='/' style={style('home')}>
           Home
         </Link>
-        <Link href='/about' style={style('about')}>
-          About
-        </Link>
         <Link href='/menu' style={style('menu')}>
           Menu
-        </Link>
-        <Link href='/contact' style={style('contact')}>
-          Contact
         </Link>
       </S.NavLinks>
       <S.Icons>

@@ -8,97 +8,97 @@ import {
 import styled from 'styled-components';
 import useCart from '../../context/cart';
 import { toast } from 'react-toastify';
-import Link from 'next/link';
+import PopularCategory from '../Home/PopularCategory';
 
-function FoodItem({ food }) {
+function Hero({ food }) {
   const { setCart } = useCart();
-
-  const addToCart = () => {
-    setCart((prevCart) => [...prevCart, food]);
-    toast.success(`${food.name} added to cart!`);
-  };
-
   const starItems = Array(5)
     .fill(0)
     .map((_, i) =>
       i < +food.rating ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
     );
+
+  const addToCart = () => {
+    setCart((prevCart) => [...prevCart, food]);
+    toast.success(`${food.name} added to cart!`);
+  };
   return (
     <S.Container>
-      <Link href={`/${food.slug}`} replace={true}>
-        <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
-        <Image
-          src={food.image}
-          width={200}
-          height={200}
-          className='foodImg'
-          alt={food.name}
-        />
-        <S.Text>
-          <p className='title'>{food.name}</p>
+      <S.Food>
+        <Image src={food.image} fill className='foodImage' />
+        <S.Info>
+          <h1>{food.name}</h1>
           <p className='tag'>
             {food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}
           </p>
           <S.Stars>{starItems.map((item) => item)}</S.Stars>
           <p className='price'>${food.price}</p>
-        </S.Text>
-      </Link>
-      <S.Cart onClick={addToCart}>
-        <AiOutlineShoppingCart className='cart' />
-      </S.Cart>
+          <S.Cart onClick={addToCart}>
+            <p>Add To Cart</p>
+            <AiOutlineShoppingCart className='cart' />
+          </S.Cart>
+        </S.Info>
+      </S.Food>
     </S.Container>
   );
 }
 
-export default FoodItem;
+export default Hero;
 
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.lightGray};
+  border-radius: 0 0 5rem 5rem;
   position: relative;
-  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
 
-  a {
-    color: #000;
+S.Food = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
   }
 
-  .foodImg {
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: fit-content;
-    height: 100%;
-    width: 100%;
-    max-height: 200px;
+  .foodImage {
+    width: unset !important;
+    max-height: 400px;
+    position: relative !important;
   }
 `;
 
-S.Text = styled.div`
-  position: absolute;
-  top: 78%;
-  left: 56%;
-  transform: translate(-56%, -78%);
+S.Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  p {
-    font-weight: 700;
-    text-align: center;
-  }
+  gap: 1rem;
+  align-items: center;
 
   .tag {
-    font-size: 12px;
     color: #c3c3c3;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  * {
+    text-align: center;
   }
 `;
 
 S.Cart = styled.div`
-  position: absolute;
-  bottom: -20px;
-  left: 56%;
-  transform: translateX(-56%);
   color: #fff;
+  bottom: 0;
   background: #f46b45; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to left,
@@ -110,8 +110,9 @@ S.Cart = styled.div`
     #eea849,
     #f46b45
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  padding: 0.8rem;
-  border-radius: 100%;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10rem;
+  gap: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,4 +123,8 @@ S.Cart = styled.div`
 S.Stars = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.colors.lightOrange};
+
+  svg {
+    font-size: 24px;
+  }
 `;

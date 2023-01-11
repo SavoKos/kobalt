@@ -10,7 +10,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import useFilter from '../../context/filter';
 import { useRouter } from 'next/router';
-import Spinner from '../../components/Spinner';
 
 function Menu() {
   const [menuActive, setMenuActive] = useState(false);
