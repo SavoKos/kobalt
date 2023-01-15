@@ -5,7 +5,7 @@ import Spinner from '../components/Spinner';
 import { Auth } from '../Theme';
 import axios from '../utils/axiosBackend';
 
-const Login = (props) => {
+const Login = () => {
   const [credentials, setCredentials] = useState({
     password: '',
     email: '',
@@ -41,7 +41,7 @@ const Login = (props) => {
     <Auth>
       <div className='login-box-formbox'>
         <div className='login-box-signup'>
-          Don't have an account?
+          Don&apos;t have an account?
           <Link href='/register'> Register</Link>
         </div>
         <div className='login-box-login'>
