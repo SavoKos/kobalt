@@ -46,9 +46,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 const createSendToken = (user, statusCode, req, res) => {
   const token = createToken(user._id);
   const domain =
-    process.env.NODE_ENV === 'production'
-      ? 'https://kobalt.savokos.com'
-      : 'localhost';
+    process.env.NODE_ENV === 'production' ? 'kobalt.savokos.com' : 'localhost';
 
   res.cookie('jwt', token, {
     maxAge: maxAge * 1000,
