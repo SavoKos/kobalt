@@ -1,14 +1,25 @@
+import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { AiOutlineHome, AiOutlineLogin } from 'react-icons/ai';
+import React, { useEffect, useState } from 'react';
+import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { BsCart2, BsSearch } from 'react-icons/bs';
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import styled from 'styled-components';
 import useCart from '../context/cart';
+import { AiOutlineHome } from 'react-icons/ai';
 
 function Navigation({ link }) {
   const { cart } = useCart();
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    setToken(Cookies.get('jwt'));
+  }, []);
+
+  const logout = () => {
+    Cookies.remove('jwt');
+    setToken(null);
+  };
 
   return (
     <S.Container>
@@ -44,18 +55,24 @@ function Navigation({ link }) {
                 <BsSearch />
               </S.Icon>
             )}
-
             <Link href='/cart'>
               <S.Icon>
                 <BsCart2 className='cart' />
                 <p className='count'>{cart?.length}</p>
               </S.Icon>
             </Link>
-            <Link href='/login'>
+            {!token && (
+              <Link href='/login'>
+                <S.Icon>
+                  <FiLogIn />
+                </S.Icon>
+              </Link>
+            )}
+            {token && (
               <S.Icon>
-                <AiOutlineLogin />
+                <FiLogOut onClick={logout} />
               </S.Icon>
-            </Link>
+            )}
           </S.Links>
         </S.Right>
       </S.MainContent>
