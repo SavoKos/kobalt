@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FoodItem from '../Home/FoodItem';
 import Spinner from '../Spinner';
+import Accordions from './Accordions';
 import Filters from './Filters';
 
 function FoodList({ food, loading }) {
@@ -10,6 +11,7 @@ function FoodList({ food, loading }) {
       <S.Filters>
         <Filters />
       </S.Filters>
+      <Accordions />
       <S.FoodItems>
         {loading && <Spinner />}
         {food?.length > 0 &&
@@ -58,4 +60,9 @@ S.FoodItems = styled.div`
   }
 `;
 
-S.Filters = styled.div``;
+S.Filters = styled.div`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+`;

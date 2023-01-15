@@ -1,25 +1,26 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import useDB from '../../context/db';
 
-function Categories() {
+function Categories({ closeAccordion }) {
   const { categories } = useDB();
   const router = useRouter();
-  console.log(router);
 
   return (
-    <S.Container>
+    <S.Container className='categories'>
       <h5>Catalog</h5>
       <S.Categories>
-        <AiOutlineClose className='close' />
-        <Link href={`/catalog`}>
+        <Link href={`/catalog`} onClick={closeAccordion}>
           <S.Category selected={router.pathname === '/catalog'}>All</S.Category>
         </Link>
         {categories.map((category) => (
-          <Link href={`/catalog/${category.category}`} key={category._id}>
+          <Link
+            href={`/catalog/${category.category}`}
+            key={category._id}
+            onClick={closeAccordion}
+          >
             <S.Category selected={category.category === router.query.category}>
               {category.category}
             </S.Category>
@@ -39,13 +40,11 @@ S.Container = styled.div`
   color: ${({ theme }) => theme.colors.gray};
   border-radius: 1rem;
   height: 100%;
-  display: flex;
   flex-direction: column;
   gap: 1rem;
   overflow: hidden;
-  position: absolute;
   padding: 3rem 0;
-  min-height: 100vh;
+  display: none;
 
   h5 {
     display: none;
@@ -53,7 +52,9 @@ S.Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    position: static;
+    display: flex;
+    min-height: 100vh;
+    min-width: 250px;
 
     h5 {
       display: block;
@@ -67,7 +68,8 @@ S.Category = styled.p`
   border-radius: 0 5rem 5rem 0;
   cursor: pointer;
   width: 100%;
-  color: ${({ selected, theme }) => (selected ? '#fff' : theme.colors.gray)};
+  color: ${({ selected, theme }) =>
+    selected ? theme.colors.darkOrange : theme.colors.gray};
 
   @media screen and (min-width: 768px) {
     width: 90%;
@@ -80,14 +82,10 @@ S.Category = styled.p`
 
 S.Categories = styled.div`
   gap: 2rem;
-  display: none;
-  position: fixed;
   flex-direction: column;
   right: 0;
   top: 0;
-  height: 100vh;
   justify-content: space-evenly;
-  background-color: ${({ theme }) => theme.colors.lightOrange + 'eb'};
   width: 100%;
   z-index: 5;
   transition: all ease 0.5s;
@@ -102,23 +100,11 @@ S.Categories = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    position: static;
     display: flex;
+    height: 100vh;
     transform: translateX(0%) !important;
     width: unset;
     height: unset;
     background-color: transparent;
-  }
-
-  .close {
-    position: absolute;
-    left: 2rem;
-    top: 2rem;
-    font-size: 36px;
-    cursor: pointer;
-
-    @media screen and (min-width: 768px) {
-      display: none;
-    }
   }
 `;

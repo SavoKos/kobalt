@@ -5,13 +5,14 @@ import Slider from './Slider';
 import { BiReset } from 'react-icons/bi';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
-function Filters({ setMenuActive }) {
+function Filters({ setMenuActive, closeAccordion }) {
   const [checked, setChecked] = useState(false);
   const [price, setPriceSlider] = useState([1, 100]);
   const [stars, setStarsSlider] = useState([1, 5]);
   const { setPrice, setStars, setOnlyAvailable, resetFilters } = useFilter();
 
   const addFilters = () => {
+    closeAccordion();
     setPrice(price);
     setStars(stars);
     setOnlyAvailable(checked);
@@ -19,6 +20,7 @@ function Filters({ setMenuActive }) {
   };
 
   const resetFiltersUI = () => {
+    closeAccordion();
     setPriceSlider([1, 100]);
     setStarsSlider([1, 5]);
     setChecked(false);
@@ -86,8 +88,6 @@ S.Container = styled.div`
   align-items: center;
   flex-flow: column;
   gap: 2rem;
-  background-color: ${({ theme }) => theme.colors.lightGray};
-  border-radius: 1rem;
 
   @media screen and (min-width: 768px) {
     margin-bottom: -5rem;
@@ -100,7 +100,6 @@ S.Container = styled.div`
 
   @media screen and (min-width: 768px) {
     color: ${({ theme }) => theme.colors.gray};
-    background-color: ${({ theme }) => theme.colors.lightGray};
     border-radius: 1rem;
     flex-flow: row;
     gap: 0;
