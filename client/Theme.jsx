@@ -19,7 +19,7 @@ export const BtnMeni = styled.button`
   border: 0;
   outline: 0;
   border-radius: 2rem;
-  padding: 1rem 3rem;
+  padding: 0.8rem 1.6rem;
   text-transform: uppercase;
   cursor: pointer;
   transition: all ease 0.3s;
@@ -33,6 +33,10 @@ export const BtnMeni = styled.button`
     -webkit-box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.6);
     box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.6);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 1rem 3rem;
   }
 `;
 

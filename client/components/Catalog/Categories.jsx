@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import useDB from '../../context/db';
-import Filters from './Filters';
 
-function Categories({ menuActive, setMenuActive }) {
+function Categories() {
   const { categories } = useDB();
   const router = useRouter();
   console.log(router);
@@ -14,11 +13,8 @@ function Categories({ menuActive, setMenuActive }) {
   return (
     <S.Container>
       <h5>Catalog</h5>
-      <S.Categories menuActive={menuActive}>
-        <AiOutlineClose
-          className='close'
-          onClick={() => setMenuActive(false)}
-        />
+      <S.Categories>
+        <AiOutlineClose className='close' />
         <Link href={`/catalog`}>
           <S.Category selected={router.pathname === '/catalog'}>All</S.Category>
         </Link>
@@ -83,12 +79,11 @@ S.Category = styled.p`
 `;
 
 S.Categories = styled.div`
-  display: flex;
   gap: 2rem;
+  display: none;
   position: fixed;
   flex-direction: column;
   right: 0;
-  transform: translateX(${(props) => (props.menuActive ? '0' : '120%')});
   top: 0;
   height: 100vh;
   justify-content: space-evenly;
@@ -108,6 +103,7 @@ S.Categories = styled.div`
 
   @media screen and (min-width: 768px) {
     position: static;
+    display: flex;
     transform: translateX(0%) !important;
     width: unset;
     height: unset;

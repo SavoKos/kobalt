@@ -1,12 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import {
-  AiOutlineLogin,
-  AiOutlineMenu,
-  AiOutlineShoppingCart,
-} from 'react-icons/ai';
-import { BsSearch } from 'react-icons/bs';
+import { AiOutlineHome, AiOutlineLogin } from 'react-icons/ai';
+import { BsCart2, BsSearch } from 'react-icons/bs';
+import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import styled from 'styled-components';
 import useCart from '../context/cart';
 
@@ -20,33 +17,42 @@ function Navigation({ link }) {
       </Link>
       <S.MainContent>
         <S.Right>
-          <S.Search>
-            <input type='text' placeholder='Search' />
-            <S.SearchIcon>
-              <BsSearch className='icon' />
-            </S.SearchIcon>
-          </S.Search>
+          {link === '/' && (
+            <S.Search>
+              <input type='text' placeholder='Search' />
+              <S.SearchIcon>
+                <BsSearch className='icon' />
+              </S.SearchIcon>
+            </S.Search>
+          )}
           <S.Links>
-            <Link href={link === '/' ? '/' : '/catalog'}>
-              <p className='website'>{link === '/' ? 'Website' : 'Catalog'}</p>
-            </Link>
-            <S.Icon className='search'>
-              <BsSearch />
-            </S.Icon>
+            {link === '/' ? (
+              <Link href='/'>
+                <S.Icon>
+                  <AiOutlineHome />
+                </S.Icon>
+              </Link>
+            ) : (
+              <Link href='/catalog'>
+                <S.Icon>
+                  <MdOutlineRestaurantMenu />
+                </S.Icon>
+              </Link>
+            )}
+            {link === '/' && (
+              <S.Icon className='search'>
+                <BsSearch />
+              </S.Icon>
+            )}
+
             <S.Icon>
               <Link href='/cart'>
-                <AiOutlineShoppingCart className='cart' />
+                <BsCart2 className='cart' />
                 <p className='count'>{cart?.length}</p>
               </Link>
             </S.Icon>
             <S.Icon>
               <AiOutlineLogin />
-            </S.Icon>
-            <S.Icon>
-              <AiOutlineMenu
-                className='menu'
-                onClick={() => setMenuActive((prevActive) => !prevActive)}
-              />
             </S.Icon>
           </S.Links>
         </S.Right>
@@ -63,6 +69,7 @@ S.Container = styled.div`
   grid-column: 1/3;
   width: 100%;
   justify-content: space-between;
+  padding: 1rem;
 
   input {
     flex: 1;
@@ -74,14 +81,16 @@ S.Container = styled.div`
     max-height: 80px;
     width: 140px !important;
     height: fit-content !important;
-    margin: 1rem 0 1rem 0rem;
+    position: relative !important;
+  }
 
-    @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
+    .logo {
       width: auto !important;
       height: auto !important;
-      margin: 1rem 2rem 1rem 2rem;
     }
-    position: relative !important;
+
+    padding: 1rem 10%;
   }
 `;
 
@@ -98,7 +107,6 @@ S.MainContent = styled.div`
 
 S.Search = styled.div`
   position: relative;
-  width: 50%;
   width: -webkit-fill-available;
 
   input {
@@ -171,45 +179,16 @@ S.Icon = styled.div`
 S.Links = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  padding-left: 1rem;
 
-  .website {
-    padding: 0.8rem 1.5rem;
-    border-radius: 10rem;
-    color: #fff;
-    background: #f46b45; /* fallback for old browsers */
+  @media screen and (min-width: 768px) {
+    gap: 0.5rem;
+    margin-left: auto;
 
-    margin-left: 1rem;
-    cursor: pointer;
-  }
-
-  .search,
-  .menu {
-    @media screen and (min-width: 768px) {
+    .search,
+    .menu {
       display: none;
     }
-  }
-`;
-
-S.Auth = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.gray};
-  border-radius: 10rem 0 0 10rem;
-  padding: 0.8rem 2rem;
-  gap: 1rem;
-  color: #fff;
-
-  .user {
-    font-size: 30px;
-    cursor: pointer;
-  }
-
-  p {
-    background-color: ${({ theme }) => theme.colors.darkOrange};
-    border-radius: 10rem;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
   }
 `;
 
@@ -217,4 +196,5 @@ S.Logo = styled.div``;
 S.Right = styled.div`
   display: flex;
   width: 100%;
+  justify-content: flex-end;
 `;
