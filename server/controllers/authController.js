@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 const { promisify } = require('util');
+const { sendWelcomeEmail } = require('../mail/email');
 
 const maxAge = process.env.ACTIVE_DAYS * 24 * 60 * 60;
 
@@ -38,6 +39,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
   });
 
+  sendWelcomeEmail(req.body.email);
   createSendToken(newUser, 201, req, res);
 });
 

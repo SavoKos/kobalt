@@ -8,6 +8,7 @@ const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const authRoutes = require('./routes/authRoutes');
 const foodRoutes = require('./routes/foodRoutes');
+const { sendWelcomeEmail } = require('./mail/email');
 
 const app = express();
 
