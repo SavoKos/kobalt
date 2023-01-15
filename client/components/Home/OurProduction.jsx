@@ -30,10 +30,9 @@ function OurProduction() {
         <h4>
           Our <span>Production</span>
         </h4>
-        <BtnMeni>
-          <Link href='/catalog'>Catalog</Link>
-        </BtnMeni>
-
+        <Link href='/catalog' scroll={true}>
+          <BtnMeni>Catalog</BtnMeni>
+        </Link>
         <S.Categories>
           {categories.map((category) => (
             <S.Category

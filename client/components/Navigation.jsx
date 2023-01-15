@@ -45,15 +45,17 @@ function Navigation({ link }) {
               </S.Icon>
             )}
 
-            <S.Icon>
-              <Link href='/cart'>
+            <Link href='/cart'>
+              <S.Icon>
                 <BsCart2 className='cart' />
                 <p className='count'>{cart?.length}</p>
-              </Link>
-            </S.Icon>
-            <S.Icon>
-              <AiOutlineLogin />
-            </S.Icon>
+              </S.Icon>
+            </Link>
+            <Link href='/login'>
+              <S.Icon>
+                <AiOutlineLogin />
+              </S.Icon>
+            </Link>
           </S.Links>
         </S.Right>
       </S.MainContent>
@@ -150,6 +152,7 @@ S.Icon = styled.div`
   color: ${({ theme }) => theme.colors.gray};
   margin: 0 0.5rem;
   font-size: 26px;
+  position: relative;
 
   a {
     color: ${({ theme }) => theme.colors.gray};
@@ -158,8 +161,6 @@ S.Icon = styled.div`
 
   .count {
     position: absolute;
-    top: 0;
-    right: 0;
     z-index: 2;
     background-color: ${({ theme }) => theme.colors.darkOrange};
     right: -0.7rem;
