@@ -45,8 +45,15 @@ exports.signup = catchAsync(async (req, res, next) => {
 
 const createSendToken = (user, statusCode, req, res) => {
   const token = createToken(user._id);
+  const domain =
+    process.env.NODE_ENV === 'production'
+      ? 'https://kobalt.savokos.com'
+      : 'localhost';
 
-  res.cookie('jwt', token, { maxAge: maxAge * 1000 });
+  res.cookie('jwt', token, {
+    maxAge: maxAge * 1000,
+    domain,
+  });
 
   // Remove password from output
   user.password = undefined;
