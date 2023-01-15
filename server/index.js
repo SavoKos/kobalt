@@ -42,7 +42,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/api/v1/users', authRoutes);
+app.use('/api/v1/user', authRoutes);
 app.use('/api/v1/food', foodRoutes);
 
 app.all('*', (req, res, next) => {

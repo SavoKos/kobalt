@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
-import styled from 'styled-components';
+import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import Spinner from '../components/Spinner';
 import { Auth } from '../Theme';
+import axios from '../utils/axiosBackend';
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -12,6 +12,7 @@ const Login = (props) => {
   });
   const [error, setError] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const updateInputValueHandler = (event) => {
     setCredentials((prevState) => ({
@@ -20,22 +21,14 @@ const Login = (props) => {
     }));
   };
 
-  const loginUser = () => {
-    setLoading(true);
-    login(credentials.email, credentials.password)
-      .then((user) => {
-        Router.replace('/');
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-        setError(error.message);
-      });
-  };
-
   const loginHandler = (e) => {
     e.preventDefault();
-    return loginUser();
+    setLoading(true);
+    axios
+      .post('/user/login', credentials)
+      .then(() => router.push('/'))
+      .catch((err) => setError(err.response.data.message))
+      .finally(() => setLoading(false));
   };
 
   let errorMessage = '';

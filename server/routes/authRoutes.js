@@ -14,8 +14,8 @@ const User = require('../models/userModel');
 
 const router = Router();
 
-router.post('/login', upload.none(), authController.login);
-router.post('/register', upload.none(), authController.signup);
+router.post('/login', authController.login);
+router.post('/register', authController.signup);
 router.get('/logout', authController.logout);
 router.get('/protect', authController.protect);
 

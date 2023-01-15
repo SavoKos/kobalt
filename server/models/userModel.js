@@ -4,6 +4,12 @@ const validator = require('validator');
 const AppError = require('../utils/AppError');
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Please enter your name'],
+    minlength: [3, 'Minimum password length is 3 characters'],
+    trim: true,
+  },
   password: {
     type: String,
     required: [true, 'Please enter your password'],
@@ -11,11 +17,10 @@ const userSchema = new mongoose.Schema({
     trim: true,
     select: false,
   },
-  passwordConfirm: {
+  confirmPassword: {
     type: String,
     required: [true, 'Please confirm your password'],
     validate: {
-      // This only works on CREATE and SAVE!!!
       validator: function (el) {
         return el === this.password;
       },
@@ -26,7 +31,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter your email'],
     lowercase: true,
-    unique: true,
+    unique: [true, 'User with this email already exists!'],
     validate: [validator.isEmail, 'Enter valid email!'],
     trim: true,
   },
@@ -40,7 +45,7 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
 
   // Delete passwordConfirm field
-  this.passwordConfirm = undefined;
+  this.confirmPassword = undefined;
   next();
 });
 

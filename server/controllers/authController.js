@@ -32,9 +32,10 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
+    name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
+    confirmPassword: req.body.confirmPassword,
   });
 
   createSendToken(newUser, 201, req, res);
@@ -43,12 +44,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 const createSendToken = (user, statusCode, req, res) => {
   const token = createToken(user._id);
 
-  res.cookie('jwt', token, {
-    maxAge: maxAge * 1000,
-    sameSite: 'strict',
-    path: '/',
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-  });
+  res.cookie('jwt', token, { maxAge: maxAge * 1000 });
 
   // Remove password from output
   user.password = undefined;

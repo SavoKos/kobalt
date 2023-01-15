@@ -214,6 +214,7 @@ export const Auth = styled.div`
         padding: 1.5em 2em;
         border: 1px solid #bebebe;
         border-radius: 5px;
+        font-size: 16px;
 
         &.input-email,
         &.input-password,

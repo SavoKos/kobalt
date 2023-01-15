@@ -8,6 +8,6 @@ const axiosBackend = axios.create({
   baseURL: url,
 });
 
-console.log(process);
+axiosBackend.defaults.withCredentials = true;
 
 export default axiosBackend;

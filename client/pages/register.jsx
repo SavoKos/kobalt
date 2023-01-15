@@ -1,9 +1,11 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Spinner from '../components/Spinner';
 import { Auth } from '../Theme';
+import axios from '../utils/axiosBackend';
 
-const Signup = (props) => {
+const Signup = () => {
   const [credentials, setCredentials] = useState({
     password: '',
     confirmPassword: '',
@@ -18,12 +20,16 @@ const Signup = (props) => {
       [event.target.name]: event.target.value,
     }));
   };
+  const router = useRouter();
 
   const signupHandler = (e) => {
     e.preventDefault();
-    if (credentials.password !== credentials.confirmPassword)
-      return setError('Passwords do not match!');
-    return signupUser();
+    setLoading(true);
+    axios
+      .post('/user/register', credentials)
+      .then(() => router.push('/'))
+      .catch((err) => setError(err.response.data.message))
+      .finally(() => setLoading(false));
   };
 
   let errorMessage = '';
