@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner';
 import { Auth } from '../Theme';
 import axios from '../utils/axiosBackend';
 import Cookies from 'js-cookie';
+import useUser from '../context/user';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -13,6 +14,7 @@ const Login = () => {
   });
   const [error, setError] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const { setUser } = useUser();
   const router = useRouter();
 
   const updateInputValueHandler = (event) => {
@@ -29,6 +31,7 @@ const Login = () => {
       .post('/user/login', credentials)
       .then((res) => {
         Cookies.set('jwt', res.data.token);
+        setUser(res.data.user);
         router.push('/');
       })
       .catch((err) => {

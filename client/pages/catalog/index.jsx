@@ -7,6 +7,7 @@ import axios from '../../utils/axiosBackend';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import useFilter from '../../context/filter';
+import { TopNote } from '../../Theme';
 
 function Catalog() {
   const [menuActive, setMenuActive] = useState(false);
@@ -38,11 +39,11 @@ function Catalog() {
 
   return (
     <S.Container>
-      <S.TopNote>
+      <TopNote>
         <p className='discount'>15% OFF WITH CODE: SAVO</p>
-      </S.TopNote>
+      </TopNote>
       <S.MainContent>
-        <Navigation link='/' />
+        <Navigation link='/catalog' />
         <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
         <FoodList food={food} loading={loading} />
       </S.MainContent>
@@ -57,24 +58,6 @@ export default Catalog;
 const S = {};
 S.Container = styled.div`
   min-height: 100vh;
-`;
-
-S.TopNote = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.gray};
-  text-align: right;
-  padding: 0.5rem 2rem;
-
-  p {
-    color: #fff;
-    width: 100%;
-  }
-
-  .discount {
-    text-align: center;
-  }
 `;
 
 S.MainContent = styled.div`

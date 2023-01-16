@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <div>
         <S.Navigation>
-          <Navigation link='/catalog' />
+          <Navigation link='/' />
         </S.Navigation>
         <Hero />
         <PopularCategory />

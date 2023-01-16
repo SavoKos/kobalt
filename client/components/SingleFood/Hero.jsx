@@ -19,7 +19,7 @@ function Hero({ food }) {
     );
 
   const addToCart = () => {
-    setCart((prevCart) => [...prevCart, food]);
+    setCart((prevCart) => [...prevCart, { ...food, quantity: 1 }]);
     toast.success(`${food.name} added to cart!`);
   };
   return (

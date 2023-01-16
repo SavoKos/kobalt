@@ -40,6 +40,24 @@ export const BtnMeni = styled.button`
   }
 `;
 
+export const TopNote = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.gray};
+  text-align: right;
+  padding: 0.5rem 2rem;
+
+  p {
+    color: #fff;
+    width: 100%;
+  }
+
+  .discount {
+    text-align: center;
+  }
+`;
+
 export const Auth = styled.div`
   display: flex;
   min-height: 100vh;

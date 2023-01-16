@@ -2,24 +2,32 @@ import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import { FiLogIn } from 'react-icons/fi';
 import { BsCart2, BsSearch } from 'react-icons/bs';
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import styled from 'styled-components';
 import useCart from '../context/cart';
 import { AiOutlineHome } from 'react-icons/ai';
+import useUser from '../context/user';
+import { toast } from 'react-toastify';
 
 function Navigation({ link }) {
   const { cart } = useCart();
   const [token, setToken] = useState(null);
+  const [dropdownActive, setDropdownActive] = useState(false);
+  const { setUser } = useUser();
+
   useEffect(() => {
     setToken(Cookies.get('jwt'));
   }, []);
 
   const logout = () => {
     Cookies.remove('jwt');
+    toast.warn(`You are logged out!`);
+    setUser({});
     setToken(null);
   };
+  console.log(link);
 
   return (
     <S.Container>
@@ -28,7 +36,7 @@ function Navigation({ link }) {
       </Link>
       <S.MainContent>
         <S.Right>
-          {link === '/' && (
+          {link === '/catalog' && (
             <S.Search>
               <input type='text' placeholder='Search' />
               <S.SearchIcon>
@@ -37,30 +45,33 @@ function Navigation({ link }) {
             </S.Search>
           )}
           <S.Links>
-            {link === '/' ? (
+            {(link === '/catalog' || link === '/cart') && (
               <Link href='/'>
                 <S.Icon>
                   <AiOutlineHome />
                 </S.Icon>
               </Link>
-            ) : (
+            )}
+            {(link === '/' || link === '/cart') && (
               <Link href='/catalog'>
                 <S.Icon>
                   <MdOutlineRestaurantMenu />
                 </S.Icon>
               </Link>
             )}
-            {link === '/' && (
+            {link === '/catalog' && (
               <S.Icon className='search'>
                 <BsSearch />
               </S.Icon>
             )}
-            <Link href='/cart'>
-              <S.Icon>
-                <BsCart2 className='cart' />
-                <p className='count'>{cart?.length}</p>
-              </S.Icon>
-            </Link>
+            {link !== '/cart' && (
+              <Link href='/cart'>
+                <S.Icon>
+                  <BsCart2 className='cart' />
+                  <p className='count'>{cart?.length}</p>
+                </S.Icon>
+              </Link>
+            )}
             {!token && (
               <Link href='/login'>
                 <S.Icon>
@@ -69,9 +80,14 @@ function Navigation({ link }) {
               </Link>
             )}
             {token && (
-              <S.Icon>
-                <FiLogOut onClick={logout} />
-              </S.Icon>
+              <S.User onClick={() => setDropdownActive((prev) => !prev)}>
+                <p>S</p>
+                {dropdownActive && (
+                  <S.Dropdown>
+                    <p onClick={logout}>Logout</p>
+                  </S.Dropdown>
+                )}
+              </S.User>
             )}
           </S.Links>
         </S.Right>
@@ -98,9 +114,13 @@ S.Container = styled.div`
     cursor: pointer;
     max-width: 200px;
     max-height: 80px;
-    width: 140px !important;
+    width: 100px !important;
     height: fit-content !important;
     position: relative !important;
+
+    @media screen and (min-width: 500px) {
+      width: 140px !important;
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -108,7 +128,6 @@ S.Container = styled.div`
       width: auto !important;
       height: auto !important;
     }
-
     padding: 1rem 10%;
   }
 `;
@@ -168,8 +187,12 @@ S.Icon = styled.div`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.gray};
   margin: 0 0.5rem;
-  font-size: 26px;
+  font-size: 22px;
   position: relative;
+
+  @media screen and (min-width: 500px) {
+    font-size: 26px;
+  }
 
   a {
     color: ${({ theme }) => theme.colors.gray};
@@ -215,4 +238,48 @@ S.Right = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
+`;
+
+S.User = styled.div`
+  background-color: ${({ theme }) => theme.colors.lightGray};
+  padding: 1.2rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+
+  @media screen and (min-width: 500px) {
+    padding: 1.2rem;
+  }
+
+  p {
+    font-weight: 500;
+  }
+`;
+
+S.Dropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.lightGray + 'ba'};
+  z-index: 5;
+
+  @media screen and (max-width: 768px) {
+    right: 0;
+  }
+
+  p {
+    cursor: pointer;
+  }
 `;

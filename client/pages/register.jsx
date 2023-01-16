@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Spinner from '../components/Spinner';
+import useUser from '../context/user';
 import { Auth } from '../Theme';
 import axios from '../utils/axiosBackend';
 
@@ -15,6 +16,7 @@ const Signup = () => {
   });
   const [error, setError] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const { setUser } = useUser();
   const updateInputValueHandler = (event) => {
     setCredentials((prevState) => ({
       ...prevState,
@@ -30,6 +32,7 @@ const Signup = () => {
       .post('/user/register', credentials)
       .then((res) => {
         Cookies.set('jwt', res?.data?.token);
+        setUser(res.data.user);
         router.push('/');
       })
       .catch((err) => {
