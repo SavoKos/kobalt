@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -27,9 +28,14 @@ const Signup = () => {
     setLoading(true);
     axios
       .post('/user/register', credentials)
-      .then(() => router.push('/'))
-      .catch((err) => setError(err.response.data.message))
-      .finally(() => setLoading(false));
+      .then((res) => {
+        Cookies.set('jwt', res?.data?.token);
+        router.push('/');
+      })
+      .catch((err) => {
+        setError(err?.response?.data?.message);
+        setLoading(false);
+      });
   };
 
   let errorMessage = '';

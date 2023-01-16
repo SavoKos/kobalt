@@ -45,13 +45,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 
 const createSendToken = (user, statusCode, req, res) => {
   const token = createToken(user._id);
-  const domain =
-    process.env.NODE_ENV === 'production' ? 'kobalt.savokos.com' : 'localhost';
-
-  res.cookie('jwt', token, {
-    maxAge: maxAge * 1000,
-    domain,
-  });
 
   // Remove password from output
   user.password = undefined;
@@ -61,10 +54,6 @@ const createSendToken = (user, statusCode, req, res) => {
     token,
     user,
   });
-};
-
-exports.logout = (req, res) => {
-  res.clearCookie('jwt').status(200).json({ status: 'success' });
 };
 
 exports.protect = catchAsync(async (req, res, next) => {

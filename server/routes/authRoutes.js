@@ -16,7 +16,6 @@ const router = Router();
 
 router.post('/login', authController.login);
 router.post('/register', authController.signup);
-router.get('/logout', authController.logout);
 router.get('/protect', authController.protect);
 
 router.get('/', getAll(User));

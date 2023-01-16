@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Spinner from '../components/Spinner';
 import { Auth } from '../Theme';
 import axios from '../utils/axiosBackend';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -26,9 +27,14 @@ const Login = () => {
     setLoading(true);
     axios
       .post('/user/login', credentials)
-      .then(() => router.push('/'))
-      .catch((err) => setError(err.response.data.message))
-      .finally(() => setLoading(false));
+      .then((res) => {
+        Cookies.set('jwt', res.data.token);
+        router.push('/');
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+        setLoading(false);
+      });
   };
 
   let errorMessage = '';
