@@ -40,7 +40,7 @@ function Catalog() {
   return (
     <S.Container>
       <TopNote>
-        <p className='discount'>15% OFF WITH CODE: SAVO</p>
+        <p className='discount'>15% OFF WITH PROMO CODE</p>
       </TopNote>
       <S.MainContent>
         <Navigation link='/catalog' />

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import styled from 'styled-components';
 import CardDetails from '../components/Cart/CardDetails';
@@ -10,14 +10,23 @@ import useCart from '../context/cart';
 import { TopNote } from '../Theme';
 
 function Cart() {
-  const { cart } = useCart();
-  console.log('CART', cart);
+  const { cart, setDiscount, total, discount } = useCart();
+  const [promoCode, setPromoCode] = useState('');
+  const [promoCodeError, setPromoCodeError] = useState('');
+
+  const applyPromoCode = () => {
+    if (promoCode === 'savo') {
+      setDiscount(true);
+      setPromoCodeError('');
+    } else setPromoCodeError('Invalid promo code!');
+  };
+  console.log(promoCode);
 
   return (
     <ProtectedRoute>
       <S.Container>
         <TopNote>
-          <p className='discount'>15% OFF WITH CODE: SAVO</p>
+          <p className='discount'>15% OFF WITH PROMO CODE</p>
         </TopNote>
         <Navigation link='/cart' />
         <S.Cart>
@@ -40,6 +49,22 @@ function Cart() {
               {cart?.map((food) => (
                 <CartItem food={food} key={food._id} />
               ))}
+              <h5>
+                Total: ${total}
+                {discount && ' with 15% discount!'}
+              </h5>
+              <S.PromoCode>
+                <input
+                  type='text'
+                  placeholder='Promo Code'
+                  onChange={(e) => setPromoCode(e.target.value)}
+                  disabled={discount}
+                />
+                <button onClick={applyPromoCode} disabled={discount}>
+                  Use
+                </button>
+                <p className='error'>{promoCodeError}</p>
+              </S.PromoCode>
               <CardDetails />
             </>
           )}
@@ -72,6 +97,15 @@ S.Cart = styled.div`
   span {
     font-weight: 400;
   }
+
+  .error {
+    color: red;
+    margin-top: 0.5rem;
+  }
+
+  h5 {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 S.CartEmpty = styled.div`
@@ -88,5 +122,35 @@ S.CartEmpty = styled.div`
     margin-top: 1rem;
     cursor: pointer;
     color: #000;
+  }
+`;
+
+S.PromoCode = styled.div`
+  width: fit-content;
+  input,
+  button {
+    outline: 0;
+    border: 0;
+    padding: 1rem 2rem;
+
+    &:disabled {
+      background-color: #cfcfcf;
+    }
+  }
+
+  input {
+    border-radius: 3rem 0 0 3rem;
+    width: 100%;
+    border: 1px solid #aeadb2;
+    min-width: 250px;
+  }
+
+  button {
+    border-radius: 0 3rem 3rem 0;
+    border: 1px solid transparent;
+    position: absolute;
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.gray};
+    cursor: pointer;
   }
 `;

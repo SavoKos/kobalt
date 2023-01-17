@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
 import { BsCart2, BsSearch } from 'react-icons/bs';
 import { MdOutlineRestaurantMenu } from 'react-icons/md';

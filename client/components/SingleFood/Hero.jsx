@@ -8,7 +8,6 @@ import {
 import styled from 'styled-components';
 import useCart from '../../context/cart';
 import { toast } from 'react-toastify';
-import PopularCategory from '../Home/PopularCategory';
 
 function Hero({ food }) {
   const { setCart } = useCart();

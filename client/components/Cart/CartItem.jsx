@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BiMinus, BiPlus } from 'react-icons/bi';
