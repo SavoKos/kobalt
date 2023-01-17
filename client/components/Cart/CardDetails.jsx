@@ -4,10 +4,12 @@ import validator from 'validator';
 import axios from '../../utils/axiosBackend';
 import useCart from '../../context/cart';
 import useUser from '../../context/user';
+import { useRouter } from 'next/router';
 
 function CardDetails() {
   const { cart, total, discounted } = useCart();
   const { user } = useUser();
+  const router = useRouter();
 
   const [error, setError] = useState('');
   const [cardData, setCardData] = useState({
@@ -35,7 +37,7 @@ function CardDetails() {
 
     axios
       .post('/order', { user, food: cart, total, discounted })
-      .then((res) => console.log(res.data))
+      .then((res) => router.push('/ordered'))
       .catch((err) => setError(err.response.data.message));
   };
   return (
