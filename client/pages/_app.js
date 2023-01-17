@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Spinner from '../components/Spinner';
 import { CartProvider } from '../context/cart';
 import { DBProvider } from '../context/db';
 import { FilterProvider } from '../context/filter';

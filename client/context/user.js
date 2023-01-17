@@ -1,5 +1,8 @@
 import Cookies from 'js-cookie';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import Spinner from '../components/Spinner';
+import tokenHeader from '../components/tokenHeader';
+import axios from '../utils/axiosBackend';
 
 export const UserContext = createContext();
 
@@ -8,8 +11,15 @@ const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
+  const token = Cookies.get('jwt');
   const [user, setUser] = useState({});
-  console.log(user);
+
+  useEffect(() => {
+    if (!token) return;
+    axios.get('/user/bytoken', { headers: tokenHeader() }).then((res) => {
+      if (res?.data?.user) return setUser(res.data.user);
+    });
+  }, []);
 
   const value = {
     user,

@@ -13,21 +13,16 @@ import { toast } from 'react-toastify';
 
 function Navigation({ link }) {
   const { cart } = useCart();
-  const [token, setToken] = useState(null);
   const [dropdownActive, setDropdownActive] = useState(false);
-  const { setUser } = useUser();
-
-  useEffect(() => {
-    setToken(Cookies.get('jwt'));
-  }, []);
+  const { user, setUser } = useUser();
 
   const logout = () => {
     Cookies.remove('jwt');
     toast.warn(`You are logged out!`);
     setUser({});
-    setToken(null);
   };
-  console.log(link);
+
+  console.log(!user._id);
 
   return (
     <S.Container>
@@ -72,14 +67,14 @@ function Navigation({ link }) {
                 </S.Icon>
               </Link>
             )}
-            {!token && (
+            {!user._id && (
               <Link href='/login'>
                 <S.Icon>
                   <FiLogIn />
                 </S.Icon>
               </Link>
             )}
-            {token && (
+            {user._id && (
               <S.User onClick={() => setDropdownActive((prev) => !prev)}>
                 <p>S</p>
                 {dropdownActive && (
