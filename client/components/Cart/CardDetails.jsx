@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import validator from 'validator';
+import axios from '../../utils/axiosBackend';
+import useCart from '../../context/cart';
+import useUser from '../../context/user';
 
 function CardDetails() {
+  const { cart, total, discounted } = useCart();
+  const { user } = useUser();
+
+  const [error, setError] = useState('');
+  const [cardData, setCardData] = useState({
+    firstName: '',
+    lastName: '',
+    cardNumber: '',
+    year: '',
+    month: '',
+    code: '',
+  });
+
+  const updateValue = (e) =>
+    setCardData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
   const checkoutHandler = (e) => {
     e.preventDefault();
+    if (+cardData.month < 1 || +cardData.month > 12)
+      return setError('Month is invalid');
+
+    if (+cardData.month > new Date().getFullYear())
+      return setError('Year is invalid');
+
+    if (!validator.isCreditCard(cardData.cardNumber))
+      return setError('Card Number is invalid');
+
+    axios
+      .post('/order', { user, food: cart, total, discounted })
+      .then((res) => console.log(res.data))
+      .catch((err) => setError(err.response.data.message));
   };
   return (
     <S.Container>
@@ -14,8 +47,20 @@ function CardDetails() {
         <form onSubmit={checkoutHandler}>
           <S.Name>
             <p>Name and surname</p>
-            <input type='text' placeholder='First Name' required />
-            <input type='text' placeholder='Last Name' required />
+            <input
+              type='text'
+              placeholder='First Name'
+              name='firstName'
+              required
+              onChange={updateValue}
+            />
+            <input
+              type='text'
+              placeholder='Last Name'
+              name='lastName'
+              required
+              onChange={updateValue}
+            />
           </S.Name>
           <S.CardNumber>
             <p>Card Number</p>
@@ -23,27 +68,46 @@ function CardDetails() {
               type='text'
               placeholder='2232 2415 1251 5252'
               pattern='[0-9]{13,16}'
+              name='cardNumber'
               required
+              onChange={updateValue}
             />
           </S.CardNumber>
           <S.Date>
             <p>Date</p>
-            <input type='text' placeholder='MM' min={1} max={12} required />
+            <input
+              type='text'
+              placeholder='MM'
+              min={1}
+              max={12}
+              required
+              onChange={updateValue}
+              name='month'
+            />
             <input
               type='text'
               placeholder='YYYY'
               min={2000}
               max={new Date().getFullYear()}
+              name='year'
               required
+              onChange={updateValue}
             />
           </S.Date>
           <S.Code>
             <p>Code</p>
-            <input type='text' placeholder='XXX' required />
+            <input
+              type='text'
+              placeholder='XXX'
+              required
+              name='code'
+              onChange={updateValue}
+            />
           </S.Code>
           <button>CHECK OUT</button>
         </form>
       </S.Card>
+      <p className='error'>{error}</p>
     </S.Container>
   );
 }
@@ -55,6 +119,10 @@ const S = {};
 S.Container = styled.div`
   margin: 5rem 0;
   max-width: 1000px;
+
+  .error {
+    color: red;
+  }
 `;
 
 S.Card = styled.div`
@@ -103,6 +171,7 @@ S.Card = styled.div`
     color: #fff;
     flex: none;
     width: 100%;
+    cursor: pointer;
   }
 `;
 

@@ -10,13 +10,13 @@ import useCart from '../context/cart';
 import { TopNote } from '../Theme';
 
 function Cart() {
-  const { cart, setDiscount, total, discount } = useCart();
+  const { cart, setDiscounted, total, discounted } = useCart();
   const [promoCode, setPromoCode] = useState('');
   const [promoCodeError, setPromoCodeError] = useState('');
 
   const applyPromoCode = () => {
     if (promoCode === 'savo') {
-      setDiscount(true);
+      setDiscounted(true);
       setPromoCodeError('');
     } else setPromoCodeError('Invalid promo code!');
   };
@@ -51,16 +51,16 @@ function Cart() {
               ))}
               <h5>
                 Total: ${total}
-                {discount && ' with 15% discount!'}
+                {discounted && ' with 15% discount!'}
               </h5>
               <S.PromoCode>
                 <input
                   type='text'
                   placeholder='Promo Code'
                   onChange={(e) => setPromoCode(e.target.value)}
-                  disabled={discount}
+                  disabled={discounted}
                 />
-                <button onClick={applyPromoCode} disabled={discount}>
+                <button onClick={applyPromoCode} disabled={discounted}>
                   Use
                 </button>
                 <p className='error'>{promoCodeError}</p>

@@ -8,27 +8,27 @@ const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [discount, setDiscount] = useState(false);
+  const [discounted, setDiscounted] = useState(false);
   const [total, setTotal] = useState(0);
   console.log(total);
 
   useEffect(() => {
     if (cart.length === 0) {
-      setDiscount(false);
+      setDiscounted(false);
       return setTotal(0);
     }
     const prices = cart.map((food) => food.price * food.quantity);
     let total = prices.reduce((a, b) => a + b);
-    if (discount) total *= 0.85;
+    if (discounted) total *= 0.85;
     setTotal(total.toFixed(2));
-  }, [cart, discount]);
+  }, [cart, discounted]);
 
   const value = {
     cart,
     setCart,
-    discount,
+    discounted,
     total,
-    setDiscount,
+    setDiscounted,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
