@@ -19,7 +19,7 @@ function Menu() {
 
   useEffect(() => {
     resetFilters();
-  }, []);
+  }, [resetFilters]);
 
   useEffect(() => {
     if (!category) return;

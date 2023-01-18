@@ -14,7 +14,8 @@ function Categories({ closeAccordion }) {
     <S.Container className='categories'>
       <h5>Catalog</h5>
       <S.Categories>
-        {categories.length === 0 && skeletons.map(() => <SkeletonLine />)}
+        {categories.length === 0 &&
+          skeletons.map((_, i) => <SkeletonLine key={i} />)}
 
         {categories.length > 0 && (
           <Link href={`/catalog`} onClick={closeAccordion}>

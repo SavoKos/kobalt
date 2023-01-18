@@ -85,14 +85,19 @@ S.Container = styled.div`
 `;
 
 S.Cart = styled.div`
-  padding: 5rem 10%;
+  padding: 5rem 5%;
   filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
   background-color: #fff;
-  margin: 2rem;
-  border-radius: 3rem;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 50vh;
+
+  @media screen and (min-width: 768px) {
+    padding: 5rem 10%;
+    margin: 2rem;
+    border-radius: 3rem;
+  }
 
   span {
     font-weight: 400;
@@ -104,6 +109,7 @@ S.Cart = styled.div`
   }
 
   h5 {
+    margin-top: 4rem;
     margin-bottom: 0.5rem;
   }
 `;
@@ -131,7 +137,7 @@ S.PromoCode = styled.div`
   button {
     outline: 0;
     border: 0;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.6rem;
 
     &:disabled {
       background-color: #cfcfcf;
@@ -142,7 +148,6 @@ S.PromoCode = styled.div`
     border-radius: 3rem 0 0 3rem;
     width: 100%;
     border: 1px solid #aeadb2;
-    min-width: 250px;
   }
 
   button {
@@ -152,5 +157,16 @@ S.PromoCode = styled.div`
     color: #fff;
     background-color: ${({ theme }) => theme.colors.gray};
     cursor: pointer;
+  }
+
+  @media screen and (min-width: 768px) {
+    input,
+    button {
+      padding: 1rem 2rem;
+    }
+
+    input {
+      min-width: 250px;
+    }
   }
 `;

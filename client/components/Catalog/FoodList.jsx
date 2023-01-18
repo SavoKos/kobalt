@@ -18,7 +18,7 @@ function FoodList({ food }) {
       <S.FoodItems>
         {food?.length > 0 &&
           food?.map((food) => <FoodItem food={food} key={food._id} />)}
-        {food?.length === 0 && skeletons.map(() => <Skeleton />)}
+        {food?.length === 0 && skeletons.map((_, i) => <Skeleton key={i} />)}
       </S.FoodItems>
     </S.Container>
   );

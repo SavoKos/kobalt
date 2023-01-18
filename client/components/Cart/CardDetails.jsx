@@ -137,6 +137,11 @@ S.Card = styled.div`
     position: relative;
     gap: 1rem;
     margin: 3rem 0;
+    flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 
   div:first-of-type {

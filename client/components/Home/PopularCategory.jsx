@@ -17,7 +17,12 @@ function PopularCategory() {
     1240: { items: 4 },
   };
 
-  let carouselItems = [<Skeleton />, <Skeleton />, <Skeleton />, <Skeleton />];
+  let carouselItems = [
+    <Skeleton key={0} />,
+    <Skeleton key={1} />,
+    <Skeleton key={2} />,
+    <Skeleton key={3} />,
+  ];
 
   if (categories?.length > 0)
     carouselItems = categories.map((category, i) => (

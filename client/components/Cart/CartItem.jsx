@@ -31,7 +31,7 @@ function CartItem({ food }) {
   return (
     <S.CartItem>
       <S.Image>
-        <Image src={food.image} width={100} height={100} />
+        <Image src={food.image} width={100} height={100} alt={food.name} />
       </S.Image>
       <S.Text>
         <p className='tag'>Available</p>
@@ -70,11 +70,19 @@ S.CartItem = styled.div`
   justify-items: center;
   max-width: 1300px;
 
-  .price {
-    font-weight: 700;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    text-align: center;
   }
 
-  .remove {
+  .price {
+    font-weight: 700;
   }
 `;
 
@@ -99,6 +107,12 @@ S.Text = styled.div`
   justify-self: start;
   .name {
     font-weight: 700;
+  }
+
+  .tag {
+    font-size: 12px;
+    color: #959595;
+    text-transform: uppercase;
   }
 `;
 
