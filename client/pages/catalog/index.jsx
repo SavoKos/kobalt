@@ -16,7 +16,7 @@ function Catalog() {
 
   useEffect(() => {
     resetFilters();
-  }, [resetFilters]);
+  }, []);
 
   useEffect(() => {
     console.log('FETCH MENU');

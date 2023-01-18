@@ -12,7 +12,7 @@ function Filters({ setMenuActive, closeAccordion }) {
   const { setPrice, setStars, setOnlyAvailable, resetFilters } = useFilter();
 
   const addFilters = () => {
-    closeAccordion();
+    closeAccordion && closeAccordion();
     setPrice(price);
     setStars(stars);
     setOnlyAvailable(checked);
@@ -20,7 +20,7 @@ function Filters({ setMenuActive, closeAccordion }) {
   };
 
   const resetFiltersUI = () => {
-    closeAccordion();
+    closeAccordion && closeAccordion();
     setPriceSlider([1, 100]);
     setStarsSlider([1, 5]);
     setChecked(false);

@@ -19,7 +19,7 @@ function Menu() {
 
   useEffect(() => {
     resetFilters();
-  }, [resetFilters]);
+  }, []);
 
   useEffect(() => {
     if (!category) return;
@@ -46,7 +46,7 @@ function Menu() {
         <p className='discount'>15% OFF WITH CODE: SAVO</p>
       </S.TopNote>
       <S.MainContent>
-        <Navigation link='/' />
+        <Navigation link='/catalog' />
         <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
         <FoodList food={food} loading={loading} />
       </S.MainContent>
