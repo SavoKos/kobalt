@@ -6,6 +6,7 @@ import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
 import useDB from '../../context/db';
 import Link from 'next/link';
+import Skeleton from '../Skeleton';
 
 function PopularCategory() {
   const { food, categories } = useDB();
@@ -16,11 +17,14 @@ function PopularCategory() {
     1240: { items: 4 },
   };
 
-  const carouselItems = categories.map((category, i) => (
-    <Link href={'/catalog/' + category.category} key={i}>
-      <CarouselItem category={category} food={food} />
-    </Link>
-  ));
+  let carouselItems = [<Skeleton />, <Skeleton />, <Skeleton />, <Skeleton />];
+
+  if (categories?.length > 0)
+    carouselItems = categories.map((category, i) => (
+      <Link href={'/catalog/' + category.category} key={i}>
+        <CarouselItem category={category} food={food} />
+      </Link>
+    ));
 
   return (
     <S.Container>

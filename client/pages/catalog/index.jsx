@@ -13,7 +13,6 @@ function Catalog() {
   const [menuActive, setMenuActive] = useState(false);
   const [food, setFood] = useState(null);
   const { stars, price, onlyAvailable, resetFilters } = useFilter();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     resetFilters();
@@ -21,7 +20,6 @@ function Catalog() {
 
   useEffect(() => {
     console.log('FETCH MENU');
-    setLoading(true);
     setFood(null);
     axios
       .post(`/food/all`, {
@@ -33,7 +31,6 @@ function Catalog() {
       })
       .then((res) => {
         setFood(res.data.data);
-        setLoading(false);
       });
   }, [stars, price, onlyAvailable]);
 
@@ -45,7 +42,7 @@ function Catalog() {
       <S.MainContent>
         <Navigation link='/catalog' />
         <Categories menuActive={menuActive} setMenuActive={setMenuActive} />
-        <FoodList food={food} loading={loading} />
+        <FoodList food={food} />
       </S.MainContent>
       <ToastContainer position='bottom-left' />
     </S.Container>

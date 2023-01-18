@@ -17,9 +17,9 @@ function Hero() {
           Kobalt will get you anything you want to your doorstep. <br /> You
           order online, you&apos;ll have it!
         </p>
-        <BtnMeni>
-          <Link href='/catalog'>Go To Catalog</Link>
-        </BtnMeni>
+        <Link href='/catalog'>
+          <BtnMeni>Go To Catalog</BtnMeni>
+        </Link>
       </S.Text>
       <S.Image>
         <Image src='/hero.png' fill alt='hero' priority={true} />

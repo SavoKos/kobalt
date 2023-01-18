@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useDB from '../../context/db';
 import { BtnMeni } from '../../Theme';
+import Skeleton from '../Skeleton';
 import FoodItem from './FoodItem';
 
 function OurProduction() {
@@ -46,6 +47,14 @@ function OurProduction() {
         </S.Categories>
       </S.Header>
       <S.FoodItems>
+        {(!foodItems || foodItems?.length === 0) && (
+          <div>
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </div>
+        )}
         {foodItems?.map((food) => (
           <FoodItem food={food} key={food._id} />
         ))}

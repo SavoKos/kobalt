@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import FoodItem from '../Home/FoodItem';
+import Skeleton from '../Skeleton';
 import Spinner from '../Spinner';
 import Accordions from './Accordions';
 import Filters from './Filters';
 
-function FoodList({ food, loading }) {
+function FoodList({ food }) {
+  const skeletons = new Array(8).fill(0);
+
   return (
     <S.Container>
       <S.Filters>
@@ -13,9 +16,9 @@ function FoodList({ food, loading }) {
       </S.Filters>
       <Accordions />
       <S.FoodItems>
-        {loading && <Spinner />}
         {food?.length > 0 &&
           food?.map((food) => <FoodItem food={food} key={food._id} />)}
+        {food?.length === 0 && skeletons.map(() => <Skeleton />)}
       </S.FoodItems>
     </S.Container>
   );

@@ -23,6 +23,7 @@ function FoodItem({ food }) {
     .map((_, i) =>
       i < +food.rating ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
     );
+
   return (
     <S.Container>
       <Link href={`/${food.slug}`} replace={true}>
