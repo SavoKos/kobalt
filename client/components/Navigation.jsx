@@ -99,7 +99,6 @@ S.Container = styled.div`
   grid-column: 1/3;
   width: 100%;
   justify-content: space-between;
-  padding: 1rem;
 
   input {
     flex: 1;
@@ -181,12 +180,13 @@ S.Icon = styled.div`
   align-items: center;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.gray};
-  margin: 0 0.5rem;
+  margin: 0 0.3rem;
   font-size: 22px;
   position: relative;
 
   @media screen and (min-width: 500px) {
     font-size: 26px;
+    margin: 0 0.5rem;
   }
 
   a {
