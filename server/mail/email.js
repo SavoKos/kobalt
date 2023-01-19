@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-const hbs = require('nodemailer-express-handlebars');
 
 let transport = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -11,13 +10,13 @@ let transport = nodemailer.createTransport({
   },
 });
 
-module.exports.sendWelcomeEmail = (email) => {
+module.exports.sendWelcomeEmail = (email, name) => {
   transport
     .sendMail({
       from: process.env.MAIL_USER,
       to: email,
       subject: 'Welcome to Kobalt',
-      text: 'Welcome to Kobalt Online Restaurant. Start ordering right now! - https://kobalt.savokos.com',
+      text: `Welcome to Kobalt Online Restaurant ${name}. Start ordering right now! - https://kobalt.savokos.com`,
     })
     .catch((err) => console.log(err));
 };
