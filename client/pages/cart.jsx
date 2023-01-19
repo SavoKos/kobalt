@@ -6,6 +6,7 @@ import CardDetails from '../components/Cart/CardDetails';
 import CartItem from '../components/Cart/CartItem';
 import Navigation from '../components/Navigation';
 import ProtectedRoute from '../components/ProtectedRoute';
+import Spinner from '../components/Spinner';
 import useCart from '../context/cart';
 import { TopNote } from '../Theme';
 
@@ -13,6 +14,7 @@ function Cart() {
   const { cart, setDiscounted, total, discounted } = useCart();
   const [promoCode, setPromoCode] = useState('');
   const [promoCodeError, setPromoCodeError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const applyPromoCode = () => {
     if (promoCode === 'savo') {
@@ -29,46 +31,53 @@ function Cart() {
           <p className='discount'>15% OFF WITH PROMO CODE</p>
         </TopNote>
         <Navigation link='/cart' />
-        <S.Cart>
-          {cart?.length === 0 && (
-            <S.CartEmpty>
-              <h4>Your cart is empty.</h4>
-              <Link href='/catalog'>
-                <p>
-                  <BsCart2 /> Back to shopping
-                </p>
-              </Link>
-            </S.CartEmpty>
-          )}
+        {loading && (
+          <S.Cart>
+            <Spinner />
+          </S.Cart>
+        )}
+        {!loading && (
+          <S.Cart>
+            {cart?.length === 0 && (
+              <S.CartEmpty>
+                <h4>Your cart is empty.</h4>
+                <Link href='/catalog'>
+                  <p>
+                    <BsCart2 /> Back to shopping
+                  </p>
+                </Link>
+              </S.CartEmpty>
+            )}
 
-          {cart?.length > 0 && (
-            <>
-              <h2>
-                Shopping <span>Cart</span>
-              </h2>
-              {cart?.map((food) => (
-                <CartItem food={food} key={food._id} />
-              ))}
-              <h5>
-                Total: ${total}
-                {discounted && ' with 15% discount!'}
-              </h5>
-              <S.PromoCode>
-                <input
-                  type='text'
-                  placeholder='Promo Code'
-                  onChange={(e) => setPromoCode(e.target.value)}
-                  disabled={discounted}
-                />
-                <button onClick={applyPromoCode} disabled={discounted}>
-                  Use
-                </button>
-                <p className='error'>{promoCodeError}</p>
-              </S.PromoCode>
-              <CardDetails />
-            </>
-          )}
-        </S.Cart>
+            {cart?.length > 0 && (
+              <>
+                <h2>
+                  Shopping <span>Cart</span>
+                </h2>
+                {cart?.map((food) => (
+                  <CartItem food={food} key={food._id} />
+                ))}
+                <h5>
+                  Total: ${total}
+                  {discounted && ' with 15% discount!'}
+                </h5>
+                <S.PromoCode>
+                  <input
+                    type='text'
+                    placeholder='Promo Code'
+                    onChange={(e) => setPromoCode(e.target.value)}
+                    disabled={discounted}
+                  />
+                  <button onClick={applyPromoCode} disabled={discounted}>
+                    Use
+                  </button>
+                  <p className='error'>{promoCodeError}</p>
+                </S.PromoCode>
+                <CardDetails setLoading={setLoading} />
+              </>
+            )}
+          </S.Cart>
+        )}
       </S.Container>
     </ProtectedRoute>
   );
@@ -92,6 +101,7 @@ S.Cart = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 50vh;
+  height: 100%;
 
   @media screen and (min-width: 768px) {
     padding: 5rem 10%;

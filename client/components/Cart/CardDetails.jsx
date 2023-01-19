@@ -6,8 +6,8 @@ import useCart from '../../context/cart';
 import useUser from '../../context/user';
 import { useRouter } from 'next/router';
 
-function CardDetails() {
-  const { cart, total, discounted } = useCart();
+function CardDetails({ setLoading }) {
+  const { cart, total, discounted, setCart } = useCart();
   const { user } = useUser();
   const router = useRouter();
 
@@ -15,7 +15,7 @@ function CardDetails() {
   const [cardData, setCardData] = useState({
     firstName: '',
     lastName: '',
-    cardNumber: '',
+    cardNumber: '374245455400126',
     year: '',
     month: '',
     code: '',
@@ -35,10 +35,17 @@ function CardDetails() {
     if (!validator.isCreditCard(cardData.cardNumber))
       return setError('Card Number is invalid');
 
+    setLoading(true);
     axios
       .post('/order', { user, food: cart, total, discounted })
-      .then((res) => router.push('/ordered'))
-      .catch((err) => setError(err.response.data.message));
+      .then((res) => {
+        setCart([]);
+        router.push('/ordered');
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+        setLoading(false);
+      });
   };
   return (
     <S.Container>
@@ -72,6 +79,7 @@ function CardDetails() {
               pattern='[0-9]{13,16}'
               name='cardNumber'
               required
+              defaultValue='374245455400126'
               onChange={updateValue}
             />
           </S.CardNumber>

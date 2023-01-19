@@ -76,7 +76,7 @@ function Navigation({ link }) {
             )}
             {user._id && (
               <S.User onClick={() => setDropdownActive((prev) => !prev)}>
-                <p>S</p>
+                <p>{user.name[0].toUpperCase()}</p>
                 {dropdownActive && (
                   <S.Dropdown>
                     <p onClick={logout}>Logout</p>
