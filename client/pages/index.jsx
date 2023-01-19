@@ -38,4 +38,9 @@ S.Navigation = styled.div`
     #eea849,
     #f46b45
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  padding: 0 5%;
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
 `;

@@ -108,19 +108,17 @@ S.Container = styled.div`
     cursor: pointer;
     max-width: 200px;
     max-height: 80px;
-    width: 100px !important;
+    width: 140px !important;
     height: fit-content !important;
     position: relative !important;
-
-    @media screen and (min-width: 500px) {
-      width: 140px !important;
-    }
+    margin: 1rem 0 1rem 0rem;
   }
 
   @media screen and (min-width: 768px) {
     .logo {
       width: auto !important;
       height: auto !important;
+      margin: 1rem 2rem 1rem 0;
     }
     padding: 1rem 10%;
   }

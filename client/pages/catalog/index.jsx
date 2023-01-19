@@ -67,20 +67,4 @@ S.MainContent = styled.div`
   @media screen and (min-width: 768px) {
     padding: 0;
   }
-
-  .logo {
-    cursor: pointer;
-    max-width: 200px;
-    max-height: 80px;
-    width: 140px !important;
-    height: fit-content !important;
-    margin: 1rem 0 1rem 0rem;
-
-    @media screen and (min-width: 768px) {
-      width: auto !important;
-      height: auto !important;
-      margin: 1rem 2rem 1rem 2rem;
-    }
-    position: relative !important;
-  }
 `;
