@@ -99,6 +99,11 @@ S.Container = styled.div`
   grid-column: 1/3;
   width: 100%;
   justify-content: space-between;
+  padding: 0 5%;
+
+  @media screen and (min-width: 768px) {
+    padding: 1rem 10%;
+  }
 
   input {
     flex: 1;
@@ -112,15 +117,12 @@ S.Container = styled.div`
     height: fit-content !important;
     position: relative !important;
     margin: 1rem 0 1rem 0rem;
-  }
 
-  @media screen and (min-width: 768px) {
-    .logo {
+    @media screen and (min-width: 768px) {
       width: auto !important;
       height: auto !important;
       margin: 1rem 2rem 1rem 0;
     }
-    padding: 1rem 10%;
   }
 `;
 

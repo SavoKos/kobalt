@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const multer = require('multer');
 
 const authController = require('../controllers/authController');
 const {
@@ -17,6 +16,7 @@ router.post('/login', authController.login);
 router.post('/register', authController.signup);
 router.get('/protected', authController.protect);
 router.get('/bytoken', authController.getUserByToken);
+router.get('/admin', authController.admin);
 
 router.get('/', getAll(User));
 

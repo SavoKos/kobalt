@@ -11,9 +11,11 @@ const ProtectedRoute = ({ children }) => {
     axios
       .get('/user/protected', { headers: tokenHeader() })
       .then((res) => {
+        console.log(res.data);
         if (res?.data?.token) return setVerified(true);
       })
       .catch((err) => {
+        console.log('ERROR', err);
         router.push('/login');
       });
   }, [router]);

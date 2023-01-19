@@ -17,10 +17,13 @@ function Food() {
   const { slug } = router.query;
   useEffect(() => {
     if (!slug) return;
-    axios.get(`/food/${slug}`).then((res) => {
-      setFood(res.data.data);
-      setLoading(false);
-    });
+    axios
+      .get(`/food/${slug}`)
+      .then((res) => {
+        setFood(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => router.push('/404'));
   }, [slug]);
 
   if (loading) return <Spinner />;

@@ -16,9 +16,14 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (!token) return;
-    axios.get('/user/bytoken', { headers: tokenHeader() }).then((res) => {
-      if (res?.data?.user) return setUser(res.data.user);
-    });
+    axios
+      .get('/user/bytoken', { headers: tokenHeader() })
+      .then((res) => {
+        if (res?.data?.user) return setUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log('ERROR', err);
+      });
   }, []);
 
   const value = {

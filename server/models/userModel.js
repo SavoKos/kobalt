@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
       message: 'Passwords are not the same!',
     },
   },
+  admin: {
+    type: Boolean,
+    default: false,
+  },
   email: {
     type: String,
     required: [true, 'Please enter your email'],
