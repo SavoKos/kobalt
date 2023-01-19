@@ -2,13 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Spinner() {
-  return <S.Spinner></S.Spinner>;
+  return (
+    <S.Container>
+      <S.Spinner />
+    </S.Container>
+  );
 }
 
 export default Spinner;
 
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
+
+S.Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 S.Spinner = styled.span`
   width: 48px;
   height: 48px;
@@ -19,10 +30,6 @@ S.Spinner = styled.span`
   border-right: 3px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   @keyframes rotation {
     0% {

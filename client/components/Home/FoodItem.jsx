@@ -14,6 +14,7 @@ function FoodItem({ food }) {
   const { setCart } = useCart();
 
   const addToCart = () => {
+    if (!food.available) return;
     setCart((prevCart) => [...prevCart, { ...food, quantity: 1 }]);
     toast.success(`${food.name} added to cart!`);
   };
@@ -44,7 +45,7 @@ function FoodItem({ food }) {
           <p className='price'>${food.price}</p>
         </S.Text>
       </Link>
-      <S.Cart onClick={addToCart}>
+      <S.Cart onClick={addToCart} available={food.available}>
         <AiOutlineShoppingCart className='cart' />
       </S.Cart>
     </S.Container>
@@ -117,7 +118,8 @@ S.Cart = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  cursor: pointer;
+  cursor: ${({ available }) => available && 'pointer'};
+  filter: ${({ available }) => !available && 'saturate(0)'};
 `;
 
 S.Stars = styled.div`
