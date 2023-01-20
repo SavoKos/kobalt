@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import useFilter from '../../context/filter';
 import Slider from './Slider';
 import { BiReset } from 'react-icons/bi';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
-function Filters({ setMenuActive, closeAccordion }) {
-  const [checked, setChecked] = useState(false);
+function Filters({ closeAccordion, setPrice, setStars, setOnlyAvailable }) {
+  const [checkedUI, setCheckedUI] = useState(false);
   const [price, setPriceSlider] = useState([1, 100]);
   const [stars, setStarsSlider] = useState([1, 5]);
-  const { setPrice, setStars, setOnlyAvailable, resetFilters } = useFilter();
 
   const addFilters = () => {
-    closeAccordion && closeAccordion();
     setPrice(price);
     setStars(stars);
-    setOnlyAvailable(checked);
-    setMenuActive && setMenuActive(false);
+    setOnlyAvailable(checkedUI);
+    closeAccordion && closeAccordion();
   };
 
-  const resetFiltersUI = () => {
-    closeAccordion && closeAccordion();
+  const resetFilters = () => {
     setPriceSlider([1, 100]);
     setStarsSlider([1, 5]);
-    setChecked(false);
-    resetFilters();
-    setMenuActive && setMenuActive(false);
+    setCheckedUI(false);
+
+    setStars([1, 5]);
+    setPrice([1, 100]);
+    setOnlyAvailable(false);
+
+    closeAccordion && closeAccordion();
   };
 
   function toggle(value) {
@@ -62,13 +62,13 @@ function Filters({ setMenuActive, closeAccordion }) {
           type='checkbox'
           name='available'
           id='available'
-          checked={checked}
-          onChange={() => setChecked(toggle)}
+          checked={checkedUI}
+          onChange={() => setCheckedUI(toggle)}
         />
         <label htmlFor='available'>Only Available</label>
       </S.Available>
       <S.Icons>
-        <BiReset className='reset' onClick={resetFiltersUI} />
+        <BiReset className='reset' onClick={resetFilters} />
         <AiFillCheckCircle className='apply' onClick={addFilters} />
       </S.Icons>
     </S.Container>

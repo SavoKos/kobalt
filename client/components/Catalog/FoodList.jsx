@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from '../../utils/axiosBackend';
 import FoodItem from '../Home/FoodItem';
 import Skeleton from '../Skeleton';
-import Spinner from '../Spinner';
 import Accordions from './Accordions';
 import Filters from './Filters';
 
-function FoodList({ food }) {
+function FoodList({ initialFood, category }) {
   const skeletons = new Array(8).fill(0);
+  const [food, setFood] = useState(initialFood);
+  const [stars, setStars] = useState([1, 5]);
+  const [price, setPrice] = useState([1, 100]);
+  const [onlyAvailable, setOnlyAvailable] = useState(false);
+
+  useEffect(() => {
+    axios
+      .post(`/food/${category}`, {
+        minStars: stars[0],
+        maxStars: stars[1],
+        minPrice: price[0],
+        maxPrice: price[1],
+        onlyAvailable,
+      })
+      .then((res) => {
+        setFood(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [stars, price, onlyAvailable, food]);
 
   return (
     <S.Container>
       <S.Filters>
-        <Filters />
+        <Filters
+          setOnlyAvailable={setOnlyAvailable}
+          setPrice={setPrice}
+          setStars={setStars}
+        />
       </S.Filters>
       <Accordions />
       <S.FoodItems>

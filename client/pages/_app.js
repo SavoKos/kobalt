@@ -1,8 +1,5 @@
 import Head from 'next/head';
-import Spinner from '../components/Spinner';
 import { CartProvider } from '../context/cart';
-import { DBProvider } from '../context/db';
-import { FilterProvider } from '../context/filter';
 import { UserProvider } from '../context/user';
 import '../styles/globals.css';
 import Theme from '../Theme';
@@ -14,15 +11,11 @@ export default function App({ Component, pageProps }) {
         <title>Kobalt | Online Restoran</title>
       </Head>
       <Theme>
-        <DBProvider>
-          <CartProvider>
-            <FilterProvider>
-              <UserProvider>
-                <Component {...pageProps} />
-              </UserProvider>
-            </FilterProvider>
-          </CartProvider>
-        </DBProvider>
+        <CartProvider>
+          <UserProvider>
+            <Component {...pageProps} />
+          </UserProvider>
+        </CartProvider>
       </Theme>
     </>
   );

@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from '../utils/axiosBackend';
 import tokenHeader from './tokenHeader';
 import { useRouter } from 'next/router';
+import useUser from '../context/user';
 
 const ProtectedRoute = ({ children }) => {
   const [verified, setVerified] = useState(false);
+  const { user } = useUser();
   const router = useRouter();
   useEffect(() => {
     console.log('USEEFFECT');
@@ -18,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
         console.log('ERROR', err);
         router.push('/login');
       });
-  }, [router]);
+  }, [router, user]);
 
   return verified && children;
 };

@@ -4,13 +4,10 @@ import styled from 'styled-components';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
-import useDB from '../../context/db';
 import Link from 'next/link';
 import Skeleton from '../Skeleton';
 
-function PopularCategory() {
-  const { food, categories } = useDB();
-
+function PopularCategory({ categories, food }) {
   const responsive = {
     0: { items: 1 },
     700: { items: 2 },

@@ -1,27 +1,22 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useDB from '../../context/db';
 import { BtnMeni } from '../../Theme';
 import Skeleton from '../Skeleton';
 import FoodItem from './FoodItem';
 
-function OurProduction() {
-  const { categories, food } = useDB();
+function OurProduction({ categories, food }) {
   const [selected, setSelected] = useState('');
   const [foodItems, setFoodItems] = useState([]);
 
   useEffect(() => {
     setSelected(categories[0]?.category);
-    console.log('SETSELECTED', categories[0]?.category);
   }, [categories]);
 
   useEffect(() => {
-    console.log('SETFOOD', 'SELECTED=', selected);
     const foodFind = food
       ?.filter((food) => food.category === selected)
       .slice(0, 4);
-    console.log(categories);
     setFoodItems(foodFind);
   }, [categories, food, selected]);
 
@@ -35,7 +30,7 @@ function OurProduction() {
           <BtnMeni>Catalog</BtnMeni>
         </Link>
         <S.Categories>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <S.Category
               selected={selected === category.category}
               onClick={() => setSelected(category.category)}

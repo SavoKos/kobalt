@@ -22,8 +22,6 @@ function Navigation({ link }) {
     setUser({});
   };
 
-  console.log(!user._id);
-
   return (
     <S.Container>
       <Link href='/'>
@@ -79,6 +77,9 @@ function Navigation({ link }) {
                 <p>{user.name[0].toUpperCase()}</p>
                 {dropdownActive && (
                   <S.Dropdown>
+                    <Link href='/profile'>
+                      <p>Profile</p>
+                    </Link>
                     <p onClick={logout}>Logout</p>
                   </S.Dropdown>
                 )}
@@ -269,6 +270,9 @@ S.Dropdown = styled.div`
   gap: 0.5rem;
   background-color: ${({ theme }) => theme.colors.lightGray + 'ba'};
   z-index: 5;
+  a {
+    color: #000;
+  }
 
   @media screen and (max-width: 768px) {
     right: 0;

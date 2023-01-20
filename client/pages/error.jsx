@@ -5,17 +5,17 @@ import styled from 'styled-components';
 function Error({ message = "Looks like you're lost", code = 404 }) {
   return (
     <S.Container>
-      <section class='page_404'>
+      <section className='page_404'>
         <div>
           <div>
             <div>
               <div>
-                <div class='four_zero_four_bg'>
+                <div className='four_zero_four_bg'>
                   <h1>{code}</h1>
                 </div>
 
-                <div class='contant_box_404'>
-                  <h3 class='h2'>{message}</h3>
+                <div className='contant_box_404'>
+                  <h3 className='h2'>{message}</h3>
                   <Link href='/' className='home'>
                     Go to Home
                   </Link>

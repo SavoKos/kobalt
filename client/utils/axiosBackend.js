@@ -1,13 +1,13 @@
-import axios from 'axios';
+import a from 'axios';
 
 const url =
   process.env.NODE_ENV === 'production'
     ? ' https://kobaltbe.savokos.com/api/v1'
     : 'http://localhost:5000/api/v1/';
-const axiosBackend = axios.create({
+const axios = a.create({
   baseURL: url,
 });
 
-axiosBackend.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
-export default axiosBackend;
+export default axios;

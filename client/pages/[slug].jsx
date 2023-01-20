@@ -1,43 +1,55 @@
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/SingleFood/Hero';
-import Spinner from '../components/Spinner';
-import axios from '../utils/axiosBackend';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Footer from '../components/Home/Footer';
 import PopularCategory from '../components/Home/PopularCategory';
 import styled from 'styled-components';
+import axios from '../utils/axiosBackend';
 
-function Food() {
-  const [loading, setLoading] = useState(true);
-  const [food, setFood] = useState([]);
-  const router = useRouter();
-  const { slug } = router.query;
-  useEffect(() => {
-    if (!slug) return;
-    axios
-      .get(`/food/${slug}`)
-      .then((res) => {
-        setFood(res.data.data);
-        setLoading(false);
-      })
-      .catch((err) => router.push('/404'));
-  }, [slug]);
-
-  if (loading) return <Spinner />;
+function Food({ food, categories }) {
   return (
     <div>
       <Navigation />
       <Hero food={food} />
-      <PopularCategory />
+      <PopularCategory categories={categories} />
       <S.Footer>
         <Footer />
       </S.Footer>
       <ToastContainer position='bottom-left' />
     </div>
   );
+}
+
+export async function getStaticProps({ params }) {
+  const fetched = await Promise.all([
+    axios.get('/food/category'),
+    axios.get(`/food/${params?.slug}`),
+  ]);
+
+  const data = fetched.map((arr) => arr.data.data);
+
+  return {
+    props: { food: data[1], categories: data[0] },
+  };
+}
+
+export async function getStaticPaths() {
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
+
+  const foods = await axios.get('/food');
+
+  const paths = foods.data.data.map((food) => ({
+    params: { slug: food.slug },
+  }));
+
+  return { paths, fallback: false };
 }
 
 export default Food;

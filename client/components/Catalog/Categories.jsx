@@ -2,11 +2,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import useDB from '../../context/db';
 import SkeletonLine from '../SkeletonLine';
 
-function Categories({ closeAccordion }) {
-  const { categories } = useDB();
+function Categories({ closeAccordion, categories }) {
   const router = useRouter();
   let skeletons = new Array(5).fill(0);
 
@@ -14,10 +12,10 @@ function Categories({ closeAccordion }) {
     <S.Container className='categories'>
       <h5>Catalog</h5>
       <S.Categories>
-        {categories.length === 0 &&
+        {categories?.length === 0 &&
           skeletons.map((_, i) => <SkeletonLine key={i} />)}
 
-        {categories.length > 0 && (
+        {categories?.length > 0 && (
           <Link href={`/catalog`} onClick={closeAccordion}>
             <S.Category selected={router.pathname === '/catalog'}>
               All
@@ -28,7 +26,7 @@ function Categories({ closeAccordion }) {
         {categories?.map((category) => (
           <Link
             href={`/catalog/${category.category}`}
-            key={category._id}
+            key={category.category}
             onClick={closeAccordion}
           >
             <S.Category selected={category.category === router.query.category}>

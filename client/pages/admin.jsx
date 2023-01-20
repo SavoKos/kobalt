@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
 import tokenHeader from '../components/tokenHeader';
+import useUser from '../context/user';
 import axios from '../utils/axiosBackend';
 
 function Admin() {
   const [verified, setVerified] = useState(false);
   const router = useRouter();
+  const { user } = useUser();
   useEffect(() => {
     axios
       .get('/user/admin', { headers: tokenHeader() })
@@ -18,7 +20,7 @@ function Admin() {
         console.log('ERROR', err);
         router.push('/401');
       });
-  }, [router]);
+  }, [router, user]);
   if (!verified) return;
 
   return (
