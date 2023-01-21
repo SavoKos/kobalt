@@ -6,7 +6,6 @@ const url =
     : 'http://localhost:5000/api/v1/';
 const axios = a.create({
   baseURL: url,
-  headers: { 'Accept-Encoding': 'gzip,deflate,compress' },
 });
 
 axios.defaults.withCredentials = true;
