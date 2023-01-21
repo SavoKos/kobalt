@@ -1,6 +1,6 @@
 import React from 'react';
 import Catalog from '../../components/Catalog';
-import { url } from '../../utils/axiosBackend';
+import url from '../../utils/url';
 
 function Index(props) {
   return <Catalog category='all' {...props} />;

@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Navigation from '../components/Navigation';
 import styled from 'styled-components';
-import { url } from '../utils/axiosBackend';
+import url from '../utils/url';
 
 export default function Home({ categories, food }) {
   return (

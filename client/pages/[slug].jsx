@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Footer from '../components/Home/Footer';
 import PopularCategory from '../components/Home/PopularCategory';
 import styled from 'styled-components';
-import { url } from '../utils/axiosBackend';
+import url from '../utils/url';
 
 function Food({ food, categories }) {
   return (
