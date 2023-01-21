@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Navigation from '../components/Navigation';
 import styled from 'styled-components';
-import axios from '../utils/axiosBackend';
+import { url } from '../utils/axiosBackend';
 
 export default function Home({ categories, food }) {
   return (
@@ -26,12 +26,13 @@ export default function Home({ categories, food }) {
 }
 
 export async function getStaticProps() {
-  const fetched = await Promise.all([
-    axios.get('/food/category'),
-    axios.get('/food'),
+  const res = await Promise.all([
+    fetch(`${url}/food/category`),
+    fetch(`${url}/food`),
   ]);
+  const fetched = await Promise.all(res.map((r) => r.json()));
 
-  const data = fetched.map((arr) => arr.data.data);
+  const data = fetched.map((arr) => arr.data);
 
   return {
     props: { categories: data[0], food: data[1] },

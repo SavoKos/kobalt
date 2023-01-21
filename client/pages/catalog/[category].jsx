@@ -1,5 +1,5 @@
 import Catalog from '../../components/Catalog';
-import axios from '../../utils/axiosBackend';
+import { url } from '../../utils/axiosBackend';
 
 function Category(props) {
   console.log(props);
@@ -7,12 +7,14 @@ function Category(props) {
 }
 
 export async function getStaticProps({ params }) {
-  const fetched = await Promise.all([
-    axios.get('/food/category'),
-    axios.post(`/food/${params.category}`),
+  const res = await Promise.all([
+    fetch(`${url}/food/category`),
+    fetch(`${url}/food/${params.category}`, { method: 'POST' }),
   ]);
 
-  const data = fetched.map((arr) => arr.data.data);
+  const fetched = await Promise.all(res.map((r) => r.json()));
+
+  const data = fetched.map((arr) => arr.data);
 
   return {
     props: { category: params.category, food: data[1], categories: data[0] },
@@ -27,9 +29,10 @@ export async function getStaticPaths() {
     };
   }
 
-  const categories = await axios.get('/food/category');
+  const res = await fetch(`${url}/food/category`);
+  const categories = await res.json();
 
-  const paths = categories.data.data.map((category) => ({
+  const paths = categories.data.map((category) => ({
     params: { category: category.category },
   }));
 

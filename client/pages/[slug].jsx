@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Footer from '../components/Home/Footer';
 import PopularCategory from '../components/Home/PopularCategory';
 import styled from 'styled-components';
-import axios from '../utils/axiosBackend';
+import { url } from '../utils/axiosBackend';
 
 function Food({ food, categories }) {
   return (
@@ -23,12 +23,14 @@ function Food({ food, categories }) {
 }
 
 export async function getStaticProps({ params }) {
-  const fetched = await Promise.all([
-    axios.get('/food/category'),
-    axios.get(`/food/${params?.slug}`),
+  const res = await Promise.all([
+    fetch(`${url}/food/category`),
+    fetch(`${url}/food/${params?.slug}`),
   ]);
 
-  const data = fetched.map((arr) => arr.data.data);
+  const fetched = await Promise.all(res.map((r) => r.json()));
+
+  const data = fetched.map((arr) => arr.data);
 
   return {
     props: { food: data[1], categories: data[0] },
@@ -43,9 +45,10 @@ export async function getStaticPaths() {
     };
   }
 
-  const foods = await axios.get('/food');
+  const res = await fetch(`${url}/food`);
+  const foods = await res.json();
 
-  const paths = foods.data.data.map((food) => ({
+  const paths = foods.data.map((food) => ({
     params: { slug: food.slug },
   }));
 
