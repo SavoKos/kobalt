@@ -14,7 +14,7 @@ function Catalog({ category, food, categories }) {
       <TopNote>
         <p className='discount'>15% OFF WITH PROMO CODE</p>
       </TopNote>
-      <Navigation link='/catalog' />
+      <Navigation cartIcon={true} homeIcon={true} searchIcon={true} />
       <S.MainContent>
         <Categories categories={categories} />
         <FoodList initialFood={food} category={category} />

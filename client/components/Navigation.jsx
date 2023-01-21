@@ -11,8 +11,8 @@ import { AiOutlineHome } from 'react-icons/ai';
 import useUser from '../context/user';
 import { toast } from 'react-toastify';
 
-function Navigation({ link }) {
-  const { cart } = useCart();
+function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
+  const { cart: cartContext } = useCart();
   const [dropdownActive, setDropdownActive] = useState(false);
   const { user, setUser } = useUser();
 
@@ -29,7 +29,7 @@ function Navigation({ link }) {
       </Link>
       <S.MainContent>
         <S.Right>
-          {link === '/catalog' && (
+          {searchIcon && (
             <S.Search>
               <input type='text' placeholder='Search' />
               <S.SearchIcon>
@@ -38,30 +38,30 @@ function Navigation({ link }) {
             </S.Search>
           )}
           <S.Links>
-            {(link === '/catalog' || link === '/cart') && (
+            {homeIcon && (
               <Link href='/'>
                 <S.Icon>
                   <AiOutlineHome />
                 </S.Icon>
               </Link>
             )}
-            {(link === '/' || link === '/cart') && (
+            {catalogIcon && (
               <Link href='/catalog'>
                 <S.Icon>
                   <MdOutlineRestaurantMenu />
                 </S.Icon>
               </Link>
             )}
-            {link === '/catalog' && (
+            {searchIcon && (
               <S.Icon className='search'>
                 <BsSearch />
               </S.Icon>
             )}
-            {link !== '/cart' && (
+            {cartIcon && (
               <Link href='/cart'>
                 <S.Icon>
                   <BsCart2 className='cart' />
-                  <p className='count'>{cart?.length}</p>
+                  <p className='count'>{cartContext?.length}</p>
                 </S.Icon>
               </Link>
             )}

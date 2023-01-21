@@ -31,7 +31,7 @@ function Cart() {
           <p className='discount'>15% OFF WITH PROMO CODE</p>
         </TopNote>
         <S.Navigation>
-          <Navigation link='/cart' />
+          <Navigation homeIcon={true} catalogIcon={true} />
         </S.Navigation>
         {loading && (
           <S.Cart>

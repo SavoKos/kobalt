@@ -25,7 +25,7 @@ function Admin() {
 
   return (
     <S.Container>
-      <Navigation link='/cart' />
+      <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
     </S.Container>
   );
 }

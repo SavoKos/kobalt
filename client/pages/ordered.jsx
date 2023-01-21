@@ -7,7 +7,7 @@ import Navigation from '../components/Navigation';
 function Ordered() {
   return (
     <S.Container>
-      <Navigation link='/cart' />
+      <Navigation homeIcon={true} catalogIcon={true} />
       <S.Ordered>
         <h4>Your order is successfully submited!</h4>
         <Link href='/catalog'>

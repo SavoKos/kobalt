@@ -13,7 +13,7 @@ export default function Home({ categories, food }) {
     <>
       <div>
         <S.Navigation>
-          <Navigation link='/' />
+          <Navigation cartIcon={true} catalogIcon={true} />
         </S.Navigation>
         <Hero />
         <PopularCategory categories={categories} food={food} />

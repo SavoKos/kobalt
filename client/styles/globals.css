@@ -6,11 +6,11 @@
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-html,
+/* html,
 body {
   overflow-x: hidden;
   height: 100%;
-}
+} */
 
 #__next {
   height: 100%;

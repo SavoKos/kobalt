@@ -11,7 +11,7 @@ import url from '../utils/url';
 function Food({ food, categories }) {
   return (
     <div>
-      <Navigation />
+      <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
       <Hero food={food} />
       <PopularCategory categories={categories} />
       <S.Footer>
