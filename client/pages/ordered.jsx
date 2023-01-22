@@ -35,8 +35,6 @@ S.Ordered = styled.div`
   flex-direction: column;
   min-height: 50vh;
   justify-content: center;
-
-  margin: auto;
   text-align: center;
 
   p {

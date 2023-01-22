@@ -101,6 +101,8 @@ S.Container = styled.div`
   width: 100%;
   justify-content: space-between;
   padding: 0 5%;
+  position: relative;
+  z-index: 2;
 
   @media screen and (min-width: 768px) {
     padding: 1rem 10%;
@@ -268,7 +270,7 @@ S.Dropdown = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.lightGray + 'ba'};
+  background-color: ${({ theme }) => theme.colors.lightGray};
   z-index: 5;
   a {
     color: #000;

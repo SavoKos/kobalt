@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { TopNote } from '../../Theme';
 
 function Catalog({ category, food, categories }) {
-  console.log(food);
   return (
     <S.Container>
       <TopNote>

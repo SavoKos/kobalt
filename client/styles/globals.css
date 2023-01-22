@@ -6,14 +6,9 @@
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-/* html,
-body {
-  overflow-x: hidden;
-  height: 100%;
-} */
-
 #__next {
-  height: 100%;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 html {

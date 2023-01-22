@@ -20,7 +20,7 @@ exports.getCategories = catchAsync(async (req, res, next) => {
 exports.getByCategory = catchAsync(async (req, res, next) => {
   const { minPrice, maxPrice, minStars, maxStars, onlyAvailable } = req.body;
 
-  const food = await Food.aggregate([
+  let food = await Food.aggregate([
     {
       $match: {
         $and: [
@@ -38,6 +38,8 @@ exports.getByCategory = catchAsync(async (req, res, next) => {
   if (!food) {
     return next(new AppError('No food found with that category', 404));
   }
+
+  if (food.length === 0) food = [{}];
 
   res.status(200).json({
     status: 'success',

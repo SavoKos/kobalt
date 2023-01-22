@@ -12,6 +12,7 @@ function FoodList({ initialFood, category }) {
   const [stars, setStars] = useState([1, 5]);
   const [price, setPrice] = useState([1, 100]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     axios
@@ -35,13 +36,18 @@ function FoodList({ initialFood, category }) {
           setOnlyAvailable={setOnlyAvailable}
           setPrice={setPrice}
           setStars={setStars}
+          setSearch={setSearch}
         />
       </S.Filters>
       <Accordions />
       <S.FoodItems>
         {food?.length > 0 &&
+          food[0].name &&
           food?.map((food) => <FoodItem food={food} key={food._id} />)}
         {food?.length === 0 && skeletons.map((_, i) => <Skeleton key={i} />)}
+        {food?.length > 0 && !food[0].name && (
+          <h4>We could not find any food. Try another filters</h4>
+        )}
       </S.FoodItems>
     </S.Container>
   );
