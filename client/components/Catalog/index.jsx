@@ -27,7 +27,7 @@ function Catalog({ category }) {
         setFood(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [stars, price, onlyAvailable, category]);
+  }, [stars, price, onlyAvailable, category, setFood]);
 
   return (
     <S.Container>

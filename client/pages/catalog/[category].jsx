@@ -11,7 +11,7 @@ function Category({ food, categories, category }) {
   useEffect(() => {
     setCategories(categories);
     setFood(food);
-  }, []);
+  }, [setCategories, setFood, food, categories]);
 
   return <Catalog category={category} />;
 }

@@ -11,7 +11,7 @@ function Index({ categories, food }) {
   useEffect(() => {
     setCategories(categories);
     setFood(food);
-  }, []);
+  }, [setCategories, setFood, food, categories]);
 
   return <Catalog category='all' />;
 }
