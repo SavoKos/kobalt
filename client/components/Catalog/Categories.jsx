@@ -2,9 +2,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import useCategories from '../../context/categories';
 import SkeletonLine from '../SkeletonLine';
 
-function Categories({ closeAccordion, categories }) {
+function Categories({ closeAccordion }) {
+  const { categories } = useCategories();
   const router = useRouter();
   let skeletons = new Array(5).fill(0);
 

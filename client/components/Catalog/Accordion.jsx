@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import styled from 'styled-components';
+import useCategories from '../../context/categories';
 import Categories from './Categories';
 import Filters from './Filters';
 
 function Accordion({ content, activeAccordion, setActiveAccordion }) {
+  const { categories } = useCategories();
+
   const renderContent =
     content === 'filters' ? (
       <Filters closeAccordion={() => setActiveAccordion('')} />
     ) : (
-      <Categories closeAccordion={() => setActiveAccordion('')} />
+      <Categories
+        closeAccordion={() => setActiveAccordion('')}
+        categories={categories}
+      />
     );
 
   return (

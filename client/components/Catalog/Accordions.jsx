@@ -3,6 +3,7 @@ import Accordion from './Accordion';
 
 function Accordions() {
   const [activeAccordion, setActiveAccordion] = useState('');
+
   return (
     <div>
       <Accordion

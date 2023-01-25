@@ -1,43 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useFilters from '../../context/filters';
 import axios from '../../utils/axiosBackend';
 import FoodItem from '../Home/FoodItem';
 import Skeleton from '../Skeleton';
 import Accordions from './Accordions';
 import Filters from './Filters';
 
-function FoodList({ initialFood, category }) {
+function FoodList() {
   const skeletons = new Array(8).fill(0);
-  const [food, setFood] = useState(initialFood);
-  const [stars, setStars] = useState([1, 5]);
-  const [price, setPrice] = useState([1, 100]);
-  const [onlyAvailable, setOnlyAvailable] = useState(false);
-  const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    axios
-      .post(`/food/${category}`, {
-        minStars: stars[0],
-        maxStars: stars[1],
-        minPrice: price[0],
-        maxPrice: price[1],
-        onlyAvailable,
-      })
-      .then((res) => {
-        setFood(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, [stars, price, onlyAvailable, food]);
+  const { food } = useFilters();
 
   return (
     <S.Container>
       <S.Filters>
-        <Filters
-          setOnlyAvailable={setOnlyAvailable}
-          setPrice={setPrice}
-          setStars={setStars}
-          setSearch={setSearch}
-        />
+        <Filters />
       </S.Filters>
       <Accordions />
       <S.FoodItems>

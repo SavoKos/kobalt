@@ -1,9 +1,19 @@
+import { useEffect } from 'react';
 import Catalog from '../../components/Catalog';
+import useCategories from '../../context/categories';
+import useFilters from '../../context/filters';
 import url from '../../utils/url';
 
-function Category(props) {
-  console.log(props);
-  return <Catalog {...props} />;
+function Category({ food, categories, category }) {
+  const { setCategories } = useCategories();
+  const { setFood } = useFilters();
+
+  useEffect(() => {
+    setCategories(categories);
+    setFood(food);
+  }, []);
+
+  return <Catalog category={category} />;
 }
 
 export async function getStaticProps({ params }) {

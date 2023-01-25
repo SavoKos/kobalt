@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Categories from '../../components/Catalog/Categories';
 import Navigation from '../../components/Navigation';
@@ -6,8 +6,29 @@ import FoodList from '../../components/Catalog/FoodList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { TopNote } from '../../Theme';
+import useFilters from '../../context/filters';
+import axios from '../../utils/axiosBackend';
 
-function Catalog({ category, food, categories }) {
+function Catalog({ category }) {
+  const { stars, price, onlyAvailable, setFood } = useFilters();
+
+  useEffect(() => {
+    console.log('FETCH');
+    axios
+      .post(`/food/${category}`, {
+        minStars: stars[0],
+        maxStars: stars[1],
+        minPrice: price[0],
+        maxPrice: price[1],
+        onlyAvailable,
+      })
+      .then((res) => {
+        console.log('SET FOOOODDD');
+        setFood(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [stars, price, onlyAvailable, category]);
+
   return (
     <S.Container>
       <TopNote>
@@ -15,8 +36,8 @@ function Catalog({ category, food, categories }) {
       </TopNote>
       <Navigation cartIcon={true} homeIcon={true} searchIcon={true} />
       <S.MainContent>
-        <Categories categories={categories} />
-        <FoodList initialFood={food} category={category} />
+        <Categories />
+        <FoodList />
       </S.MainContent>
       <ToastContainer position='bottom-left' />
     </S.Container>

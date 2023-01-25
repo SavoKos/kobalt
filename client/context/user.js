@@ -11,6 +11,7 @@ const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
+  console.log('USER CONTEXT');
   const token = Cookies.get('jwt');
   const [user, setUser] = useState({});
 

@@ -6,13 +6,9 @@
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-#__next {
-  height: 100vh;
-  overflow-x: hidden;
-}
-
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 html::-webkit-scrollbar {

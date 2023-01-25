@@ -3,27 +3,35 @@ import styled from 'styled-components';
 import Slider from './Slider';
 import { BiReset } from 'react-icons/bi';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import useFilters from '../../context/filters';
 
-function Filters({ closeAccordion, setPrice, setStars, setOnlyAvailable }) {
-  const [checkedUI, setCheckedUI] = useState(false);
-  const [price, setPriceSlider] = useState([1, 100]);
-  const [stars, setStarsSlider] = useState([1, 5]);
+function Filters({ closeAccordion }) {
+  const {
+    setPrice,
+    setStars,
+    setOnlyAvailable,
+    resetFilters,
+    price,
+    stars,
+    onlyAvailable,
+  } = useFilters();
+  const [checkedUI, setCheckedUI] = useState(onlyAvailable);
+  const [priceSlider, setPriceSlider] = useState(price);
+  const [starsSlider, setStarsSlider] = useState(stars);
 
   const addFilters = () => {
-    setPrice(price);
-    setStars(stars);
+    setPrice(priceSlider);
+    setStars(starsSlider);
     setOnlyAvailable(checkedUI);
     closeAccordion && closeAccordion();
   };
 
-  const resetFilters = () => {
+  const resetHandler = () => {
     setPriceSlider([1, 100]);
     setStarsSlider([1, 5]);
     setCheckedUI(false);
 
-    setStars([1, 5]);
-    setPrice([1, 100]);
-    setOnlyAvailable(false);
+    resetFilters();
 
     closeAccordion && closeAccordion();
   };
@@ -44,7 +52,7 @@ function Filters({ closeAccordion, setPrice, setStars, setOnlyAvailable }) {
         max={100}
         labelPrefix='$'
         applyFilter={setPriceSlider}
-        value={price}
+        value={priceSlider}
       />
       <Slider
         label='Stars'
@@ -55,7 +63,7 @@ function Filters({ closeAccordion, setPrice, setStars, setOnlyAvailable }) {
         min={1}
         max={5}
         applyFilter={setStarsSlider}
-        value={stars}
+        value={starsSlider}
       />
       <S.Available>
         <input
@@ -68,7 +76,7 @@ function Filters({ closeAccordion, setPrice, setStars, setOnlyAvailable }) {
         <label htmlFor='available'>Only Available</label>
       </S.Available>
       <S.Icons>
-        <BiReset className='reset' onClick={resetFilters} />
+        <BiReset className='reset' onClick={resetHandler} />
         <AiFillCheckCircle className='apply' onClick={addFilters} />
       </S.Icons>
     </S.Container>

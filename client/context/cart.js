@@ -10,7 +10,8 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [discounted, setDiscounted] = useState(false);
   const [total, setTotal] = useState(0);
-  console.log(total);
+
+  console.log('CART CONTEXT');
 
   useEffect(() => {
     if (cart.length === 0) {
