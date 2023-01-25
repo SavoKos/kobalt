@@ -10,18 +10,14 @@ import url from '../utils/url';
 
 export default function Home({ categories, food }) {
   return (
-    <>
-      <div>
-        <S.Navigation>
-          <Navigation cartIcon={true} catalogIcon={true} />
-        </S.Navigation>
-        <Hero />
-        <PopularCategory categories={categories} food={food} />
-        <OurProduction categories={categories} food={food} />
-        <Footer />
-        <ToastContainer position='bottom-left' />
-      </div>
-    </>
+    <S.Container>
+      <Navigation cartIcon={true} catalogIcon={true} />
+      <Hero />
+      <PopularCategory categories={categories} food={food} />
+      <OurProduction categories={categories} food={food} />
+      <Footer />
+      <ToastContainer position='bottom-left' />
+    </S.Container>
   );
 }
 
@@ -40,16 +36,18 @@ export async function getStaticProps() {
 }
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
-S.Navigation = styled.div`
-  background: #f46b45; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to left,
-    #eea849,
-    #f46b45
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #eea849,
-    #f46b45
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+S.Container = styled.div`
+  nav {
+    background: #f46b45; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to left,
+      #eea849,
+      #f46b45
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to left,
+      #eea849,
+      #f46b45
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
 `;

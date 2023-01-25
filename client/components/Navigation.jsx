@@ -23,7 +23,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
   };
 
   return (
-    <S.Container>
+    <S.Container className='nav'>
       <Link href='/'>
         <Image src='/logoGray.png' fill className='logo' alt='logo' />
       </Link>
@@ -95,7 +95,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
 export default Navigation;
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
-S.Container = styled.div`
+S.Container = styled.nav`
   display: flex;
   grid-column: 1/3;
   width: 100%;
@@ -103,9 +103,13 @@ S.Container = styled.div`
   padding: 0 5%;
   position: relative;
   z-index: 2;
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background-color: #fff;
 
   @media screen and (min-width: 768px) {
-    padding: 1rem 10%;
+    padding: 0 10%;
   }
 
   input {

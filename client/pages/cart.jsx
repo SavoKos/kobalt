@@ -30,9 +30,7 @@ function Cart() {
         <TopNote>
           <p className='discount'>15% OFF WITH PROMO CODE</p>
         </TopNote>
-        <S.Navigation>
-          <Navigation homeIcon={true} catalogIcon={true} />
-        </S.Navigation>
+        <Navigation homeIcon={true} catalogIcon={true} />
         {loading && (
           <S.Cart>
             <Spinner />
@@ -125,8 +123,6 @@ S.Cart = styled.div`
     margin-bottom: 0.5rem;
   }
 `;
-
-S.Navigation = styled.div``;
 
 S.CartEmpty = styled.div`
   margin: auto;
