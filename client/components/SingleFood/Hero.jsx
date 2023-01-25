@@ -25,7 +25,13 @@ function Hero({ food }) {
   return (
     <S.Container>
       <S.Food>
-        <Image src={food.image} fill className='foodImage' alt={food.name} />
+        <Image
+          src={food.image}
+          fill
+          className='foodImage'
+          alt={food.name}
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+        />
         <S.Info>
           <h1>{food.name}</h1>
           <p className='tag'>

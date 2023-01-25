@@ -27,27 +27,25 @@ function FoodItem({ food }) {
 
   return (
     <S.Container>
+      <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
+      <Image
+        src={food.image}
+        fill
+        className='foodImg'
+        alt={food.name}
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+      />
+      <S.Text>
+        <p className='title'>{food.name}</p>
+        <p className='tag'>{food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}</p>
+        <S.Stars>{starItems.map((item) => item)}</S.Stars>
+        <p className='price'>${food.price}</p>
+      </S.Text>
       <Link href={`/${food.slug}`} replace={true}>
-        <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
-        <Image
-          src={food.image}
-          width={200}
-          height={200}
-          className='foodImg'
-          alt={food.name}
-        />
-        <S.Text>
-          <p className='title'>{food.name}</p>
-          <p className='tag'>
-            {food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}
-          </p>
-          <S.Stars>{starItems.map((item) => item)}</S.Stars>
-          <p className='price'>${food.price}</p>
-        </S.Text>
+        <S.Cart onClick={addToCart} available={food.available}>
+          <AiOutlineShoppingCart className='cart' />
+        </S.Cart>
       </Link>
-      <S.Cart onClick={addToCart} available={food.available}>
-        <AiOutlineShoppingCart className='cart' />
-      </S.Cart>
     </S.Container>
   );
 }
@@ -66,12 +64,10 @@ S.Container = styled.div`
 
   .foodImg {
     position: absolute;
-    top: -60px;
-    left: 50%;
+    top: -60px !important;
+    left: 50% !important;
     transform: translateX(-50%);
     max-width: fit-content;
-    height: 100%;
-    width: 100%;
     max-height: 200px;
   }
 `;

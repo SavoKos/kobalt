@@ -22,7 +22,13 @@ function Hero() {
         </Link>
       </S.Text>
       <S.Image>
-        <Image src='/hero.png' fill alt='hero' priority={true} />
+        <Image
+          src='/hero.png'
+          fill
+          alt='hero'
+          priority={true}
+          sizes='(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw'
+        />
       </S.Image>
     </S.Container>
   );
@@ -53,22 +59,23 @@ S.Container = styled.div`
 
   color: #fff;
   justify-content: center;
+  flex-direction: column;
+  gap: 5rem;
+
   img {
-    display: none;
+    max-width: 750px;
+    max-height: 570px;
+    min-width: 350px;
+    min-height: 265px;
+    position: relative !important;
+    object-fit: cover;
+    display: block;
   }
 
   @media screen and (min-width: 768px) {
     padding: 10rem 10%;
     border-bottom-left-radius: 5rem;
-    img {
-      max-width: 750px;
-      max-height: 570px;
-      min-width: 350px;
-      min-height: 265px;
-      position: relative !important;
-      object-fit: cover;
-      display: block;
-    }
+    flex-direction: row;
   }
 `;
 

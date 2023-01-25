@@ -10,7 +10,9 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+body,
+html,
+#__next {
   overflow-x: hidden;
 }
 

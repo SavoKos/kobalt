@@ -25,7 +25,13 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
   return (
     <S.Container className='nav'>
       <Link href='/'>
-        <Image src='/logoGray.png' fill className='logo' alt='logo' />
+        <Image
+          src='/logoGray.png'
+          fill
+          className='logo'
+          alt='logo'
+          sizes='(max-width: 768px) 100vw'
+        />
       </Link>
       <S.MainContent>
         <S.Right>
