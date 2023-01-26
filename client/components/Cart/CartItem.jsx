@@ -31,7 +31,12 @@ function CartItem({ food }) {
   return (
     <S.CartItem>
       <S.Image>
-        <Image src={food.image} width={100} height={100} alt={food.name} />
+        <Image
+          src={food.image}
+          alt={food.name}
+          fill
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+        />
       </S.Image>
       <S.Text>
         <p className='tag'>Available</p>
@@ -76,8 +81,8 @@ S.CartItem = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
     gap: 1rem;
+    width: 100%;
     text-align: center;
   }
 
@@ -91,9 +96,11 @@ S.Image = styled.div`
   border-radius: 1.2rem;
   justify-self: start;
   width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   img {
     max-width: fit-content;

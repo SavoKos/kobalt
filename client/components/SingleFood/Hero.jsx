@@ -7,21 +7,15 @@ import {
 } from 'react-icons/ai';
 import styled from 'styled-components';
 import useCart from '../../context/cart';
-import { toast } from 'react-toastify';
 
 function Hero({ food }) {
-  const { setCart } = useCart();
+  const { addToCart } = useCart();
   const starItems = Array(5)
     .fill(0)
     .map((_, i) =>
       i < +food.rating ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
     );
 
-  const addToCart = () => {
-    if (!food.available) return;
-    setCart((prevCart) => [...prevCart, { ...food, quantity: 1 }]);
-    toast.success(`${food.name} added to cart!`);
-  };
   return (
     <S.Container>
       <S.Food>
@@ -39,7 +33,7 @@ function Hero({ food }) {
           </p>
           <S.Stars>{starItems.map((item) => item)}</S.Stars>
           <p className='price'>${food.price}</p>
-          <S.Cart onClick={addToCart} available={food.available}>
+          <S.Cart onClick={() => addToCart(food)} available={food.available}>
             <p>Add To Cart</p>
             <AiOutlineShoppingCart className='cart' />
           </S.Cart>

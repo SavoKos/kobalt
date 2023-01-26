@@ -60,7 +60,7 @@ S.Container = styled.div`
   color: #fff;
   justify-content: center;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3rem;
 
   img {
     max-width: 750px;

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const CartContext = createContext();
 
@@ -12,6 +13,20 @@ export const CartProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
 
   console.log('CART CONTEXT');
+
+  const addToCart = (food) => {
+    if (!food.available) return;
+    if (cart.find((item) => item.slug === food.slug)) {
+      const copy = [...cart];
+      const index = copy.findIndex((item) => item.slug === food.slug);
+      copy[index].quantity++;
+      toast.success(`${food.name} added to cart!`);
+      return setCart(copy);
+    }
+
+    setCart((prevCart) => [...prevCart, { ...food, quantity: 1 }]);
+    toast.success(`${food.name} added to cart!`);
+  };
 
   useEffect(() => {
     if (cart.length === 0) {
@@ -30,6 +45,7 @@ export const CartProvider = ({ children }) => {
     discounted,
     total,
     setDiscounted,
+    addToCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

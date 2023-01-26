@@ -7,17 +7,10 @@ import {
 } from 'react-icons/ai';
 import styled from 'styled-components';
 import useCart from '../../context/cart';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
 
 function FoodItem({ food }) {
-  const { setCart } = useCart();
-
-  const addToCart = () => {
-    if (!food.available) return;
-    setCart((prevCart) => [...prevCart, { ...food, quantity: 1 }]);
-    toast.success(`${food.name} added to cart!`);
-  };
+  const { addToCart } = useCart();
 
   const starItems = Array(5)
     .fill(0)
@@ -27,25 +20,27 @@ function FoodItem({ food }) {
 
   return (
     <S.Container>
-      <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
-      <Image
-        src={food.image}
-        fill
-        className='foodImg'
-        alt={food.name}
-        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-      />
-      <S.Text>
-        <p className='title'>{food.name}</p>
-        <p className='tag'>{food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}</p>
-        <S.Stars>{starItems.map((item) => item)}</S.Stars>
-        <p className='price'>${food.price}</p>
-      </S.Text>
       <Link href={`/${food.slug}`} replace={true}>
-        <S.Cart onClick={addToCart} available={food.available}>
-          <AiOutlineShoppingCart className='cart' />
-        </S.Cart>
+        <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
+        <Image
+          src={food.image}
+          fill
+          className='foodImg'
+          alt={food.name}
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+        />
+        <S.Text>
+          <p className='title'>{food.name}</p>
+          <p className='tag'>
+            {food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}
+          </p>
+          <S.Stars>{starItems.map((item) => item)}</S.Stars>
+          <p className='price'>${food.price}</p>
+        </S.Text>
       </Link>
+      <S.Cart onClick={() => addToCart(food)} available={food.available}>
+        <AiOutlineShoppingCart className='cart' />
+      </S.Cart>
     </S.Container>
   );
 }
