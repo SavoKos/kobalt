@@ -35,8 +35,8 @@ function Orders() {
       <S.Container>
         <h2>Orders</h2>
         <S.Orders>
-          {orders?.map((order) => (
-            <S.Order>
+          {orders?.map((order, i) => (
+            <S.Order key={i}>
               <h5>
                 Total: ${order.total}
                 {order.discounted && ' with 15% discount!'}

@@ -16,6 +16,10 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
   const [dropdownActive, setDropdownActive] = useState(false);
   const { user, setUser } = useUser();
 
+  const quantityArr = cartContext.map((cartItem) => cartItem.quantity);
+  const cartCount =
+    quantityArr.length > 0 ? quantityArr.reduce((a, b) => a + b) : '0';
+
   const logout = () => {
     Cookies.remove('jwt');
     toast.warn(`You are logged out!`);
@@ -67,7 +71,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
               <Link href='/cart'>
                 <S.Icon>
                   <BsCart2 className='cart' />
-                  <p className='count'>{cartContext?.length}</p>
+                  <p className='count'>{cartCount}</p>
                 </S.Icon>
               </Link>
             )}

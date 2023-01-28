@@ -39,7 +39,7 @@ S.Profile = styled.div`
   }
 
   form {
-    min-width: 500px;
+    min-width: 1000px;
   }
 
   & > div {
