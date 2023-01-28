@@ -49,7 +49,6 @@ const createSendToken = (user, statusCode, req, res) => {
 
   // Remove password from output
   user.password = undefined;
-  user._id = undefined;
 
   res.status(statusCode).json({
     status: 'success',

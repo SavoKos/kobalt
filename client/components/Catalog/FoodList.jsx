@@ -64,7 +64,7 @@ S.FoodItems = styled.div`
     padding: 0 2rem;
   }
 
-  h5 {
+  h4 {
     text-align: center;
   }
 `;
