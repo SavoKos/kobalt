@@ -29,6 +29,10 @@ html::-webkit-scrollbar-thumb {
   border-radius: 1rem; /* roundness of the scroll thumb */
 }
 
+.error-message {
+  color: red;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;

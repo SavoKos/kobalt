@@ -119,10 +119,12 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // 3) Send it to user's email
+  const url =
+    process.env.NODE_ENV === 'production'
+      ? ' https://kobaltbe.savokos.com'
+      : 'http://localhost:3000';
   try {
-    const resetURL = `${req.protocol}://${req.get(
-      'host'
-    )}/api/v1/user/resetPassword/${resetToken}`;
+    const resetURL = `${url}/resetpassword/${resetToken}`;
 
     sendPasswordReset(user.email, resetURL);
 
