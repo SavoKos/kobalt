@@ -37,7 +37,12 @@ function CardDetails({ setLoading }) {
 
     setLoading(true);
     axios
-      .post('/order', { user, food: cart, total, discounted })
+      .post('/order', {
+        user,
+        food: cart,
+        total,
+        discounted,
+      })
       .then((res) => {
         setCart([]);
         router.push('/ordered');

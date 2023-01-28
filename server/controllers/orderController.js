@@ -3,10 +3,10 @@ const catchAsync = require('../utils/catchAsync');
 
 exports.getOrders = catchAsync(async (req, res, next) => {
   const orders = await Order.find({
-    user: {
-      _id: req.params.userId,
-    },
+    'user._id': req.params.userId,
   });
+
+  console.log(orders);
 
   if (orders)
     res.status(200).json({

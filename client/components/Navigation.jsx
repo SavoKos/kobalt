@@ -83,8 +83,11 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
                 <p>{user.name[0].toUpperCase()}</p>
                 {dropdownActive && (
                   <S.Dropdown>
-                    <Link href='/profile'>
-                      <p>Profile</p>
+                    <Link href='/orders'>
+                      <p>Orders</p>
+                    </Link>
+                    <Link href='/settings'>
+                      <p>Settings</p>
                     </Link>
                     <p onClick={logout}>Logout</p>
                   </S.Dropdown>
