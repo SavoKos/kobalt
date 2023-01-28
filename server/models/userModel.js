@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 const AppError = require('../utils/AppError');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -39,6 +40,8 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, 'Enter valid email!'],
     trim: true,
   },
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
 userSchema.pre('save', async function (next) {
@@ -69,6 +72,19 @@ userSchema.statics.login = async function (email, password, next) {
     next(new AppError('Incorrect password', 401));
   }
   next(new AppError('Incorrect email', 401));
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const User = mongoose.model('User', userSchema);

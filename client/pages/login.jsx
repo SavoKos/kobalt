@@ -79,7 +79,7 @@ const Login = () => {
             {errorMessage}
             <div>
               <button className='login-btn'>Log in</button>
-              <Link href='/resetpassword' className='resetPassword'>
+              <Link href='/forgotpassword' className='resetPassword'>
                 <p>Forgot Password?</p>
               </Link>
             </div>

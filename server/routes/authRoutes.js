@@ -17,6 +17,8 @@ router.post('/register', authController.signup);
 router.get('/protected', authController.protect);
 router.get('/bytoken', authController.getUserByToken);
 router.get('/admin', authController.admin);
+router.post('/forgotPassword', authController.forgotPassword);
+router.patch('/resetPassword/:token', authController.resetPassword);
 
 router.get('/', getAll(User));
 

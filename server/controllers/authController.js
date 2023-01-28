@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 const { promisify } = require('util');
 const crypto = require('crypto');
-const { sendWelcomeEmail } = require('../mail/email');
+const { sendWelcomeEmail, sendPasswordReset } = require('../mail/email');
 
 const maxAge = process.env.ACTIVE_DAYS * 24 * 60 * 60;
 
@@ -122,8 +122,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   try {
     const resetURL = `${req.protocol}://${req.get(
       'host'
-    )}/api/v1/users/resetPassword/${resetToken}`;
-    await new Email(user, resetURL).sendPasswordReset();
+    )}/api/v1/user/resetPassword/${resetToken}`;
+
+    sendPasswordReset(user.email, resetURL);
 
     res.status(200).json({
       status: 'success',
@@ -158,7 +159,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     return next(new AppError('Token is invalid or has expired', 400));
   }
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+  user.confirmPassword = req.body.confirmPassword;
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();

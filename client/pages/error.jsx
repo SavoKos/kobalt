@@ -40,6 +40,11 @@ S.Container = styled.div`
   align-items: center;
   flex-direction: column;
   color: ${({ theme }) => theme.colors.gray};
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 
   .page_404 {
     padding: 40px 0;

@@ -20,3 +20,14 @@ module.exports.sendWelcomeEmail = (email, name) => {
     })
     .catch((err) => console.log(err));
 };
+
+module.exports.sendPasswordReset = (email, url) => {
+  transport
+    .sendMail({
+      from: process.env.MAIL_USER,
+      to: email,
+      subject: 'Reset Password',
+      text: url,
+    })
+    .catch((err) => console.log(err));
+};
