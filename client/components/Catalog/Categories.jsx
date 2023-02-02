@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import useCategories from '../../context/categories';
-import SkeletonLine from '../SkeletonLine';
+import SkeletonLine from '../Skeletons/SkeletonLine';
 
 function Categories({ closeAccordion }) {
   const { categories } = useCategories();

@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 exports.getOrders = catchAsync(async (req, res, next) => {
   const orders = await Order.find({
     'user._id': req.params.userId,
-  });
+  }).sort({ date: -1 });
 
   console.log(orders);
 

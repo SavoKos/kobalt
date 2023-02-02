@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import styled from 'styled-components';
+import ProtectedRoute from '../ProtectedRoute';
 import Newsletter from './Newsletter';
 
 function Footer() {
@@ -15,14 +15,12 @@ function Footer() {
         <S.NavLinks>
           <Link href='/'>Home</Link>
           <Link href='/catalog'>Catalog</Link>
+          <Link href='/cart'>Cart</Link>
+          <Link href='/login'>Login</Link>
+          <Link href='/register'>Register</Link>
+          <Link href='/orders'>Orders</Link>
+          <Link href='/settings'>Settings</Link>
         </S.NavLinks>
-        <S.WorkingHours>
-          <AiOutlineClockCircle className='clock' />
-          <div>
-            <p>Working hours</p>
-            <p>08:00 - 23:00</p>
-          </div>
-        </S.WorkingHours>
         <S.SocialMedia>
           <BsTwitter />
           <BsFacebook />
@@ -86,20 +84,6 @@ S.NavLinks = styled.div`
 
   @media screen and (min-width: 768px) {
     flex: unset;
-  }
-`;
-
-S.WorkingHours = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #fff;
-  justify-content: center;
-  margin: auto;
-  margin: 1rem auto 2rem auto;
-
-  .clock {
-    font-size: 40px;
   }
 `;
 

@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import Navigation from '../components/Navigation';
 import OrderItem from '../components/Profile/OrderItem';
 import ProtectedRoute from '../components/ProtectedRoute';
+import Skeleton from '../components/Skeletons/Skeleton';
+import SkeletonOrder from '../components/Skeletons/SkeletonOrder';
+import Spinner from '../components/Spinner';
 import useUser from '../context/user';
 import axios from '../utils/axiosBackend';
 
 function Orders() {
   const [orders, setOrders] = useState(undefined);
+  const [loading, setLoading] = useState(true);
   const { user } = useUser();
   const [error, setError] = useState(undefined);
 
@@ -16,7 +20,8 @@ function Orders() {
   console.log(orders);
 
   useEffect(() => {
-    if (!user._id) return;
+    if (!user._id) return setLoading(false);
+    setLoading(true);
     axios
       .get(`/order/${user._id}`)
       .then((res) => {
@@ -26,7 +31,8 @@ function Orders() {
       .catch((err) => {
         setError(err?.response?.data?.message);
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [user]);
 
   return (
@@ -34,19 +40,23 @@ function Orders() {
       <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
       <S.Container>
         <h2>Orders</h2>
-        <S.Orders>
-          {orders?.map((order, i) => (
-            <S.Order key={i}>
-              <h5>
-                Total: ${order.total}
-                {order.discounted && ' with 15% discount!'}
-              </h5>
-              {order?.food?.map((food, i) => (
-                <OrderItem order={order} food={food} key={i} />
-              ))}
-            </S.Order>
-          ))}
-        </S.Orders>
+        {!loading && orders?.length > 0 && (
+          <S.Orders>
+            {orders?.map((order, i) => (
+              <S.Order key={i}>
+                <h5>
+                  Total: ${order.total}
+                  {order.discounted && ' with 15% discount!'}
+                </h5>
+                {order?.food?.map((food, i) => (
+                  <OrderItem order={order} food={food} key={i} />
+                ))}
+              </S.Order>
+            ))}
+          </S.Orders>
+        )}
+
+        {loading && <Spinner />}
 
         {orders?.length === 0 && <h4>We could not find any orders.</h4>}
         {errorMessage}

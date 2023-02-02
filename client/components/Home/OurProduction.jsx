@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BtnMeni } from '../../Theme';
-import Skeleton from '../Skeleton';
+import Skeleton from '../Skeletons/Skeleton';
 import FoodItem from './FoodItem';
 
 function OurProduction({ categories, food }) {

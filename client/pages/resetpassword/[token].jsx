@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from '../../utils/axiosBackend';
+import Link from 'next/link';
 
 function ResetPassword() {
   const [password, setPassword] = useState('');
@@ -26,7 +27,9 @@ function ResetPassword() {
 
   return (
     <S.Container>
-      <Image src='/logoGray.png' className='logo' fill alt='logo' />
+      <Link href='/'>
+        <Image src='/logoGray.png' className='logo' fill alt='logo' />
+      </Link>
       <input
         type='password'
         placeholder='Password'

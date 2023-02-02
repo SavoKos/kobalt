@@ -5,7 +5,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import CarouselItem from './CarouselItem';
 import Link from 'next/link';
-import Skeleton from '../Skeleton';
+import Skeleton from '../Skeletons/Skeleton';
 
 function PopularCategory({ categories, food }) {
   const responsive = {

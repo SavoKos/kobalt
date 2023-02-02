@@ -3,9 +3,11 @@ import { toast } from 'react-toastify';
 import useUser from '../../context/user';
 import { Auth } from '../../Theme';
 import axios from '../../utils/axiosBackend';
+import Spinner from '../Spinner';
 
 function UserData() {
   const { user, setUser } = useUser();
+  const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState({
     password: '',
     confirmPassword: '',
@@ -33,6 +35,7 @@ function UserData() {
 
   const updateHandler = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .patch(`/user/${user._id}`, credentials)
       .then((res) => {
@@ -49,8 +52,11 @@ function UserData() {
       .catch((err) => {
         console.log(err);
         setError(err.response.data.message);
-      });
+      })
+      .finally(() => setLoading(false));
   };
+
+  if (loading) return <Spinner />;
 
   return (
     <Auth>
