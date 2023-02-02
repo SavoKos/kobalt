@@ -17,7 +17,6 @@ function Index({ categories, food }) {
 }
 
 export async function getStaticProps() {
-  console.log('GET STARIC PROPS');
   const res = await Promise.all([
     fetch(`${url}/food/category`),
     fetch(`${url}/food/all`, { method: 'POST' }),
@@ -27,7 +26,7 @@ export async function getStaticProps() {
   const data = fetched.map((arr) => arr.data);
 
   return {
-    props: { food: data[1], categories: data[0] },
+    props: { food: data[1], categories: data[0], revalidate: 5 },
   };
 }
 

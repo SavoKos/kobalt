@@ -5,4 +5,4 @@ function Page500() {
   return <Error code='500' message='Something went wrong!' />;
 }
 
-export default Error;
+export default Page500;

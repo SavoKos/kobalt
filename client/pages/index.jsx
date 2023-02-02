@@ -31,7 +31,7 @@ export async function getStaticProps() {
   const data = fetched.map((arr) => arr.data);
 
   return {
-    props: { categories: data[0], food: data[1] },
+    props: { categories: data[0], food: data[1], revalidate: 5 },
   };
 }
 // -------------------------------------------------- styling ----------------------------------------------

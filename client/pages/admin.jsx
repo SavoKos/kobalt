@@ -105,7 +105,7 @@ export async function getStaticProps() {
   const data = await res.json();
 
   return {
-    props: { initialCategories: data.data },
+    props: { initialCategories: data.data, revalidate: 5 },
   };
 }
 
