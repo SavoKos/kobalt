@@ -4,30 +4,26 @@ import useCategories from '../../context/categories';
 import useFilters from '../../context/filters';
 import url from '../../utils/url';
 
-function Index({ categories, food }) {
+function Index() {
   const { setCategories } = useCategories();
   const { setFood } = useFilters();
 
   useEffect(() => {
-    setCategories(categories);
-    setFood(food);
-  }, [setCategories, setFood, food, categories]);
+    async function fetchData() {
+      const res = await Promise.all([
+        fetch(`${url}/food/category`),
+        fetch(`${url}/food/all`, { method: 'POST' }),
+      ]);
+      const fetched = await Promise.all(res.map((r) => r.json()));
+
+      const data = fetched.map((arr) => arr.data);
+      setCategories(data[0]);
+      setFood(data[1]);
+    }
+    fetchData();
+  }, []);
 
   return <Catalog category='all' />;
-}
-
-export async function getStaticProps() {
-  const res = await Promise.all([
-    fetch(`${url}/food/category`),
-    fetch(`${url}/food/all`, { method: 'POST' }),
-  ]);
-  const fetched = await Promise.all(res.map((r) => r.json()));
-
-  const data = fetched.map((arr) => arr.data);
-
-  return {
-    props: { food: data[1], categories: data[0], revalidate: 5 },
-  };
 }
 
 export default Index;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/SingleFood/Hero';
 import { ToastContainer } from 'react-toastify';
@@ -7,8 +7,33 @@ import Footer from '../components/Home/Footer';
 import PopularCategory from '../components/Home/PopularCategory';
 import styled from 'styled-components';
 import url from '../utils/url';
+import { useRouter } from 'next/router';
 
-function Food({ food, categories }) {
+function Food() {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [categories, setCategories] = useState([]);
+  const [food, setFood] = useState([]);
+
+  useEffect(() => {
+    if (!slug) return;
+    async function fetchData() {
+      const res = await Promise.all([
+        fetch(`${url}/food/category`),
+        fetch(`${url}/food/${slug}`),
+      ]);
+
+      const fetched = await Promise.all(res.map((r) => r.json()));
+
+      const data = fetched.map((arr) => arr.data);
+
+      setFood(data[1]);
+      setCategories(data[0]);
+    }
+
+    fetchData();
+  }, [slug]);
+
   return (
     <div>
       <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
@@ -20,39 +45,6 @@ function Food({ food, categories }) {
       <ToastContainer position='bottom-left' />
     </div>
   );
-}
-
-export async function getStaticProps({ params }) {
-  const res = await Promise.all([
-    fetch(`${url}/food/category`),
-    fetch(`${url}/food/${params?.slug}`),
-  ]);
-
-  const fetched = await Promise.all(res.map((r) => r.json()));
-
-  const data = fetched.map((arr) => arr.data);
-
-  return {
-    props: { food: data[1], categories: data[0], revalidate: 5 },
-  };
-}
-
-export async function getStaticPaths() {
-  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-    return {
-      paths: [],
-      fallback: 'blocking',
-    };
-  }
-
-  const res = await fetch(`${url}/food`);
-  const foods = await res.json();
-
-  const paths = foods.data.map((food) => ({
-    params: { slug: food.slug },
-  }));
-
-  return { paths, fallback: false };
 }
 
 export default Food;

@@ -13,7 +13,6 @@ function Catalog({ category }) {
   const { stars, price, onlyAvailable, setFood } = useFilters();
 
   useEffect(() => {
-    console.log('FETCH');
     axios
       .post(`/food/${category}`, {
         minStars: stars[0],

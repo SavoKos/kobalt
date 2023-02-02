@@ -7,8 +7,27 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Navigation from '../components/Navigation';
 import styled from 'styled-components';
 import url from '../utils/url';
+import { useEffect, useState } from 'react';
 
-export default function Home({ categories, food }) {
+export default function Home() {
+  const [categories, setCategories] = useState([]);
+  const [food, setFood] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await Promise.all([
+        fetch(`${url}/food/category`),
+        fetch(`${url}/food`),
+      ]);
+      const fetched = await Promise.all(res.map((r) => r.json()));
+
+      const data = fetched.map((arr) => arr.data);
+      setCategories(data[0]);
+      setFood(data[1]);
+    }
+    fetchData();
+  }, []);
+
   return (
     <S.Container>
       <Navigation cartIcon={true} catalogIcon={true} />
@@ -21,19 +40,6 @@ export default function Home({ categories, food }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await Promise.all([
-    fetch(`${url}/food/category`),
-    fetch(`${url}/food`),
-  ]);
-  const fetched = await Promise.all(res.map((r) => r.json()));
-
-  const data = fetched.map((arr) => arr.data);
-
-  return {
-    props: { categories: data[0], food: data[1], revalidate: 5 },
-  };
-}
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
 S.Container = styled.div`
