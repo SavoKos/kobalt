@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 import { createContext, useContext, useEffect, useState } from 'react';
-import Spinner from '../components/Spinner';
 import tokenHeader from '../components/tokenHeader';
 import axios from '../utils/axiosBackend';
 
@@ -17,6 +16,8 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (!token) return;
+    console.log(token);
+    console.log(tokenHeader());
     axios
       .get('/user/bytoken', { headers: tokenHeader() })
       .then((res) => {
