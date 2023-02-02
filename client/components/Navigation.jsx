@@ -115,7 +115,6 @@ S.Container = styled.nav`
   justify-content: space-between;
   padding: 0 5%;
   position: relative;
-  z-index: 2;
   position: sticky;
   top: 0;
   z-index: 6;
