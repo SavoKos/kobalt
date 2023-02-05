@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
       .catch((err) => {
         console.log('ERROR', err);
       });
-  }, []);
+  }, [token]);
 
   const value = {
     user,
