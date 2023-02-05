@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useFilters from '../../context/filters';
-import axios from '../../utils/axiosBackend';
 import FoodItem from '../Home/FoodItem';
 import Skeleton from '../Skeletons/Skeleton';
 import Accordions from './Accordions';

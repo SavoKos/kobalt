@@ -6,8 +6,6 @@ exports.getOrders = catchAsync(async (req, res, next) => {
     'user._id': req.params.userId,
   }).sort({ date: -1 });
 
-  console.log(orders);
-
   if (orders)
     res.status(200).json({
       status: 'success',

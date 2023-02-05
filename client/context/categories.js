@@ -13,8 +13,6 @@ export const CategoriesProvider = ({ children }) => {
     setCategories,
   };
 
-  console.log('CATEGORIES', categories);
-
   return (
     <CategoriesContext.Provider value={value}>
       {children}

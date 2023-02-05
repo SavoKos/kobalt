@@ -12,8 +12,6 @@ export const FiltersProvider = ({ children }) => {
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [food, setFood] = useState([]);
 
-  console.log('FOOD', food);
-
   const resetFilters = () => {
     setStars([1, 5]);
     setPrice([1, 100]);

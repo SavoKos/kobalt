@@ -20,8 +20,6 @@ exports.updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findById(req.params.id).select('+password');
 
-    console.log(req.params.id);
-
     if (!doc) {
       return next(new AppError('User with that ID does not exist!', 404));
     }
@@ -50,7 +48,6 @@ exports.createOne = (Model) =>
 exports.getOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findOne({ slug: req.params.slug });
-    console.log(doc);
 
     if (!doc) {
       return next(new AppError('No document found with that ID', 404));

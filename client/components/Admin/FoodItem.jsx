@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import {
-  AiFillStar,
-  AiOutlineClose,
-  AiOutlineShoppingCart,
-  AiOutlineStar,
-} from 'react-icons/ai';
+import { AiFillStar, AiOutlineClose, AiOutlineStar } from 'react-icons/ai';
 import styled from 'styled-components';
 import Link from 'next/link';
 

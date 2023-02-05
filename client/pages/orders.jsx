@@ -17,7 +17,6 @@ function Orders() {
 
   let errorMessage = '';
   if (error) errorMessage = <p className='error-message'>{error}</p>;
-  console.log(orders);
 
   useEffect(() => {
     if (!user._id) return setLoading(false);

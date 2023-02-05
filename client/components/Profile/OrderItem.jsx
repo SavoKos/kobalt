@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 function OrderItem({ order, food }) {
-  console.log(order);
   return (
     <S.Container className='orderItem'>
       <S.Image>

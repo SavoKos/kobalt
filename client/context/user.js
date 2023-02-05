@@ -10,14 +10,11 @@ const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  console.log('USER CONTEXT');
   const token = Cookies.get('jwt');
   const [user, setUser] = useState({});
 
   useEffect(() => {
     if (!token) return;
-    console.log(token);
-    console.log(tokenHeader());
     axios
       .get('/user/bytoken', { headers: tokenHeader() })
       .then((res) => {

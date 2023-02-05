@@ -26,8 +26,10 @@ function FoodItem({ food }) {
           src={food.image}
           className='foodImg'
           alt={food.name}
-          width={200}
-          height={200}
+          fill
+          sizes='(max-width: 768px) 100vw,
+          (max-width: 1200px) 50vw,
+          33vw'
         />
         <S.Text>
           <p className='title'>{food.name}</p>

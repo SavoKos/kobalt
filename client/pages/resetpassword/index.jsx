@@ -16,7 +16,6 @@ function ResetPassword() {
     axios
       .post('/user/forgotPassword', { email })
       .then((res) => {
-        console.log(res);
         setError(undefined);
         setSubmitted(true);
       })

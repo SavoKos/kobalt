@@ -12,8 +12,6 @@ export const CartProvider = ({ children }) => {
   const [discounted, setDiscounted] = useState(false);
   const [total, setTotal] = useState(0);
 
-  console.log('CART CONTEXT');
-
   const addToCart = (food) => {
     if (!food.available) return;
     if (cart.find((item) => item.slug === food.slug)) {

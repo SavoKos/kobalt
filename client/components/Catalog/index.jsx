@@ -21,10 +21,7 @@ function Catalog({ category }) {
         maxPrice: price[1],
         onlyAvailable,
       })
-      .then((res) => {
-        console.log('SET FOOOODDD');
-        setFood(res.data.data);
-      })
+      .then((res) => setFood(res.data.data))
       .catch((err) => console.log(err));
   }, [stars, price, onlyAvailable, category, setFood]);
 

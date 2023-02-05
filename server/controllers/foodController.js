@@ -52,7 +52,6 @@ exports.getByCategory = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteByCategory = catchAsync(async (req, res, next) => {
-  console.log('CATEGORIES', req.body.categories);
   if (req.body.categories.length < 2)
     return next(
       new AppError(

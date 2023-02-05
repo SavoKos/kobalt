@@ -28,7 +28,6 @@ function Admin() {
         if (res?.data?.token) return setVerified(true);
       })
       .catch((err) => {
-        console.log('ERROR', err);
         router.push('/401');
       })
       .finally(() => setLoading(false));
