@@ -7,12 +7,7 @@ function OrderItem({ order, food }) {
   return (
     <S.Container className='orderItem'>
       <S.Image>
-        <Image
-          src={food.image}
-          alt={food.name}
-          fill
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-        />
+        <Image src={food.image} alt={food.name} width={100} height={100} />
       </S.Image>
       <S.Text>
         <p className='tag'>Available</p>
