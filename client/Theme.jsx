@@ -60,7 +60,6 @@ export const TopNote = styled.div`
 
 export const Auth = styled.div`
   display: flex;
-  min-height: 100vh;
   background-color: #fff;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.025);

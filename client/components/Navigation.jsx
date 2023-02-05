@@ -93,6 +93,11 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
                     <Link href='/settings'>
                       <p>Settings</p>
                     </Link>
+                    {user?.admin && (
+                      <Link href='/admin'>
+                        <p>Admin</p>
+                      </Link>
+                    )}
                     <p onClick={logout}>Logout</p>
                   </S.Dropdown>
                 )}

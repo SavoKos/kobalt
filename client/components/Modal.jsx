@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 
 function Modal({ children, active, setModalActive }) {
@@ -6,7 +7,10 @@ function Modal({ children, active, setModalActive }) {
   return (
     <S.Modal>
       <S.Opacity onClick={() => setModalActive(false)} />
-      <S.ModalContent>{children}</S.ModalContent>
+      <S.ModalContent>
+        <AiOutlineClose onClick={() => setModalActive(false)} />
+        {children}
+      </S.ModalContent>
     </S.Modal>
   );
 }
@@ -28,10 +32,14 @@ S.ModalContent = styled.div`
   position: absolute;
   inset: 0;
   width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   height: fit-content;
-  background-color: ${({ theme }) => theme.colors.darkOrange};
-  color: #fff;
+  color: #000;
+  background-color: #fff;
   padding: 5rem 1rem;
   border-radius: 1rem;
   top: 50%;
@@ -41,6 +49,15 @@ S.ModalContent = styled.div`
 
   h6 {
     margin-bottom: 0.5rem;
+  }
+
+  svg {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 26px;
+    color: #000;
+    cursor: pointer;
   }
 `;
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const slugify = require('slugify');
 
 const FoodSchema = new mongoose.Schema({
   name: {
@@ -23,14 +24,17 @@ const FoodSchema = new mongoose.Schema({
     validate: [validator.isURL, 'Invalid URL!'],
   },
   price: {
-    type: 'String',
+    type: 'Number',
     trim: true,
     required: [true, 'Please enter the price!'],
+    min: [1, "Price can't be less than 1!"],
   },
   rating: {
-    type: 'String',
+    type: 'Number',
     trim: true,
     required: [true, 'Please enter the rating!'],
+    min: [1, "Rating can't be less than 1"],
+    max: [5, "Rating can't be more than 5"],
   },
   available: { type: Boolean, default: true },
 });

@@ -9,7 +9,12 @@ import {
 import styled from 'styled-components';
 import Link from 'next/link';
 
-function FoodItem({ food, setDeleteFoodData, setModalActive }) {
+function FoodItem({
+  food,
+  setDeleteFoodData,
+  setModalActive,
+  setModalContent,
+}) {
   const starItems = Array(5)
     .fill(0)
     .map((_, i) =>
@@ -38,6 +43,7 @@ function FoodItem({ food, setDeleteFoodData, setModalActive }) {
       </Link>
       <S.Remove
         onClick={() => {
+          setModalContent('delete');
           setModalActive(true);
           setDeleteFoodData(food);
         }}

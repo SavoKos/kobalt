@@ -35,7 +35,9 @@ function Admin() {
   }, [router, user]);
 
   useEffect(() => {
-    axios.get('/food/category').then((res) => setCategories(res.data.data));
+    axios.get('/food/category').then((res) => {
+      setCategories(res.data.data);
+    });
   }, []);
 
   if (!verified) return;

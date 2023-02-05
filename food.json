@@ -2,7 +2,7 @@
   {
     "name": "Whooper Burger",
     "slug": "whooper-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992733/kobalt/Burgers/Whooper_Burger_e8jhby.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992733/kobalt/burger/Whooper_Burger_e8jhby.png",
     "price": 5.99,
     "category": "burger",
     "rating": 4,
@@ -11,7 +11,7 @@
   {
     "name": "Veggie Burger",
     "slug": "veggie-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672844660/kobalt/Burgers/Veggie_Burger_rsom33.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672844660/kobalt/burger/Veggie_Burger_rsom33.png",
     "price": 10.99,
     "category": "burger",
     "rating": 4,
@@ -20,7 +20,7 @@
   {
     "name": "Tandoori Burger",
     "slug": "tandoori-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992703/kobalt/Burgers/Tandoori_Burger_fh6fcm.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992703/kobalt/burger/Tandoori_Burger_fh6fcm.png",
     "price": 6.99,
     "category": "burger",
     "rating": 5,
@@ -29,7 +29,7 @@
   {
     "name": "Salmon Burger",
     "slug": "salmon-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992713/kobalt/Burgers/Salmon_Burger_ymjbmi.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992713/kobalt/burger/Salmon_Burger_ymjbmi.png",
     "price": 7.99,
     "category": "burger",
     "rating": 5,
@@ -38,7 +38,7 @@
   {
     "name": "Premium Burger",
     "slug": "premium-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672844856/kobalt/Burgers/Premium_Burger_hdoghc.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672844856/kobalt/burger/Premium_Burger_hdoghc.png",
     "price": 10.99,
     "category": "burger",
     "rating": 5,
@@ -47,7 +47,7 @@
   {
     "name": "Gourmet Burger",
     "slug": "gourmet-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992699/kobalt/Burgers/Gourmet_Burger_rheps7.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992699/kobalt/burger/Gourmet_Burger_rheps7.png",
     "price": 7.99,
     "category": "burger",
     "rating": 4,
@@ -56,7 +56,7 @@
   {
     "name": "Chicken Burger",
     "slug": "chicken-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672843986/kobalt/Burgers/Chicken_Burger_wbwxlq.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672843986/kobalt/burger/Chicken_Burger_wbwxlq.png",
     "price": 3.99,
     "category": "burger",
     "rating": 5,
@@ -65,7 +65,7 @@
   {
     "name": "Cheeseburger",
     "slug": "cheeseburger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992696/kobalt/Burgers/Cheeseburger_zpsey0.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992696/kobalt/burger/Cheeseburger_zpsey0.png",
     "price": 9.99,
     "category": "burger",
     "rating": 4,
@@ -74,7 +74,7 @@
   {
     "name": "Buffalo Burger",
     "slug": "buffalo-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992697/kobalt/Burgers/Buffalo_Burger_s51iny.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671992697/kobalt/burger/Buffalo_Burger_s51iny.png",
     "price": 5.99,
     "category": "burger",
     "rating": 5,
@@ -83,7 +83,7 @@
   {
     "name": "Bacon Burger",
     "slug": "bacon-burger",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672844566/kobalt/Burgers/Bacon_Burger_doijc5.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1672844566/kobalt/burger/Bacon_Burger_doijc5.png",
     "price": 9.99,
     "category": "burger",
     "rating": 5,
@@ -92,7 +92,7 @@
   {
     "name": "Magnum Ice Cream",
     "slug": "magnum-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994134/kobalt/Ice%20Creams/Magnum_Ice_Cream_toppei.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994134/kobalt/icecream/Magnum_Ice_Cream_toppei.png",
     "price": 1.99,
     "category": "icecream",
     "rating": 4,
@@ -101,7 +101,7 @@
   {
     "name": "Fruit Ice Cream",
     "slug": "fruit-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994137/kobalt/Ice%20Creams/Fruit_Ice_Cream_evyqmg.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994137/kobalt/icecream/Fruit_Ice_Cream_evyqmg.png",
     "price": 2.99,
     "category": "icecream",
     "rating": 5,
@@ -110,7 +110,7 @@
   {
     "name": "Dairy Mix Ice Cream",
     "slug": "dairy-mix-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994158/kobalt/Ice%20Creams/Dairy_Mix_Ice_Cream_e98tn2.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994158/kobalt/icecream/Dairy_Mix_Ice_Cream_e98tn2.png",
     "price": 2.99,
     "category": "icecream",
     "rating": 5,
@@ -119,7 +119,7 @@
   {
     "name": "Chocolate Ice Cream",
     "slug": "chocolate-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994117/kobalt/Ice%20Creams/Chocolate_Ice_Cream_x2a6dy.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994117/kobalt/icecream/Chocolate_Ice_Cream_x2a6dy.png",
     "price": 1.99,
     "category": "icecream",
     "rating": 4,
@@ -128,7 +128,7 @@
   {
     "name": "Parlor Ice Cream",
     "slug": "parlor-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994129/kobalt/Ice%20Creams/Parlor_Ice_Cream_xyoj7w.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994129/kobalt/icecream/Parlor_Ice_Cream_xyoj7w.png",
     "price": 2.99,
     "category": "icecream",
     "rating": 5,
@@ -137,7 +137,7 @@
   {
     "name": "Gelato Mix Ice Cream",
     "slug": "gelato-mix-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994105/kobalt/Ice%20Creams/Gelato_Mix_Ice_Cream_arfjuz.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994105/kobalt/icecream/Gelato_Mix_Ice_Cream_arfjuz.png",
     "price": 1.99,
     "category": "icecream",
     "rating": 4,
@@ -146,7 +146,7 @@
   {
     "name": "Neapolitan Ice Cream",
     "slug": "neapolitan-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994094/kobalt/Ice%20Creams/Neapolitan_Ice_Cream_ceyv6m.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994094/kobalt/icecream/Neapolitan_Ice_Cream_ceyv6m.png",
     "price": 3.99,
     "category": "icecream",
     "rating": 4,
@@ -155,7 +155,7 @@
   {
     "name": "Strawberry Ice Cream",
     "slug": "strawberry-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994160/kobalt/Ice%20Creams/Strawberry_Ice_Cream_x2wub0.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994160/kobalt/icecream/Strawberry_Ice_Cream_x2wub0.png",
     "price": 2.99,
     "category": "icecream",
     "rating": 5,
@@ -164,7 +164,7 @@
   {
     "name": "Frutti Di Bosco",
     "slug": "frutti-di-bosco",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994104/kobalt/Ice%20Creams/Frutti_Di_Bosco_lytsmg.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994104/kobalt/icecream/Frutti_Di_Bosco_lytsmg.png",
     "price": 4.99,
     "category": "icecream",
     "rating": 5,
@@ -173,7 +173,7 @@
   {
     "name": "Vanilla Ice Cream",
     "slug": "vanilla-ice-cream",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994094/kobalt/Ice%20Creams/Vanilla_Ice_Cream_v2uojk.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994094/kobalt/icecream/Vanilla_Ice_Cream_v2uojk.png",
     "price": 2.99,
     "category": "icecream",
     "rating": 5,
@@ -182,7 +182,7 @@
   {
     "name": "Banana",
     "slug": "banana",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994873/kobalt/Fruits/Banana_aqsr6h.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994873/kobalt/fruit/Banana_aqsr6h.png",
     "price": 1.99,
     "category": "fruit",
     "rating": 4,
@@ -191,7 +191,7 @@
   {
     "name": "Apple",
     "slug": "apple",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994875/kobalt/Fruits/Apple_h70yaw.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994875/kobalt/fruit/Apple_h70yaw.png",
     "price": 2.99,
     "category": "fruit",
     "rating": 5,
@@ -200,7 +200,7 @@
   {
     "name": "Orange",
     "slug": "orange",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994892/kobalt/Fruits/Orange_fuoqv4.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994892/kobalt/fruit/Orange_fuoqv4.png",
     "price": 5.99,
     "category": "fruit",
     "rating": 5,
@@ -209,7 +209,7 @@
   {
     "name": "Kiwi",
     "slug": "kiwi",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994877/kobalt/Fruits/Kiwi_gobwox.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994877/kobalt/fruit/Kiwi_gobwox.png",
     "price": 8.99,
     "category": "fruit",
     "rating": 4,
@@ -218,7 +218,7 @@
   {
     "name": "Strawberry",
     "slug": "strawberry",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994891/kobalt/Fruits/Strawberry_vwx9id.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994891/kobalt/fruit/Strawberry_vwx9id.png",
     "price": 2.99,
     "category": "fruit",
     "rating": 5,
@@ -227,7 +227,7 @@
   {
     "name": "Grape",
     "slug": "grape",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994878/kobalt/Fruits/Grape_xpcohx.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994878/kobalt/fruit/Grape_xpcohx.png",
     "price": 3.99,
     "category": "fruit",
     "rating": 4,
@@ -236,7 +236,7 @@
   {
     "name": "Blueberry",
     "slug": "blueberry",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994892/kobalt/Fruits/Blueberry_hzroqd.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994892/kobalt/fruit/Blueberry_hzroqd.png",
     "price": 3.99,
     "category": "fruit",
     "rating": 4,
@@ -245,7 +245,7 @@
   {
     "name": "Watermelon",
     "slug": "watermelon",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994905/kobalt/Fruits/Watermelon_r9abdo.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994905/kobalt/fruit/Watermelon_r9abdo.png",
     "price": 4.99,
     "category": "fruit",
     "rating": 5,
@@ -254,7 +254,7 @@
   {
     "name": "Melon",
     "slug": "melon",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994884/kobalt/Fruits/Melon_mz40d1.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994884/kobalt/fruit/Melon_mz40d1.png",
     "price": 4.99,
     "category": "fruit",
     "rating": 5,
@@ -263,7 +263,7 @@
   {
     "name": "Pineapple",
     "slug": "pineapple",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994889/kobalt/Fruits/Pineapple_fczkig.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671994889/kobalt/fruit/Pineapple_fczkig.png",
     "price": 10.99,
     "category": "fruit",
     "rating": 5,
@@ -272,7 +272,7 @@
   {
     "name": "California Pizza",
     "slug": "california-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995485/kobalt/Pizza/California_Pizza_s9wzuc.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995485/kobalt/pizza/California_Pizza_s9wzuc.png",
     "price": 22.99,
     "category": "pizza",
     "rating": 4,
@@ -281,7 +281,7 @@
   {
     "name": "Calzone Pizza",
     "slug": "calzone-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995512/kobalt/Pizza/Calzone_Pizza_t9n0da.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995512/kobalt/pizza/Calzone_Pizza_t9n0da.png",
     "price": 24.99,
     "category": "pizza",
     "rating": 5,
@@ -290,7 +290,7 @@
   {
     "name": "Chicago Pizza",
     "slug": "chicago-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995679/kobalt/Pizza/Chicago_Pizza_veuvul.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995679/kobalt/pizza/Chicago_Pizza_veuvul.png",
     "price": 31.99,
     "category": "pizza",
     "rating": 5,
@@ -299,7 +299,7 @@
   {
     "name": "Hawaii Pizza",
     "slug": "hawaii-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995510/kobalt/Pizza/Hawaii_Pizza_iodmg3.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995510/kobalt/pizza/Hawaii_Pizza_iodmg3.png",
     "price": 19.99,
     "category": "pizza",
     "rating": 4,
@@ -308,7 +308,7 @@
   {
     "name": "Margherita Pizza",
     "slug": "margherita-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995501/kobalt/Pizza/Margherita_Pizza_axqoen.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995501/kobalt/pizza/Margherita_Pizza_axqoen.png",
     "price": 22.99,
     "category": "pizza",
     "rating": 5,
@@ -317,7 +317,7 @@
   {
     "name": "NewYork Pizza",
     "slug": "newyork-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995543/kobalt/Pizza/NewYork_Pizza_l0nkx8.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995543/kobalt/pizza/NewYork_Pizza_l0nkx8.png",
     "price": 25.99,
     "category": "pizza",
     "rating": 4,
@@ -325,8 +325,8 @@
   },
   {
     "name": "Pizza Slice",
-    "slug": "piza-slice",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995681/kobalt/Pizza/Pizza_Slice_u2on2w.png",
+    "slug": "pizza-slice",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995681/kobalt/pizza/Pizza_Slice_u2on2w.png",
     "price": 2.99,
     "category": "pizza",
     "rating": 4,
@@ -335,7 +335,7 @@
   {
     "name": "Sausage Pizza",
     "slug": "sausage-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995503/kobalt/Pizza/Sausage_Pizza_idc9ek.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995503/kobalt/pizza/Sausage_Pizza_idc9ek.png",
     "price": 27.99,
     "category": "pizza",
     "rating": 5,
@@ -344,7 +344,7 @@
   {
     "name": "Sicilian Pizza",
     "slug": "sicilian-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995480/kobalt/Pizza/Sicilian_Pizza_wvzxmd.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995480/kobalt/pizza/Sicilian_Pizza_wvzxmd.png",
     "price": 26.99,
     "category": "pizza",
     "rating": 5,
@@ -353,7 +353,7 @@
   {
     "name": "Sushi Pizza",
     "slug": "sushi-pizza",
-    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995499/kobalt/Pizza/Sushi_Pizza_nuobxj.png",
+    "image": "https://res.cloudinary.com/dicynt7ms/image/upload/v1671995499/kobalt/pizza/Sushi_Pizza_nuobxj.png",
     "price": 20.99,
     "category": "pizza",
     "rating": 5,

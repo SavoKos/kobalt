@@ -72,7 +72,7 @@ function Categories({
         <h6>Are you sure you want to delete this category?</h6>
         <h6>All food in this category will also be deleted.</h6>
         <S.Buttons>
-          <button className='delete' onClick={deleteHandler}>
+          <button className='red' onClick={deleteHandler}>
             Delete
           </button>
           <button onClick={() => setModalActive(false)}>Cancel</button>
@@ -96,14 +96,14 @@ S.Buttons = styled.div`
   button {
     outline: 0;
     border: 0;
-    background-color: ${({ theme }) => theme.colors.lightGray};
+    background-color: ${({ theme }) => theme.colors.lightGray}!important;
     color: #000;
     padding: 1rem 2rem;
     border-radius: 1rem;
     cursor: pointer;
 
-    &.delete {
-      background-color: #cc0000;
+    &.red {
+      background-color: #ff3131 !important;
       color: #fff;
     }
   }

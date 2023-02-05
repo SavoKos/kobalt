@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import axios from '../../utils/axiosBackend';
 import Modal from '../Modal';
 import Skeleton from '../Skeletons/Skeleton';
+import AddFoodModal from './AddFoodModal';
 import FoodItem from './FoodItem';
 
 function Food({ categories }) {
@@ -15,9 +16,15 @@ function Food({ categories }) {
   const skeletons = new Array(8).fill(0);
   const [modalActive, setModalActive] = useState(false);
   const [deleteFoodData, setDeleteFoodData] = useState(undefined);
+  const [modalContent, setModalContent] = useState('');
 
   let errorMessage = '';
   if (error) errorMessage = <p className='error-message'>{error}</p>;
+
+  const options = categories?.map((category) => ({
+    value: category.category,
+    label: category.category[0].toUpperCase() + category.category.slice(1),
+  }));
 
   const getFood = () =>
     axios
@@ -28,11 +35,6 @@ function Food({ categories }) {
   useEffect(() => {
     getFood();
   }, [category]);
-
-  const options = categories?.map((category) => ({
-    value: category.category,
-    label: category.category[0].toUpperCase() + category.category.slice(1),
-  }));
 
   const selectChangedHandler = (e) => {
     setSelectedValue(e);
@@ -50,6 +52,18 @@ function Food({ categories }) {
       .finally(() => setModalActive(false));
   };
 
+  const removeFoodModal = (
+    <>
+      <h6>Are you sure you want to delete this food?</h6>
+      <S.Buttons>
+        <button className='red' onClick={deleteHandler}>
+          Delete
+        </button>
+        <button onClick={() => setModalActive(false)}>Cancel</button>
+      </S.Buttons>
+    </>
+  );
+
   return (
     <S.Container>
       <h2>Food</h2>
@@ -59,6 +73,14 @@ function Food({ categories }) {
         onChange={selectChangedHandler}
         className='select'
       />
+      <button
+        onClick={() => {
+          setModalActive(true);
+          setModalContent('add');
+        }}
+      >
+        Add Food
+      </button>
       <S.FoodList>
         {!error &&
           foodData?.length > 0 &&
@@ -68,6 +90,8 @@ function Food({ categories }) {
               food={food}
               setDeleteFoodData={setDeleteFoodData}
               setModalActive={setModalActive}
+              setModalContent={setModalContent}
+              key={food.slug}
             />
           ))}
 
@@ -79,14 +103,16 @@ function Food({ categories }) {
         )}
         {errorMessage}
       </S.FoodList>
+
       <Modal active={modalActive} setModalActive={setModalActive}>
-        <h6>Are you sure you want to delete this food?</h6>
-        <S.Buttons>
-          <button className='delete' onClick={deleteHandler}>
-            Delete
-          </button>
-          <button onClick={() => setModalActive(false)}>Cancel</button>
-        </S.Buttons>
+        {modalContent === 'add' ? (
+          <AddFoodModal
+            setModalActive={setModalActive}
+            categories={categories}
+          />
+        ) : (
+          removeFoodModal
+        )}
       </Modal>
     </S.Container>
   );
@@ -98,6 +124,10 @@ export default Food;
 const S = {};
 S.Container = styled.div`
   margin: 7rem 0;
+
+  .modalContent {
+    height: 80%;
+  }
 `;
 
 S.FoodList = styled.div`
@@ -120,14 +150,14 @@ S.Buttons = styled.div`
   button {
     outline: 0;
     border: 0;
-    background-color: ${({ theme }) => theme.colors.lightGray};
+    background-color: ${({ theme }) => theme.colors.lightGray}!important;
     color: #000;
     padding: 1rem 2rem;
     border-radius: 1rem;
     cursor: pointer;
 
-    &.delete {
-      background-color: #cc0000;
+    &.red {
+      background-color: #ff3131 !important;
       color: #fff;
     }
   }
