@@ -27,7 +27,7 @@ function Categories({
     setLoading(true);
 
     axios
-      .delete(`/food/${selectedValue.value}`)
+      .delete(`/food/category/${selectedValue.value}`)
       .then(async () => {
         setLoading(false);
 
@@ -68,7 +68,7 @@ function Categories({
       </button>
       {errorMessage}
 
-      <Modal active={modalActive}>
+      <Modal active={modalActive} setModalActive={setModalActive}>
         <h6>Are you sure you want to delete this category?</h6>
         <h6>All food in this category will also be deleted.</h6>
         <S.Buttons>

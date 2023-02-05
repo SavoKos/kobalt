@@ -10,6 +10,7 @@ import Spinner from '../components/Spinner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Categories from '../components/Admin/Categories';
+import Food from '../components/Admin/Food';
 
 function Admin() {
   const [categories, setCategories] = useState();
@@ -33,8 +34,6 @@ function Admin() {
       .finally(() => setLoading(false));
   }, [router, user]);
 
-  console.log(categories);
-
   useEffect(() => {
     axios.get('/food/category').then((res) => setCategories(res.data.data));
   }, []);
@@ -53,6 +52,7 @@ function Admin() {
           error={error}
           setError={setError}
         />
+        <Food categories={categories} />
       </S.Admin>
       <ToastContainer position='bottom-left' />
     </S.Container>
@@ -98,7 +98,7 @@ S.Admin = styled.div`
   }
 
   h2 {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 
   h5 {

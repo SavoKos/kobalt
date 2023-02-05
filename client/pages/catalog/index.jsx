@@ -6,19 +6,13 @@ import url from '../../utils/url';
 
 function Index() {
   const { setCategories } = useCategories();
-  const { setFood } = useFilters();
 
   useEffect(() => {
     async function fetchData() {
-      const res = await Promise.all([
-        fetch(`${url}/food/category`),
-        fetch(`${url}/food/all`, { method: 'POST' }),
-      ]);
-      const fetched = await Promise.all(res.map((r) => r.json()));
+      const res = await fetch(`${url}/food/category`);
+      const data = await res.json();
 
-      const data = fetched.map((arr) => arr.data);
-      setCategories(data[0]);
-      setFood(data[1]);
+      setCategories(data.data);
     }
     fetchData();
   }, []);

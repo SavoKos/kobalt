@@ -14,7 +14,7 @@ function Catalog({ category }) {
 
   useEffect(() => {
     axios
-      .post(`/food/${category}`, {
+      .post(`/food/category/${category}`, {
         minStars: stars[0],
         maxStars: stars[1],
         minPrice: price[0],

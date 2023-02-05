@@ -107,6 +107,7 @@ S.Image = styled.div`
     height: 100%;
     width: 100%;
     max-height: 100px;
+    margin: auto;
   }
 `;
 

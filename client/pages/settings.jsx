@@ -39,7 +39,8 @@ S.Profile = styled.div`
   }
 
   form {
-    min-width: 1000px;
+    max-width: 1000px;
+    width: 100%;
   }
 
   & > div {

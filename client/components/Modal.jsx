@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Modal({ children, active }) {
+function Modal({ children, active, setModalActive }) {
   if (!active) return;
   return (
     <S.Modal>
-      <S.Opacity />
+      <S.Opacity onClick={() => setModalActive(false)} />
       <S.ModalContent>{children}</S.ModalContent>
     </S.Modal>
   );
@@ -20,7 +20,7 @@ S.Modal = styled.div`
   width: 100%;
   height: 100%;
   inset: 0;
-  position: absolute;
+  position: fixed;
   z-index: 7;
 `;
 
