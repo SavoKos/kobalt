@@ -58,6 +58,28 @@ export const TopNote = styled.div`
   }
 `;
 
+export const Buttons = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  button {
+    outline: 0;
+    border: 0;
+    background-color: ${({ theme }) => theme.colors.lightOrange}!important;
+    color: #000;
+    padding: 1rem 2rem;
+    border-radius: 2rem !important;
+    cursor: pointer;
+
+    &.red {
+      background-color: #ff3131 !important;
+      color: #fff;
+    }
+  }
+`;
+
 export const Auth = styled.div`
   display: flex;
   background-color: #fff;

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
+import { Buttons } from '../../Theme';
 import axios from '../../utils/axiosBackend';
 import Modal from '../Modal';
 import Skeleton from '../Skeletons/Skeleton';
 import AddFoodModal from './AddFoodModal';
 import FoodItem from './FoodItem';
 
-function Food({ categories }) {
+function Food({ categories, setLoading }) {
   const [error, setError] = useState('');
   const [foodData, setFoodData] = useState([]);
   const [category, setCategory] = useState('all');
@@ -42,6 +43,7 @@ function Food({ categories }) {
   };
 
   const deleteHandler = () => {
+    setLoading(true);
     axios
       .delete(`/food/${deleteFoodData._id}`)
       .then(() => {
@@ -49,18 +51,21 @@ function Food({ categories }) {
         toast.success(`${deleteFoodData.name} is successfully deleted!`);
       })
       .catch((err) => setError(err.response.data.message))
-      .finally(() => setModalActive(false));
+      .finally(() => {
+        setModalActive(false);
+        setLoading(false);
+      });
   };
 
   const removeFoodModal = (
     <>
       <h6>Are you sure you want to delete this food?</h6>
-      <S.Buttons>
+      <Buttons>
         <button className='red' onClick={deleteHandler}>
           Delete
         </button>
         <button onClick={() => setModalActive(false)}>Cancel</button>
-      </S.Buttons>
+      </Buttons>
     </>
   );
 
@@ -92,6 +97,7 @@ function Food({ categories }) {
               setModalActive={setModalActive}
               setModalContent={setModalContent}
               key={food.slug}
+              setLoading={setLoading}
             />
           ))}
 
@@ -139,26 +145,4 @@ S.FoodList = styled.div`
   row-gap: 8rem;
   justify-content: center;
   column-gap: 1rem;
-`;
-
-S.Buttons = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  button {
-    outline: 0;
-    border: 0;
-    background-color: ${({ theme }) => theme.colors.lightGray}!important;
-    color: #000;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    cursor: pointer;
-
-    &.red {
-      background-color: #ff3131 !important;
-      color: #fff;
-    }
-  }
 `;

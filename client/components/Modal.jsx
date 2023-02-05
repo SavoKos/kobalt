@@ -59,6 +59,10 @@ S.ModalContent = styled.div`
     color: #000;
     cursor: pointer;
   }
+
+  div {
+    width: 100%;
+  }
 `;
 
 S.Opacity = styled.div`

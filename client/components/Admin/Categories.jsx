@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Select from 'react-select';
 import Modal from '../Modal';
 import axios from '../../utils/axiosBackend';
 import { toast } from 'react-toastify';
+import { Buttons } from '../../Theme';
 
 function Categories({
   categories,
@@ -20,8 +20,6 @@ function Categories({
 
     return data.data.data;
   };
-
-  console.log(error);
 
   const deleteHandler = () => {
     setLoading(true);
@@ -71,40 +69,15 @@ function Categories({
       <Modal active={modalActive} setModalActive={setModalActive}>
         <h6>Are you sure you want to delete this category?</h6>
         <h6>All food in this category will also be deleted.</h6>
-        <S.Buttons>
+        <Buttons>
           <button className='red' onClick={deleteHandler}>
             Delete
           </button>
           <button onClick={() => setModalActive(false)}>Cancel</button>
-        </S.Buttons>
+        </Buttons>
       </Modal>
     </>
   );
 }
 
 export default Categories;
-
-// -------------------------------------------------- styling ----------------------------------------------
-const S = {};
-
-S.Buttons = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  button {
-    outline: 0;
-    border: 0;
-    background-color: ${({ theme }) => theme.colors.lightGray}!important;
-    color: #000;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    cursor: pointer;
-
-    &.red {
-      background-color: #ff3131 !important;
-      color: #fff;
-    }
-  }
-`;

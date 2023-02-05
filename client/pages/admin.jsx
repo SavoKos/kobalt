@@ -54,7 +54,7 @@ function Admin() {
           error={error}
           setError={setError}
         />
-        <Food categories={categories} />
+        <Food categories={categories} setLoading={setLoading} />
       </S.Admin>
       <ToastContainer position='bottom-left' />
     </S.Container>

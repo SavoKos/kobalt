@@ -1,8 +1,9 @@
 import axios from '../../utils/axiosBackend';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Auth } from '../../Theme';
+import { Auth, Buttons } from '../../Theme';
 import Spinner from '../Spinner';
+import { toast } from 'react-toastify';
 
 function AddFood({ setModalActive, categories }) {
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ function AddFood({ setModalActive, categories }) {
           .then(() => {
             setModalActive(false);
             setError('');
+            toast.success(`${foodData.name} is successfully added!`);
           })
       )
       .catch((err) => setError(err.response.data.message))
@@ -133,14 +135,14 @@ function AddFood({ setModalActive, categories }) {
           />
         </S.Available>
         {errorMessage}
-        <S.Buttons>
-          <button type='submit' className='orange' disabled={loading}>
+        <Buttons>
+          <button type='submit' disabled={loading}>
             Add Food
           </button>
           <button type='text' onClick={() => setModalActive(false)}>
             Cancel
           </button>
-        </S.Buttons>
+        </Buttons>
       </S.Form>
       {loading && <Spinner />}
     </S.Auth>
@@ -161,27 +163,6 @@ S.Form = styled.form`
 
   label {
     color: #000;
-  }
-`;
-
-S.Buttons = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  button {
-    outline: 0;
-    border: 0;
-    background-color: ${({ theme }) => theme.colors.lightGray}!important;
-    color: #000;
-    padding: 1rem 2rem;
-    border-radius: 1rem !important;
-    cursor: pointer;
-
-    &.orange {
-      background-color: ${({ theme }) => theme.colors.lightOrange}!important;
-    }
   }
 `;
 
