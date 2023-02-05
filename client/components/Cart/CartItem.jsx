@@ -31,12 +31,7 @@ function CartItem({ food }) {
   return (
     <S.CartItem>
       <S.Image>
-        <Image
-          src={food.image}
-          alt={food.name}
-          fill
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-        />
+        <Image src={food.image} alt={food.name} width={200} height={200} />
       </S.Image>
       <S.Text>
         <p className='tag'>Available</p>

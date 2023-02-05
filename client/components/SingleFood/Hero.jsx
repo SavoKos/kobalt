@@ -21,10 +21,10 @@ function Hero({ food }) {
       <S.Food>
         <Image
           src={food.image}
-          fill
           className='foodImage'
           alt={food.name}
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          width={400}
+          height={400}
         />
         <S.Info>
           <h1>{food.name}</h1>

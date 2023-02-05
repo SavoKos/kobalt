@@ -27,10 +27,10 @@ function FoodItem({
         <Image src='/foodItem.png' width={300} height={300} alt='foodItem' />
         <Image
           src={food.image}
-          fill
+          width={200}
+          height={200}
           className='foodImg'
           alt={food.name}
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         />
         <S.Text>
           <p className='title'>{food.name}</p>
