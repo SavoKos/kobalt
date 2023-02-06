@@ -7,23 +7,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { TopNote } from '../../Theme';
 import useFilters from '../../context/filters';
-import axios from '../../utils/axiosBackend';
+import searchByFilters from '../../utils/searchByFilters';
 
 function Catalog({ category }) {
-  const { stars, price, onlyAvailable, setFood } = useFilters();
+  const { stars, price, onlyAvailable, setFood, search } = useFilters();
 
   useEffect(() => {
-    axios
-      .post(`/food/category/${category}`, {
-        minStars: stars[0],
-        maxStars: stars[1],
-        minPrice: price[0],
-        maxPrice: price[1],
-        onlyAvailable,
-      })
-      .then((res) => setFood(res.data.data))
-      .catch((err) => console.log(err));
-  }, [stars, price, onlyAvailable, category, setFood]);
+    searchByFilters(category, stars, price, onlyAvailable, setFood, search);
+  }, [stars, price, onlyAvailable, category, setFood, search]);
 
   return (
     <S.Container>

@@ -4,17 +4,21 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
 import { BsCart2, BsSearch } from 'react-icons/bs';
-import { MdOutlineRestaurantMenu } from 'react-icons/md';
+import Modal from './Modal';
 import styled from 'styled-components';
 import useCart from '../context/cart';
 import { AiOutlineHome } from 'react-icons/ai';
 import useUser from '../context/user';
 import { toast } from 'react-toastify';
+import useFilters from '../context/filters';
 
 function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
   const { cart: cartContext } = useCart();
   const [dropdownActive, setDropdownActive] = useState(false);
   const { user, setUser } = useUser();
+  const [searchValue, setSearchValue] = useState('');
+  const { setSearch, search } = useFilters();
+  const [modalActive, setModalActive] = useState(false);
 
   const quantityArr = cartContext.map((cartItem) => cartItem.quantity);
   const cartCount =
@@ -41,8 +45,13 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
         <S.Right>
           {searchIcon && (
             <S.Search>
-              <input type='text' placeholder='Search' />
-              <S.SearchIcon>
+              <input
+                type='text'
+                placeholder='Search'
+                onChange={(e) => setSearchValue(e.target.value)}
+                defaultValue={search || searchValue}
+              />
+              <S.SearchIcon onClick={() => setSearch(searchValue)}>
                 <BsSearch className='icon' />
               </S.SearchIcon>
             </S.Search>
@@ -63,7 +72,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
               </Link>
             )}
             {searchIcon && (
-              <S.Icon className='search'>
+              <S.Icon className='search' onClick={() => setModalActive(true)}>
                 <BsSearch />
               </S.Icon>
             )}
@@ -106,6 +115,26 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
           </S.Links>
         </S.Right>
       </S.MainContent>
+      <Modal active={modalActive} setModalActive={setModalActive}>
+        <S.Search>
+          <input
+            type='text'
+            placeholder='Search'
+            onChange={(e) => setSearchValue(e.target.value)}
+            defaultValue={search || searchValue}
+            className='mobileSearch'
+          />
+          <S.SearchIcon
+            onClick={() => {
+              setSearch(searchValue);
+              setModalActive(false);
+            }}
+            className='mobileSearch'
+          >
+            <BsSearch className='icon' />
+          </S.SearchIcon>
+        </S.Search>
+      </Modal>
     </S.Container>
   );
 }
@@ -173,6 +202,10 @@ S.Search = styled.div`
     border-radius: 10rem;
     display: none;
 
+    &.mobileSearch {
+      display: block;
+    }
+
     @media screen and (min-width: 768px) {
       display: block;
     }
@@ -180,21 +213,34 @@ S.Search = styled.div`
 `;
 
 S.SearchIcon = styled.div`
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: ${({ theme }) => theme.colors.lightOrange};
-    display: flex;
-  }
-
-  border-radius: 100%;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: ${({ theme }) => theme.colors.lightOrange};
   display: none;
+  border-radius: 100%;
   justify-content: center;
   align-items: center;
   padding: 0.8rem;
   cursor: pointer;
+  width: fit-content !important;
+
+  &.mobileSearch {
+    display: flex;
+    right: 7px;
+    padding: 1.2rem;
+
+    svg {
+      top: unset;
+      left: unset;
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 S.Icon = styled.div`

@@ -21,7 +21,8 @@ exports.getCategories = catchAsync(async (req, res, next) => {
 });
 
 exports.getByCategory = catchAsync(async (req, res, next) => {
-  const { minPrice, maxPrice, minStars, maxStars, onlyAvailable } = req.body;
+  const { minPrice, maxPrice, minStars, maxStars, onlyAvailable, search } =
+    req.body;
 
   let food = await Food.aggregate([
     {
@@ -33,6 +34,7 @@ exports.getByCategory = catchAsync(async (req, res, next) => {
             ? { category: req.params.category }
             : {},
           onlyAvailable ? { available: true } : {},
+          search ? { name: new RegExp(search, 'i') } : {},
         ],
       },
     },

@@ -11,11 +11,13 @@ export const FiltersProvider = ({ children }) => {
   const [price, setPrice] = useState([1, 100]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [food, setFood] = useState([]);
+  const [search, setSearch] = useState('');
 
   const resetFilters = () => {
     setStars([1, 5]);
     setPrice([1, 100]);
     setOnlyAvailable(false);
+    setSearch('');
   };
 
   const value = {
@@ -28,6 +30,8 @@ export const FiltersProvider = ({ children }) => {
     food,
     setFood,
     resetFilters,
+    search,
+    setSearch,
   };
 
   return (
