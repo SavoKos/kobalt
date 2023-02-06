@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
 import { BsCart2, BsSearch } from 'react-icons/bs';
+import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import Modal from './Modal';
 import styled from 'styled-components';
 import useCart from '../context/cart';
