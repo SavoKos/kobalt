@@ -8,32 +8,32 @@ import {
 import styled from 'styled-components';
 import useCart from '../../context/cart';
 
-function Hero({ food }) {
+function Hero({ food, reviews }) {
   const { addToCart } = useCart();
   const starItems = Array(5)
     .fill(0)
     .map((_, i) =>
-      i < +food.rating ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
+      i < +food?.rating ? <AiFillStar key={i} /> : <AiOutlineStar key={i} />
     );
 
   return (
     <S.Container>
       <S.Food>
         <Image
-          src={food.image}
+          src={food?.image}
           className='foodImage'
-          alt={food.name}
+          alt={food?.name}
           width={400}
           height={400}
         />
         <S.Info>
-          <h1>{food.name}</h1>
+          <h1>{food?.name}</h1>
           <p className='tag'>
-            {food.available ? 'AVAILABLE' : 'NOT AVAILABLE'}
+            {food?.available ? 'AVAILABLE' : 'NOT AVAILABLE'}
           </p>
           <S.Stars>{starItems.map((item) => item)}</S.Stars>
-          <p className='price'>${food.price}</p>
-          <S.Cart onClick={() => addToCart(food)} available={food.available}>
+          <p className='price'>${food?.price}</p>
+          <S.Cart onClick={() => addToCart(food)} available={food?.available}>
             <p>Add To Cart</p>
             <AiOutlineShoppingCart className='cart' />
           </S.Cart>

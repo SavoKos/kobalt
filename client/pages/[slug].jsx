@@ -8,13 +8,16 @@ import PopularCategory from '../components/Home/PopularCategory';
 import styled from 'styled-components';
 import url from '../utils/url';
 import { useRouter } from 'next/router';
+import Review from '../components/Review';
+import useUser from '../context/user';
+import Spinner from '../components/Spinner';
 
 function Food() {
   const router = useRouter();
   const { slug } = router.query;
   const [categories, setCategories] = useState([]);
   const [food, setFood] = useState([]);
-
+  const { user } = useUser();
   useEffect(() => {
     if (!slug) return;
     async function fetchData() {
@@ -32,12 +35,15 @@ function Food() {
     }
 
     fetchData();
-  }, [slug]);
+  }, [slug, user._id]);
+
+  if (!food?.food?._id) return <Spinner />;
 
   return (
     <div>
       <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
-      <Hero food={food} />
+      <Hero food={food?.food} reviews={food?.review} />
+      <Review foodId={food?.food?._id} reviews={food?.review} />
       <PopularCategory categories={categories} />
       <S.Footer>
         <Footer />

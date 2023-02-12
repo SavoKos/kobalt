@@ -9,6 +9,7 @@ const errorController = require('./controllers/errorController');
 const authRoutes = require('./routes/authRoutes');
 const foodRoutes = require('./routes/foodRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/v1/user', authRoutes);
 app.use('/api/v1/food', foodRoutes);
 app.use('/api/v1/order', orderRoutes);
+app.use('/api/v1/review', reviewRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Route ${req.originalUrl} is not defined!`, 404));

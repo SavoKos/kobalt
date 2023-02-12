@@ -1,6 +1,9 @@
 const { Router } = require('express');
 const { createOne } = require('../controllers/handlerFactory');
-const { getOrders } = require('../controllers/orderController');
+const {
+  getOrders,
+  getOrderByFoodSlug,
+} = require('../controllers/orderController');
 
 const Order = require('../models/orderModel');
 

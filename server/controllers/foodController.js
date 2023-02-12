@@ -1,5 +1,6 @@
 {/* prettier-ignore */}
 const Food = require('../models/foodModel');
+const Review = require('../models/reviewModel');
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -67,5 +68,20 @@ exports.deleteByCategory = catchAsync(async (req, res, next) => {
   res.status(204).json({
     status: 'success',
     data: null,
+  });
+});
+
+exports.getSingleFood = catchAsync(async (req, res, next) => {
+  const food = await Food.findOne({ slug: req.params.slug });
+  const review = await Review.find({ food: food._id });
+
+  if (!food) {
+    return next(new AppError('No food found!', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    count: food.length,
+    data: { food, review },
   });
 });

@@ -4,12 +4,12 @@ const {
   getByCategory,
   deleteByCategory,
   categories,
+  getSingleFood,
 } = require('../controllers/foodController');
 
 const {
   getAll,
   createOne,
-  getOne,
   deleteOne,
 } = require('../controllers/handlerFactory');
 const Food = require('../models/foodModel');
@@ -26,6 +26,6 @@ router
   .post(getByCategory)
   .delete(categories, deleteByCategory);
 
-router.get('/:slug', getOne(Food));
+router.get('/:slug', getSingleFood);
 
 module.exports = router;
