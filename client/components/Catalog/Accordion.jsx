@@ -43,10 +43,6 @@ S.Accordion = styled.div`
   border-radius: 1rem;
   overflow: hidden;
 
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-
   .categories {
     display: block !important;
     background-color: transparent;

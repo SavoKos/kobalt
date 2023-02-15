@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 const { promisify } = require('util');
 const crypto = require('crypto');
-const { sendWelcomeEmail, sendPasswordReset } = require('../mail/email');
+const { sendEmail } = require('../mail/email');
 
 const maxAge = process.env.ACTIVE_DAYS * 24 * 60 * 60;
 
@@ -40,7 +40,9 @@ exports.signup = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
   });
 
-  sendWelcomeEmail(req.body.email, req.body.name);
+  const emailSubject = 'Welcome to Kobalt';
+  const emailText = `Welcome to Kobalt Online Restaurant ${req.body.name}. Start ordering right now! - https://kobalt.savokos.com`;
+  sendEmail(req.body.email, emailSubject, emailText);
   createSendToken(newUser, 201, req, res);
 });
 
@@ -110,7 +112,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   try {
     const resetURL = `${url}/resetpassword/${resetToken}`;
 
-    sendPasswordReset(user.email, resetURL);
+    const emailSubject = 'Reset Password';
+    sendEmail(user.email, emailSubject, resetURL);
 
     res.status(200).json({
       status: 'success',

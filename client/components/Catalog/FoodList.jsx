@@ -12,10 +12,6 @@ function FoodList() {
 
   return (
     <S.Container>
-      <S.Filters>
-        <Filters />
-      </S.Filters>
-      <Accordions />
       <S.FoodItems>
         {food?.length > 0 &&
           food[0].name &&
@@ -48,17 +44,16 @@ S.FoodItems = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 5rem 0;
   row-gap: 8rem;
   justify-content: center;
   column-gap: 1rem;
+  margin-top: 5rem;
 
   @media screen and (min-width: 768px) {
-    margin: 10rem 0;
+    margin-top: 0;
   }
 
   @media screen and (min-width: 1024px) {
-    margin: 15rem 0 10rem 0;
     column-gap: 3rem;
     padding: 0 2rem;
   }

@@ -10,24 +10,13 @@ let transport = nodemailer.createTransport({
   },
 });
 
-module.exports.sendWelcomeEmail = (email, name) => {
+module.exports.sendEmail = (email, subject, text) => {
   transport
     .sendMail({
       from: process.env.MAIL_USER,
       to: email,
-      subject: 'Welcome to Kobalt',
-      text: `Welcome to Kobalt Online Restaurant ${name}. Start ordering right now! - https://kobalt.savokos.com`,
-    })
-    .catch((err) => console.log(err));
-};
-
-module.exports.sendPasswordReset = (email, url) => {
-  transport
-    .sendMail({
-      from: process.env.MAIL_USER,
-      to: email,
-      subject: 'Reset Password',
-      text: url,
+      subject: subject,
+      text: text,
     })
     .catch((err) => console.log(err));
 };

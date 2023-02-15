@@ -12,14 +12,16 @@ function Categories({ closeAccordion }) {
 
   return (
     <S.Container className='categories'>
-      <h5>Catalog</h5>
       <S.Categories>
         {categories?.length === 0 &&
           skeletons.map((_, i) => <SkeletonLine key={i} />)}
 
         {categories?.length > 0 && (
           <Link href={`/catalog`} onClick={closeAccordion}>
-            <S.Category selected={router.pathname === '/catalog'}>
+            <S.Category
+              selected={router.pathname === '/catalog'}
+              className='all'
+            >
               All
             </S.Category>
           </Link>
@@ -53,8 +55,8 @@ S.Container = styled.div`
   flex-direction: column;
   gap: 1rem;
   overflow: hidden;
-  padding: 3rem 0;
   display: none;
+  max-width: 350px;
 
   h5 {
     display: none;
@@ -63,7 +65,6 @@ S.Container = styled.div`
 
   @media screen and (min-width: 768px) {
     display: flex;
-    min-height: 100vh;
     min-width: 250px;
 
     h5 {
@@ -99,6 +100,7 @@ S.Categories = styled.div`
   width: 100%;
   z-index: 5;
   transition: all ease 0.5s;
+  padding: 2rem 0;
 
   p {
     font-size: 1em;

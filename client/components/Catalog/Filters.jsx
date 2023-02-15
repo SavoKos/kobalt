@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Slider from './Slider';
-import { BiReset } from 'react-icons/bi';
-import { AiFillCheckCircle } from 'react-icons/ai';
 import useFilters from '../../context/filters';
 
 function Filters({ closeAccordion }) {
@@ -15,24 +12,22 @@ function Filters({ closeAccordion }) {
     stars,
     onlyAvailable,
   } = useFilters();
-  const [checkedUI, setCheckedUI] = useState(onlyAvailable);
-  const [priceSlider, setPriceSlider] = useState(price);
-  const [starsSlider, setStarsSlider] = useState(stars);
+  const [available, setAvailable] = useState(onlyAvailable);
+  const [priceFilter, setPriceFilter] = useState(price || [1, 100]);
+  const [ratingFilter, setRatingFilter] = useState(stars || [1, 5]);
 
-  const addFilters = () => {
-    setPrice(priceSlider);
-    setStars(starsSlider);
-    setOnlyAvailable(checkedUI);
-    closeAccordion && closeAccordion();
+  const addFilters = (e) => {
+    e.preventDefault();
+    setPrice(priceFilter);
+    setStars(ratingFilter);
+    setOnlyAvailable(available);
   };
 
   const resetHandler = () => {
-    setPriceSlider([1, 100]);
-    setStarsSlider([1, 5]);
-    setCheckedUI(false);
-
+    setPriceFilter([1, 100]);
+    setRatingFilter([1, 5]);
+    setAvailable(false);
     resetFilters();
-
     closeAccordion && closeAccordion();
   };
 
@@ -41,44 +36,64 @@ function Filters({ closeAccordion }) {
   }
 
   return (
-    <S.Container>
-      <Slider
-        label='Price'
-        marks={{
-          1: `$1`,
-          100: `$100`,
-        }}
-        min={1}
-        max={100}
-        labelPrefix='$'
-        applyFilter={setPriceSlider}
-        value={priceSlider}
-      />
-      <Slider
-        label='Stars'
-        marks={{
-          1: `1`,
-          5: `5`,
-        }}
-        min={1}
-        max={5}
-        applyFilter={setStarsSlider}
-        value={starsSlider}
-      />
+    <S.Container onSubmit={addFilters}>
+      <p>Price</p>
+      <S.Filter>
+        <input
+          type='number'
+          placeholder='From'
+          min={1}
+          max={100}
+          onChange={(e) => setPriceFilter([+e.target.value, priceFilter[1]])}
+          value={priceFilter[0]}
+        />
+        <input
+          type='number'
+          placeholder='To'
+          min={1}
+          max={100}
+          onChange={(e) => setPriceFilter([priceFilter[0], +e.target.value])}
+          value={priceFilter[1]}
+        />
+      </S.Filter>
+
+      <p className='rating'>Rating</p>
+      <S.Filter>
+        <input
+          type='number'
+          placeholder='From'
+          min={1}
+          max={5}
+          onChange={(e) => setRatingFilter([+e.target.value, ratingFilter[1]])}
+          value={ratingFilter[0]}
+        />
+        <input
+          type='number'
+          placeholder='To'
+          min={1}
+          max={5}
+          onChange={(e) => setRatingFilter([ratingFilter[0], +e.target.value])}
+          value={ratingFilter[1]}
+        />
+      </S.Filter>
       <S.Available>
         <input
           type='checkbox'
           name='available'
           id='available'
-          checked={checkedUI}
-          onChange={() => setCheckedUI(toggle)}
+          checked={available}
+          onChange={() => setAvailable(toggle)}
         />
         <label htmlFor='available'>Only Available</label>
       </S.Available>
-      <S.Icons>
-        <BiReset className='reset' onClick={resetHandler} />
-        <AiFillCheckCircle className='apply' onClick={addFilters} />
-      </S.Icons>
+      <S.Buttons>
+        <button className='reset' onClick={resetHandler} type='reset'>
+          Reset
+        </button>
+        <button className='apply' type='submit'>
+          Apply
+        </button>
+      </S.Buttons>
     </S.Container>
   );
 }
@@ -87,18 +102,17 @@ export default Filters;
 
 // -------------------------------------------------- styling ----------------------------------------------
 const S = {};
-S.Container = styled.div`
+S.Container = styled.form`
   display: flex;
   color: ${({ theme }) => theme.colors.gray};
   height: fit-content;
   padding: 1.5rem;
   justify-content: space-between;
-  align-items: center;
   flex-flow: column;
-  gap: 2rem;
+  align-items: flex-start;
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: -5rem;
+  p.rating {
+    margin-top: 2rem;
   }
 
   label {
@@ -109,7 +123,6 @@ S.Container = styled.div`
   @media screen and (min-width: 768px) {
     color: ${({ theme }) => theme.colors.gray};
     border-radius: 1rem;
-    flex-flow: row;
     gap: 0;
 
     label {
@@ -120,24 +133,46 @@ S.Container = styled.div`
 
 S.Available = styled.div`
   flex: 0;
+  margin-top: 2rem;
   @media screen and (min-width: 900px) {
     flex: unset;
   }
 `;
 
-S.Icons = styled.div`
+S.Buttons = styled.div`
   display: flex;
   align-items: center;
+  align-self: center;
   gap: 1rem;
+  padding: 1rem;
 
-  svg {
-    font-size: 30px;
-    color: #ff3333;
+  button {
+    padding: 0.5rem 1rem;
+    outline: 0;
+    border: 0;
+    border-radius: 1rem;
+    color: #fff;
+    background-color: #00b91c;
     cursor: pointer;
 
-    &.apply {
-      color: #07bc0c;
+    &.reset {
+      background-color: #ff3131;
     }
   }
-  padding: 1rem;
+`;
+
+S.Filter = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+
+  input {
+    width: 100px;
+    outline: 0;
+    border: 0;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
 `;

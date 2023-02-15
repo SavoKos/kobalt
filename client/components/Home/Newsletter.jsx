@@ -1,11 +1,36 @@
 import Image from 'next/image';
 import React from 'react';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
+import axios from '../../utils/axiosBackend';
+import Spinner from '../Spinner';
 
 function Newsletter() {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState(undefined);
+  const [loading, setLoading] = useState(false);
+
+  let errorMessage = '';
+  if (error) errorMessage = <p className='error-message'>{error}</p>;
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    axios
+      .post('/newsletter', { email: email })
+      .then(() => {
+        toast.success('Thank you for subscribing to our newsletter.');
+        setEmail('');
+      })
+      .catch((err) => setError(err?.response?.data?.message))
+      .finally(() => setLoading(false));
+  };
+
   return (
     <S.Container>
       <div>
+        <p>{errorMessage}</p>
         <Image
           src='/newsletter.png'
           fill
@@ -25,9 +50,17 @@ function Newsletter() {
             <span>Subscribe</span> <br />
             to news
           </h3>
-          <S.Form>
-            <input type='text' placeholder='Enter your email' />
-            <button>Subscribe</button>
+          <S.Form onSubmit={submitHandler} loading={loading}>
+            <input
+              type='email'
+              placeholder='Enter your email'
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button type='submit'>
+              <p>Subscribe</p>
+              {loading && <Spinner />}
+            </button>
           </S.Form>
         </S.Center>
       </div>
@@ -46,6 +79,10 @@ S.Container = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
+
+  p {
+    float: right;
+  }
 
   .bg {
     width: 100% !important;
@@ -90,7 +127,7 @@ S.Center = styled.div`
   }
 `;
 
-S.Form = styled.div`
+S.Form = styled.form`
   display: flex;
   width: 100%;
   position: relative;
@@ -122,6 +159,12 @@ S.Form = styled.div`
     text-transform: uppercase;
     font-weight: 500;
     margin-top: 0.5rem;
+    cursor: pointer;
+
+    p {
+      visibility: ${({ loading }) => (loading ? 'hidden' : 'visible')};
+      font-size: 16px;
+    }
   }
 
   @media screen and (min-width: 768px) {

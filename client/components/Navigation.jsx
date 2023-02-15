@@ -31,6 +31,12 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
     setUser({});
   };
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setSearch(searchValue);
+    if (modalActive) setModalActive(false);
+  };
+
   return (
     <S.Container className='nav'>
       <Link href='/'>
@@ -45,14 +51,14 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
       <S.MainContent>
         <S.Right>
           {searchIcon && (
-            <S.Search>
+            <S.Search onSubmit={searchHandler}>
               <input
                 type='text'
                 placeholder='Search'
                 onChange={(e) => setSearchValue(e.target.value)}
                 defaultValue={search || searchValue}
               />
-              <S.SearchIcon onClick={() => setSearch(searchValue)}>
+              <S.SearchIcon type='submit'>
                 <BsSearch className='icon' />
               </S.SearchIcon>
             </S.Search>
@@ -117,7 +123,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
         </S.Right>
       </S.MainContent>
       <Modal active={modalActive} setModalActive={setModalActive}>
-        <S.Search>
+        <S.Search onSubmit={searchHandler}>
           <input
             type='text'
             placeholder='Search'
@@ -125,13 +131,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
             defaultValue={search || searchValue}
             className='mobileSearch'
           />
-          <S.SearchIcon
-            onClick={() => {
-              setSearch(searchValue);
-              setModalActive(false);
-            }}
-            className='mobileSearch'
-          >
+          <S.SearchIcon className='mobileSearch'>
             <BsSearch className='icon' />
           </S.SearchIcon>
         </S.Search>
@@ -191,7 +191,7 @@ S.MainContent = styled.div`
   width: 100%;
 `;
 
-S.Search = styled.div`
+S.Search = styled.form`
   position: relative;
   width: -webkit-fill-available;
 
@@ -213,7 +213,9 @@ S.Search = styled.div`
   }
 `;
 
-S.SearchIcon = styled.div`
+S.SearchIcon = styled.button`
+  outline: 0;
+  border: 0;
   position: absolute;
   right: 5px;
   top: 50%;

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React from 'react';
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import styled from 'styled-components';
-import ProtectedRoute from '../ProtectedRoute';
 import Newsletter from './Newsletter';
 
 function Footer() {
@@ -22,10 +21,34 @@ function Footer() {
           <Link href='/settings'>Settings</Link>
         </S.NavLinks>
         <S.SocialMedia>
-          <BsTwitter />
-          <BsFacebook />
-          <BsInstagram />
-          <BsLinkedin />
+          <Link
+            href='https://twitter.com'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <BsTwitter />
+          </Link>
+          <Link
+            href='https://facebook.com'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <BsFacebook />
+          </Link>
+          <Link
+            href='https://instagram.com'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <BsInstagram />
+          </Link>
+          <Link
+            href='https://linkedin.com'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <BsLinkedin />
+          </Link>
         </S.SocialMedia>
       </S.Top>
       <S.Copyright>© 2022 All rights reserved.</S.Copyright>
@@ -39,10 +62,14 @@ export default Footer;
 const S = {};
 S.Container = styled.div`
   background-color: ${({ theme }) => theme.colors.gray};
-  color: #aeadb2;
   position: relative;
   margin-top: 15rem;
   border-radius: 2rem 2rem 0 0;
+  color: #aeadb2;
+
+  a {
+    color: #aeadb2;
+  }
 
   @media screen and (min-width: 768px) {
     border-radius: 5rem 5rem 0 0;
