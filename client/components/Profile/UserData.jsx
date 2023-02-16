@@ -1,13 +1,18 @@
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import useUser from '../../context/user';
-import { Auth } from '../../Theme';
+import { Auth, Buttons } from '../../Theme';
 import axios from '../../utils/axiosBackend';
+import Modal from '../Modal';
 import Spinner from '../Spinner';
 
 function UserData() {
   const { user, setUser } = useUser();
   const [loading, setLoading] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+  const router = useRouter();
   const [credentials, setCredentials] = useState({
     password: '',
     confirmPassword: '',
@@ -49,8 +54,19 @@ function UserData() {
           name: res.data.data.name,
         });
       })
+      .catch((err) => setError(err.response.data.message))
+      .finally(() => setLoading(false));
+  };
+
+  const deleteHandler = () => {
+    setLoading(true);
+    axios
+      .delete(`/user/${user._id}`)
+      .then((res) => router.push('/login'))
       .catch((err) => {
-        console.log(err);
+        setModalActive(false);
+        Cookies.remove('jwt');
+        setUser({});
         setError(err.response.data.message);
       })
       .finally(() => setLoading(false));
@@ -107,9 +123,30 @@ function UserData() {
         </div>
         {errorMessage}
         <div>
-          <button className='login-btn'>Update</button>
+          <button className='login-btn' type='submit'>
+            Update
+          </button>
+        </div>
+        <div>
+          <button
+            className='delete-btn'
+            type='button'
+            onClick={() => setModalActive(true)}
+          >
+            Delete my account
+          </button>
         </div>
       </form>
+      <Modal active={modalActive} setModalActive={setModalActive}>
+        <h6>Are you sure you want to delete this user?</h6>
+        <h6>This action is irreversible.</h6>
+        <Buttons>
+          <button className='red' onClick={deleteHandler}>
+            Delete
+          </button>
+          <button onClick={() => setModalActive(false)}>Cancel</button>
+        </Buttons>
+      </Modal>
     </Auth>
   );
 }

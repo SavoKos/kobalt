@@ -80,6 +80,73 @@ export const Buttons = styled.div`
   }
 `;
 
+export const ResetPassword = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+
+  p {
+    text-align: center;
+    margin: auto;
+  }
+
+  .logo {
+    cursor: pointer;
+    max-width: 200px;
+    max-height: 80px;
+    width: 140px !important;
+    height: fit-content !important;
+    position: relative !important;
+    margin: 1rem 0 1rem 0rem;
+
+    @media screen and (min-width: 768px) {
+      width: auto !important;
+      height: auto !important;
+      margin: 1rem 2rem 1rem 0;
+    }
+  }
+
+  input {
+    color: #000;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 1rem;
+
+    &::before {
+      content: 'Email';
+    }
+  }
+
+  button {
+    outline: 0;
+    border: 0;
+    padding: 1.5em 2em;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.colors.lightOrange};
+    display: block;
+    margin: auto;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  h5 {
+    margin-top: 2rem;
+  }
+`;
+
 export const Auth = styled.div`
   display: flex;
   background-color: #fff;
@@ -91,10 +158,16 @@ export const Auth = styled.div`
     flex-direction: row;
   }
 
-  .login-btn {
+  .login-btn,
+  .delete-btn {
     display: block;
     width: 100%;
     margin: auto;
+  }
+
+  .delete-btn {
+    background-color: #ff3131;
+    color: #fff;
   }
 
   a {

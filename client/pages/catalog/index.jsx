@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Catalog from '../../components/Catalog';
 import useCategories from '../../context/categories';
+import useFilters from '../../context/filters';
 import url from '../../utils/url';
 
 function Index() {

@@ -8,7 +8,7 @@ import Spinner from '../Spinner';
 
 function Newsletter() {
   const [email, setEmail] = useState('');
-  const [error, setError] = useState(undefined);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   let errorMessage = '';
@@ -21,10 +21,13 @@ function Newsletter() {
       .post('/newsletter', { email: email })
       .then(() => {
         toast.success('Thank you for subscribing to our newsletter.');
-        setEmail('');
+        setError('');
       })
       .catch((err) => setError(err?.response?.data?.message))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        setEmail('');
+      });
   };
 
   return (
@@ -56,6 +59,7 @@ function Newsletter() {
               placeholder='Enter your email'
               required
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
             <button type='submit'>
               <p>Subscribe</p>
