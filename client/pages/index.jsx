@@ -8,6 +8,7 @@ import Navigation from '../components/Navigation';
 import styled from 'styled-components';
 import url from '../utils/url';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
@@ -30,6 +31,15 @@ export default function Home() {
 
   return (
     <S.Container>
+      <Head>
+        <title>Kobalt | Online Restaurant</title>
+        <meta
+          name='description'
+          content="Kobalt online restaurant will get you anything you want to your doorstep. You
+          order online, you'll have it!."
+        />
+        <link href='https://kobalt.savokos.com' rel='canonical' />
+      </Head>
       <Navigation cartIcon={true} catalogIcon={true} />
       <Hero />
       <PopularCategory categories={categories} food={food} />

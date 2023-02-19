@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Catalog from '../../components/Catalog';
 import useCategories from '../../context/categories';
-import useFilters from '../../context/filters';
 import url from '../../utils/url';
 
 function Index() {
@@ -17,7 +16,18 @@ function Index() {
     fetchData();
   }, []);
 
-  return <Catalog category='all' />;
+  return (
+    <Catalog category='all'>
+      <Head>
+        <title>Kobalt | Catalog</title>
+        <meta
+          name='description'
+          content='Kobalt has variety of foods you can order right now!'
+        />
+        <link href='https://kobalt.savokos.com/catalog' rel='canonical' />
+      </Head>
+    </Catalog>
+  );
 }
 
 export default Index;

@@ -1,0 +1,3 @@
+Sitemap: https://kobalt.savokos.com/sitemap.xml
+User-agent:*
+Disallow:

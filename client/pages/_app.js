@@ -8,21 +8,16 @@ import Theme from '../Theme';
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <title>Kobalt | Online Restoran</title>
-      </Head>
-      <Theme>
-        <CartProvider>
-          <UserProvider>
-            <CategoriesProvider>
-              <FiltersProvider>
-                <Component {...pageProps} />
-              </FiltersProvider>
-            </CategoriesProvider>
-          </UserProvider>
-        </CartProvider>
-      </Theme>
-    </>
+    <Theme>
+      <CartProvider>
+        <UserProvider>
+          <CategoriesProvider>
+            <FiltersProvider>
+              <Component {...pageProps} />
+            </FiltersProvider>
+          </CategoriesProvider>
+        </UserProvider>
+      </CartProvider>
+    </Theme>
   );
 }
