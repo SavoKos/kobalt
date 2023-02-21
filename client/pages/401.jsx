@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from '../components/Head';
 import Error from './error';
 
 function Page401() {
