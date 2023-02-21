@@ -1,31 +1,35 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+import Head from '../components/Head';
 
 function Error({ message = "Looks like you're lost", code = 404 }) {
   return (
-    <S.Container>
-      <section className='page_404'>
-        <div>
+    <>
+      <Head title='Error' description='Error' link='/error' />
+      <S.Container>
+        <section className='page_404'>
           <div>
             <div>
               <div>
-                <div className='four_zero_four_bg'>
-                  <h1>{code}</h1>
-                </div>
+                <div>
+                  <div className='four_zero_four_bg'>
+                    <h1>{code}</h1>
+                  </div>
 
-                <div className='contant_box_404'>
-                  <h3 className='h2'>{message}</h3>
-                  <Link href='/' className='home'>
-                    Go to Home
-                  </Link>
+                  <div className='contant_box_404'>
+                    <h3 className='h2'>{message}</h3>
+                    <Link href='/' className='home'>
+                      Go to Home
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </S.Container>
+        </section>
+      </S.Container>
+    </>
   );
 }
 

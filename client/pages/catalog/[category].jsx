@@ -1,8 +1,8 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Catalog from '../../components/Catalog';
 import useCategories from '../../context/categories';
-import useFilters from '../../context/filters';
 import url from '../../utils/url';
 
 function Category() {
@@ -22,7 +22,18 @@ function Category() {
     fetchData();
   }, [category]);
 
-  return <Catalog category={category} />;
+  return (
+    <>
+      <Head>
+        <title>Kobalt | Catalog</title>
+        <meta
+          name='description'
+          content='Kobalt has variety of foods you can order right now!'
+        />
+      </Head>
+      <Catalog category={category} />
+    </>
+  );
 }
 
 export default Category;

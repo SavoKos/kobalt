@@ -4,6 +4,7 @@ import { BsCart2 } from 'react-icons/bs';
 import styled from 'styled-components';
 import CardDetails from '../components/Cart/CardDetails';
 import CartItem from '../components/Cart/CartItem';
+import Head from '../components/Head';
 import Navigation from '../components/Navigation';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Spinner from '../components/Spinner';
@@ -22,64 +23,66 @@ function Cart() {
       setPromoCodeError('');
     } else setPromoCodeError('Invalid promo code!');
   };
-  console.log(promoCode);
 
   return (
-    <ProtectedRoute>
-      <S.Container>
-        <TopNote>
-          <p className='discount'>15% OFF WITH PROMO CODE</p>
-        </TopNote>
-        <Navigation homeIcon={true} catalogIcon={true} />
-        {loading && (
-          <S.Cart>
-            <Spinner />
-          </S.Cart>
-        )}
-        {!loading && (
-          <S.Cart>
-            {cart?.length === 0 && (
-              <S.CartEmpty>
-                <h4>Your cart is empty.</h4>
-                <Link href='/catalog'>
-                  <p>
-                    <BsCart2 /> Back to shopping
-                  </p>
-                </Link>
-              </S.CartEmpty>
-            )}
+    <>
+      <Head title='Cart' description='Food cart' link='/cart' />
+      <ProtectedRoute>
+        <S.Container>
+          <TopNote>
+            <p className='discount'>15% OFF WITH PROMO CODE</p>
+          </TopNote>
+          <Navigation homeIcon={true} catalogIcon={true} />
+          {loading && (
+            <S.Cart>
+              <Spinner />
+            </S.Cart>
+          )}
+          {!loading && (
+            <S.Cart>
+              {cart?.length === 0 && (
+                <S.CartEmpty>
+                  <h4>Your cart is empty.</h4>
+                  <Link href='/catalog'>
+                    <p>
+                      <BsCart2 /> Back to shopping
+                    </p>
+                  </Link>
+                </S.CartEmpty>
+              )}
 
-            {cart?.length > 0 && (
-              <>
-                <h2>
-                  Shopping <span>Cart</span>
-                </h2>
-                {cart?.map((food) => (
-                  <CartItem food={food} key={food._id} />
-                ))}
-                <h5>
-                  Total: ${total}
-                  {discounted && ' with 15% discount!'}
-                </h5>
-                <S.PromoCode>
-                  <input
-                    type='text'
-                    placeholder='Promo Code'
-                    onChange={(e) => setPromoCode(e.target.value)}
-                    disabled={discounted}
-                  />
-                  <button onClick={applyPromoCode} disabled={discounted}>
-                    Use
-                  </button>
-                  <p className='error'>{promoCodeError}</p>
-                </S.PromoCode>
-                <CardDetails setLoading={setLoading} />
-              </>
-            )}
-          </S.Cart>
-        )}
-      </S.Container>
-    </ProtectedRoute>
+              {cart?.length > 0 && (
+                <>
+                  <h2>
+                    Shopping <span>Cart</span>
+                  </h2>
+                  {cart?.map((food) => (
+                    <CartItem food={food} key={food._id} />
+                  ))}
+                  <h5>
+                    Total: ${total}
+                    {discounted && ' with 15% discount!'}
+                  </h5>
+                  <S.PromoCode>
+                    <input
+                      type='text'
+                      placeholder='Promo Code'
+                      onChange={(e) => setPromoCode(e.target.value)}
+                      disabled={discounted}
+                    />
+                    <button onClick={applyPromoCode} disabled={discounted}>
+                      Use
+                    </button>
+                    <p className='error'>{promoCodeError}</p>
+                  </S.PromoCode>
+                  <CardDetails setLoading={setLoading} />
+                </>
+              )}
+            </S.Cart>
+          )}
+        </S.Container>
+      </ProtectedRoute>
+    </>
   );
 }
 

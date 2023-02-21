@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import Review from '../components/Review';
 import useUser from '../context/user';
 import Spinner from '../components/Spinner';
+import Head from 'next/head';
 
 function Food() {
   const router = useRouter();
@@ -40,16 +41,21 @@ function Food() {
   if (!food?.food?._id) return <Spinner />;
 
   return (
-    <div>
-      <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
-      <Hero food={food?.food} reviews={food?.review} />
-      <Review foodId={food?.food?._id} reviews={food?.review} />
-      <PopularCategory categories={categories} />
-      <S.Footer>
-        <Footer />
-      </S.Footer>
-      <ToastContainer position='bottom-left' />
-    </div>
+    <>
+      <Head>
+        <title>Kobalt | Food</title>
+      </Head>
+      <div>
+        <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
+        <Hero food={food?.food} reviews={food?.review} />
+        <Review foodId={food?.food?._id} reviews={food?.review} />
+        <PopularCategory categories={categories} />
+        <S.Footer>
+          <Footer />
+        </S.Footer>
+        <ToastContainer position='bottom-left' />
+      </div>
+    </>
   );
 }
 

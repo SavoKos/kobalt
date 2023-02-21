@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Head from '../components/Head';
 import Navigation from '../components/Navigation';
 import OrderItem from '../components/Profile/OrderItem';
 import ProtectedRoute from '../components/ProtectedRoute';
-import Skeleton from '../components/Skeletons/Skeleton';
-import SkeletonOrder from '../components/Skeletons/SkeletonOrder';
 import Spinner from '../components/Spinner';
 import useUser from '../context/user';
 import axios from '../utils/axiosBackend';
@@ -35,32 +34,35 @@ function Orders() {
   }, [user]);
 
   return (
-    <ProtectedRoute>
-      <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
-      <S.Container>
-        <h2>Orders</h2>
-        {!loading && orders?.length > 0 && (
-          <S.Orders>
-            {orders?.map((order, i) => (
-              <S.Order key={i}>
-                <h5>
-                  Total: ${order.total}
-                  {order.discounted && ' with 15% discount!'}
-                </h5>
-                {order?.food?.map((food, i) => (
-                  <OrderItem order={order} food={food} key={i} />
-                ))}
-              </S.Order>
-            ))}
-          </S.Orders>
-        )}
+    <>
+      <Head title='Orders' description='Your orders' link='/orders' />
+      <ProtectedRoute>
+        <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
+        <S.Container>
+          <h2>Orders</h2>
+          {!loading && orders?.length > 0 && (
+            <S.Orders>
+              {orders?.map((order, i) => (
+                <S.Order key={i}>
+                  <h5>
+                    Total: ${order.total}
+                    {order.discounted && ' with 15% discount!'}
+                  </h5>
+                  {order?.food?.map((food, i) => (
+                    <OrderItem order={order} food={food} key={i} />
+                  ))}
+                </S.Order>
+              ))}
+            </S.Orders>
+          )}
 
-        {loading && <Spinner />}
+          {loading && <Spinner />}
 
-        {orders?.length === 0 && <h4>We could not find any orders.</h4>}
-        {errorMessage}
-      </S.Container>
-    </ProtectedRoute>
+          {orders?.length === 0 && <h4>We could not find any orders.</h4>}
+          {errorMessage}
+        </S.Container>
+      </ProtectedRoute>
+    </>
   );
 }
 

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Spinner from '../components/Spinner';
 import { Auth } from '../Theme';
 import axios from '../utils/axiosBackend';
 import Cookies from 'js-cookie';
 import useUser from '../context/user';
+import Head from '../components/Head';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -47,46 +48,49 @@ const Login = () => {
   if (loading) return <Spinner />;
 
   return (
-    <Auth>
-      <div className='login-box-formbox'>
-        <div className='login-box-signup'>
-          Don&apos;t have an account?
-          <Link href='/register'> Register</Link>
+    <>
+      <Head title='Login' description='Kobalt Login' link='/login' />
+      <Auth>
+        <div className='login-box-formbox'>
+          <div className='login-box-signup'>
+            Don&apos;t have an account?
+            <Link href='/register'> Register</Link>
+          </div>
+          <div className='login-box-login'>
+            <h1>Welcome back to Kobalt</h1>
+            <form onSubmit={loginHandler}>
+              <div>
+                <label htmlFor='email'> E-Mail</label>
+                <input
+                  type='email'
+                  name='email'
+                  className='input-email'
+                  onChange={(event) => updateInputValueHandler(event)}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='password'> Password</label>
+                <input
+                  type='password'
+                  name='password'
+                  className='input-password'
+                  onChange={(event) => updateInputValueHandler(event)}
+                  required
+                />
+              </div>
+              {errorMessage}
+              <div>
+                <button className='login-btn'>Log in</button>
+                <Link href='/resetpassword' className='resetPassword'>
+                  <p>Forgot Password?</p>
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className='login-box-login'>
-          <h1>Welcome back to Kobalt</h1>
-          <form onSubmit={loginHandler}>
-            <div>
-              <label htmlFor='email'> E-Mail</label>
-              <input
-                type='email'
-                name='email'
-                className='input-email'
-                onChange={(event) => updateInputValueHandler(event)}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor='password'> Password</label>
-              <input
-                type='password'
-                name='password'
-                className='input-password'
-                onChange={(event) => updateInputValueHandler(event)}
-                required
-              />
-            </div>
-            {errorMessage}
-            <div>
-              <button className='login-btn'>Log in</button>
-              <Link href='/resetpassword' className='resetPassword'>
-                <p>Forgot Password?</p>
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
-    </Auth>
+      </Auth>
+    </>
   );
 };
 

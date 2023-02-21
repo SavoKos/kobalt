@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ResetPassword } from '../../Theme';
 import axios from '../../utils/axiosBackend';
 import Link from 'next/link';
+import Head from 'next/head';
 
 function ResetPass() {
   const [password, setPassword] = useState('');
@@ -26,23 +27,29 @@ function ResetPass() {
   };
 
   return (
-    <ResetPassword>
-      <Link href='/'>
-        <Image src='/logoGray.png' className='logo' fill alt='logo' />
-      </Link>
-      <input
-        type='password'
-        placeholder='Password'
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type='password'
-        placeholder='Confirm Password'
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-      {errorMessage}
-      <button onClick={resetHandler}>Reset Password</button>
-    </ResetPassword>
+    <>
+      <Head>
+        <title>Kobalt | Reset Password</title>
+        <meta name='description' content='Reset Password' />
+      </Head>
+      <ResetPassword>
+        <Link href='/'>
+          <Image src='/logoGray.png' className='logo' fill alt='logo' />
+        </Link>
+        <input
+          type='password'
+          placeholder='Password'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type='password'
+          placeholder='Confirm Password'
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        {errorMessage}
+        <button onClick={resetHandler}>Reset Password</button>
+      </ResetPassword>
+    </>
   );
 }
 

@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Categories from '../components/Admin/Categories';
 import Food from '../components/Admin/Food';
+import Head from '../components/Head';
 
 function Admin() {
   const [categories, setCategories] = useState();
@@ -43,20 +44,23 @@ function Admin() {
   if (loading) return <Spinner />;
 
   return (
-    <S.Container>
-      <Navigation homeIcon={true} catalogIcon={true} />
-      <S.Admin>
-        <Categories
-          categories={categories}
-          setLoading={setLoading}
-          setCategories={setCategories}
-          error={error}
-          setError={setError}
-        />
-        <Food categories={categories} setLoading={setLoading} />
-      </S.Admin>
-      <ToastContainer position='bottom-left' />
-    </S.Container>
+    <>
+      <Head title='Admin' description='Admin Panel' link='/admin' />
+      <S.Container>
+        <Navigation homeIcon={true} catalogIcon={true} />
+        <S.Admin>
+          <Categories
+            categories={categories}
+            setLoading={setLoading}
+            setCategories={setCategories}
+            error={error}
+            setError={setError}
+          />
+          <Food categories={categories} setLoading={setLoading} />
+        </S.Admin>
+        <ToastContainer position='bottom-left' />
+      </S.Container>
+    </>
   );
 }
 

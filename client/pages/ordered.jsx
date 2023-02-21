@@ -2,21 +2,30 @@ import Link from 'next/link';
 import React from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import styled from 'styled-components';
+import Head from '../components/Head';
 import Navigation from '../components/Navigation';
 
 function Ordered() {
   return (
-    <S.Container>
-      <Navigation homeIcon={true} catalogIcon={true} />
-      <S.Ordered>
-        <h4>Your order is successfully submited!</h4>
-        <Link href='/catalog'>
-          <p>
-            <BsCart2 /> Back to shopping
-          </p>
-        </Link>
-      </S.Ordered>
-    </S.Container>
+    <>
+      <Head
+        title='Ordered'
+        description='Your food is ordered'
+        link='/ordered'
+      />
+      <S.Container>
+        <Navigation homeIcon={true} catalogIcon={true} />
+        <S.Ordered>
+          <h4>Your order is successfully submited!</h4>
+          <h4>Your food will be prepared in 30 minutes. See you!</h4>
+          <Link href='/catalog'>
+            <p>
+              <BsCart2 /> Back to shopping
+            </p>
+          </Link>
+        </S.Ordered>
+      </S.Container>
+    </>
   );
 }
 

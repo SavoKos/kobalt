@@ -2,20 +2,24 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import styled from 'styled-components';
+import Head from '../components/Head';
 import Navigation from '../components/Navigation';
 import UserData from '../components/Profile/UserData';
 import ProtectedRoute from '../components/ProtectedRoute';
 
 function Settings() {
   return (
-    <ProtectedRoute>
-      <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
-      <S.Profile>
-        <h2>Settings</h2>
-        <UserData />
-      </S.Profile>
-      <ToastContainer position='bottom-left' />
-    </ProtectedRoute>
+    <>
+      <Head title='Settings' description='User settings' link='/settings' />
+      <ProtectedRoute>
+        <Navigation cartIcon={true} homeIcon={true} catalogIcon={true} />
+        <S.Profile>
+          <h2>Settings</h2>
+          <UserData />
+        </S.Profile>
+        <ToastContainer position='bottom-left' />
+      </ProtectedRoute>
+    </>
   );
 }
 

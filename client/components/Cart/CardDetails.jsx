@@ -79,7 +79,7 @@ function CardDetails({ setLoading }) {
           <S.CardNumber>
             <p>Card Number</p>
             <input
-              type='text'
+              type='number'
               placeholder='2232 2415 1251 5252'
               pattern='[0-9]{13,16}'
               name='cardNumber'
@@ -91,7 +91,7 @@ function CardDetails({ setLoading }) {
           <S.Date>
             <p>Date</p>
             <input
-              type='text'
+              type='number'
               placeholder='MM'
               min={1}
               max={12}
@@ -100,10 +100,10 @@ function CardDetails({ setLoading }) {
               name='month'
             />
             <input
-              type='text'
+              type='number'
               placeholder='YYYY'
-              min={2000}
-              max={new Date().getFullYear()}
+              min={new Date().getFullYear()}
+              max={new Date().getFullYear() + 10}
               name='year'
               required
               onChange={updateValue}
@@ -112,7 +112,9 @@ function CardDetails({ setLoading }) {
           <S.Code>
             <p>Code</p>
             <input
-              type='text'
+              max={9999}
+              min={100}
+              type='number'
               placeholder='XXX'
               required
               name='code'

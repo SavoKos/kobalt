@@ -3,7 +3,14 @@ import Error from './error';
 
 function Page401() {
   return (
-    <Error code='401' message='Unauthorized Access. You are not an admin!' />
+    <>
+      <Head
+        title='401'
+        description='Unauthorized Access. You are not an admin!'
+        link='/401'
+      />
+      <Error code='401' message='Unauthorized Access. You are not an admin!' />
+    </>
   );
 }
 
