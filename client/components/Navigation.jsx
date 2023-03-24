@@ -20,6 +20,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
   const [searchValue, setSearchValue] = useState('');
   const { setSearch, search } = useFilters();
   const [modalActive, setModalActive] = useState(false);
+  console.log(user);
 
   const quantityArr = cartContext.map((cartItem) => cartItem.quantity);
   const cartCount =
@@ -84,7 +85,7 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
               </S.Icon>
             )}
             {cartIcon && (
-              <Link href='/cart'>
+              <Link href={user?._id ? '/cart' : '/login'}>
                 <S.Icon>
                   <BsCart2 className='cart' />
                   <p className='count'>{cartCount}</p>

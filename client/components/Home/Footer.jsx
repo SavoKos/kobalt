@@ -3,9 +3,12 @@ import Link from 'next/link';
 import React from 'react';
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import styled from 'styled-components';
+import useUser from '../../context/user';
 import Newsletter from './Newsletter';
 
 function Footer() {
+  const { user } = useUser();
+
   return (
     <S.Container>
       <Newsletter />
@@ -14,11 +17,11 @@ function Footer() {
         <S.NavLinks>
           <Link href='/'>Home</Link>
           <Link href='/catalog'>Catalog</Link>
-          <Link href='/cart'>Cart</Link>
+          <Link href={user?._id ? '/cart' : '/login'}>Cart</Link>
           <Link href='/login'>Login</Link>
           <Link href='/register'>Register</Link>
-          <Link href='/orders'>Orders</Link>
-          <Link href='/settings'>Settings</Link>
+          <Link href={user?._id ? '/orders' : '/login'}>Orders</Link>
+          <Link href={user?._id ? '/settings' : '/login'}>Settings</Link>
         </S.NavLinks>
         <S.SocialMedia>
           <Link
