@@ -46,6 +46,7 @@ S.Accordion = styled.div`
   .categories {
     display: block !important;
     background-color: transparent;
+    margin: auto;
   }
   margin-bottom: 0.5rem;
 `;
