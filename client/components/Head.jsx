@@ -10,7 +10,7 @@ function Head({
     <NextHead>
       <title>Kobalt | {title}</title>
       <meta name='description' content={description} />
-      <link href={`https://kobalt.savokos.com${link}`} rel='canonical' />
+      <link href={`https://kobalt.savo-kos.com${link}`} rel='canonical' />
     </NextHead>
   );
 }

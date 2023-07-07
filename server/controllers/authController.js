@@ -41,7 +41,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   const emailSubject = 'Welcome to Kobalt';
-  const emailText = `Welcome to Kobalt Online Restaurant ${req.body.name}. Start ordering right now! - https://kobalt.savokos.com`;
+  const emailText = `Welcome to Kobalt Online Restaurant ${req.body.name}. Start ordering right now! - https://kobalt.savo-kos.com`;
   sendEmail(req.body.email, emailSubject, emailText);
   createSendToken(newUser, 201, req, res);
 });
@@ -107,7 +107,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 3) Send it to user's email
   const url =
     process.env.NODE_ENV === 'production'
-      ? ' https://kobalt.savokos.com'
+      ? ' https://kobalt.savo-kos.com'
       : 'http://localhost:3000';
   try {
     const resetURL = `${url}/resetpassword/${resetToken}`;

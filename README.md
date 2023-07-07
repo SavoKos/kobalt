@@ -1,5 +1,5 @@
-<p align="center"><a href="https://kobalt.savokos.com" target="_blank" rel="noopener noreferrer"><img width="100" src="https://res.cloudinary.com/dicynt7ms/image/upload/v1676584926/kobalt/Copy_of_Kobalt_500_200_px_500_500_px_2_lgbvsg.png"></a></p>
-<h1 align="center"><a href="https://kobalt.savokos.com" target="_blank" rel="noopener noreferrer">Kobalt</a></h1>
+<p align="center"><a href="https://kobalt.savo-kos.com" target="_blank" rel="noopener noreferrer"><img width="100" src="https://res.cloudinary.com/dicynt7ms/image/upload/v1676584926/kobalt/Copy_of_Kobalt_500_200_px_500_500_px_2_lgbvsg.png"></a></p>
+<h1 align="center"><a href="https://kobalt.savo-kos.com" target="_blank" rel="noopener noreferrer">Kobalt</a></h1>
 
 <br>
 
@@ -12,7 +12,7 @@
 ![Project Image6](https://res.cloudinary.com/dicynt7ms/image/upload/v1676585626/kobalt/screencapture-kobalt-savokos-orders-2023-02-16-23_12_49_e6qv3v.png)
 ![Project Image7](https://res.cloudinary.com/dicynt7ms/image/upload/v1676585629/kobalt/screencapture-kobalt-savokos-admin-2023-02-16-23_10_59_biarfn.png)
 
-![LiveWebsite](https://res.cloudinary.com/dicynt7ms/image/upload/w_20,h_20/v1630442590/important/NicePng_website-png_187940_pizwnr.png) <span>Live website - <a href="https://kobalt.savokos.com" target="_blank" rel="noopener noreferrer"> kobalt.savokos.com</a></span>
+![LiveWebsite](https://res.cloudinary.com/dicynt7ms/image/upload/w_20,h_20/v1630442590/important/NicePng_website-png_187940_pizwnr.png) <span>Live website - <a href="https://kobalt.savo-kos.com" target="_blank" rel="noopener noreferrer"> kobalt.savo-kos.com</a></span>
 
 ### Table of Contents
 
@@ -96,4 +96,4 @@ SOFTWARE.
 
 ## Author Info
 
-- Website - [savokos.com](https://savokos.com)
+- Website - [savo-kos.com](https://savo-kos.com)

@@ -36,7 +36,7 @@ mongoose.connect(
 
 const origin =
   process.env.NODE_ENV === 'production'
-    ? 'https://kobalt.savokos.com'
+    ? 'https://kobalt.savo-kos.com'
     : process.env.FRONTEND_PORT;
 
 app.use(cors({ credentials: true, origin }));

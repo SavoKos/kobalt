@@ -20,7 +20,6 @@ function Navigation({ cartIcon, homeIcon, catalogIcon, searchIcon }) {
   const [searchValue, setSearchValue] = useState('');
   const { setSearch, search } = useFilters();
   const [modalActive, setModalActive] = useState(false);
-  console.log(user);
 
   const quantityArr = cartContext.map((cartItem) => cartItem.quantity);
   const cartCount =

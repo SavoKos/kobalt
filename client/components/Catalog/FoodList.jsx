@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import useFilters from '../../context/filters';
 import FoodItem from '../Home/FoodItem';
 import Skeleton from '../Skeletons/Skeleton';
-import Accordions from './Accordions';
-import Filters from './Filters';
 
 function FoodList() {
   const skeletons = new Array(8).fill(0);

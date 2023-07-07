@@ -64,6 +64,7 @@ exports.getAll = (Model, options) =>
     const query = Model.find(req.query);
 
     const doc = await query;
+    console.log(doc);
 
     // SEND RESPONSE
     res.status(200).json({
