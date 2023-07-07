@@ -22,10 +22,7 @@ process.on('unhandledRejection', (err) => {
   server.close(() => process.exit(1));
 });
 
-const db = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
-);
+const db = process.env.DATABASE.replace('<PASSWORD>', 'PqH74ebmvSlDMYFj');
 mongoose.connect(
   db,
   () => {
