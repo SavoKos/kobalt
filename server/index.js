@@ -39,11 +39,20 @@ const origin =
     ? 'https://kobalt.savo-kos.com'
     : process.env.FRONTEND_PORT;
 
-app.use(cors({ origin }));
+app.use(cors({ credentials: true, origin }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://kobalt.savo-kos.com'); // update to match the domain you will make the request from
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
 app.use('/api/v1/user', authRoutes);
 app.use('/api/v1/food', foodRoutes);
