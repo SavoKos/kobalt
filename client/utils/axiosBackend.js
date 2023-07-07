@@ -5,6 +5,4 @@ const axios = a.create({
   baseURL: url,
 });
 
-axios.defaults.withCredentials = true;
-
 export default axios;
