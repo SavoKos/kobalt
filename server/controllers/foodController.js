@@ -5,6 +5,7 @@ const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.categories = catchAsync(async (req, res, next) => {
+  console.log('categories');
   const food = await Food.find({}).select('category image -_id');
   const categories = [...new Set(food.map((food) => food.category))];
   const obj = categories.map((category) =>

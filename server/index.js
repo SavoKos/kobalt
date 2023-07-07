@@ -39,7 +39,9 @@ const origin =
     ? 'https://kobalt.savo-kos.com'
     : process.env.FRONTEND_PORT;
 
-app.use(cors({ credentials: true, origin: '*' }));
+console.log(origin);
+
+app.use(cors({ credentials: true, origin }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
