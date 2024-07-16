@@ -36,7 +36,7 @@ mongoose.connect(
 
 const origin =
   process.env.NODE_ENV === 'production'
-    ? 'https://kobalt.savo-kos.com'
+    ? 'https://kobalt.savokos.com'
     : process.env.FRONTEND_PORT;
 
 console.log(origin);
